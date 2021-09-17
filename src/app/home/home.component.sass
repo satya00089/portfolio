@@ -1,0 +1,75 @@
+.main-content
+    background-color: #000
+
+.main-content-intro
+    min-height: calc(100vh - 80px)
+
+.logo
+    width: 25rem
+    margin: 7rem 8rem
+    cursor: pointer
+
+.intro
+    font-size: 3rem
+    font-family: inherit
+    font-weight: bold
+    color: #51367E
+
+.intro-details
+    font-size: 1.2rem
+    font-family: inherit
+    font-weight: 600
+    color: #a0b3bf
+    min-height: 5rem
+
+.swipe-down
+    text-align: center
+    color: #c9b26b
+    font-family: inherit
+    font-weight: bolder
+    font-size: 1.25rem
+    margin: 2rem 10rem
+    padding: 1rem 2rem
+    border: 5px solid
+    cursor: pointer
+
+.swipe-down:hover
+    background-color: #c9b26b
+    color: #51367E
+
+.introduction
+    margin: 7rem 0
+    padding: 3rem 5rem
+    height: 25rem
+
+.blinker
+    font-weight: bolder
+    font-family: cursive
+    -webkit-animation: blink-1 2s infinite both
+    animation: blink-1 2s infinite both
+    display: none
+
+.blinker.active
+    display: inline-block
+
+@media only screen and (min-width: 992px)
+    .separator
+        border-left: 3px solid
+
+@-webkit-keyframes blink-1
+  0%,
+  50%,
+  100%
+    opacity: 1
+  25%,
+  75%
+    opacity: 0
+
+@keyframes blink-1
+  0%,
+  50%,
+  100%
+    opacity: 1
+  25%,
+  75%
+    opacity: 0
