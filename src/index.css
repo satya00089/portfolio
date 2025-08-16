@@ -1,13 +1,51 @@
 @import "tailwindcss";
 
 @theme {
+  /* ⭐ Twinkling stars */
   --animate-twinkle: twinkle 2s infinite ease-in-out;
-
   @keyframes twinkle {
     0%, 100% { opacity: 0.2; }
     50% { opacity: 1; }
   }
-  
+
+  /* 🌌 Planet orbit */
+  --animate-orbit: orbit 10s linear infinite;
+  @keyframes orbit {
+    from { transform: rotate(0deg) translateX(120px) rotate(0deg); }
+    to { transform: rotate(360deg) translateX(120px) rotate(-360deg); }
+  }
+
+  /* 🔄 Card flip */
+  --animate-flip: flip 0.8s ease-in-out forwards;
+  @keyframes flip {
+    from { transform: rotateY(0); }
+    to { transform: rotateY(180deg); }
+  }
+
+  /* 🎭 Black hole swirl */
+  --animate-swirl: swirl 6s linear infinite;
+  @keyframes swirl {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* 🌌 Orbits */
+  --animate-spin-slow: spin-slow 20s linear infinite;
+  --animate-spin-slower: spin-slower 35s linear infinite;
+  --animate-spin-slowest: spin-slowest 50s linear infinite;
+
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  @keyframes spin-slower {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  @keyframes spin-slowest {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
 }
 
 
@@ -37,8 +75,8 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
+  /* display: flex;
+  place-items: center; */
   min-width: 320px;
   min-height: 100vh;
 }
