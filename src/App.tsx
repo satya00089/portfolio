@@ -1,35 +1,21 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import { Link, Element } from "react-scroll";
+import Navbar from "./components/Navbar";
+import About from "./components/About";
+import Projects from "./components/Projects";
+import Skills from "./components/Skills";
+import Contact from "./components/Contact";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App: React.FC = () => {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className="bg-nightSky text-white min-h-screen scroll-smooth">
+      <Navbar />
+      <Element name="about"><About /></Element>
+      <Element name="projects"><Projects /></Element>
+      <Element name="skills"><Skills /></Element>
+      <Element name="contact"><Contact /></Element>
+    </div>
+  );
+};
 
-export default App
+export default App;
