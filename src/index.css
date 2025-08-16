@@ -1,5 +1,16 @@
 @import "tailwindcss";
 
+@theme {
+  --animate-twinkle: twinkle 2s infinite ease-in-out;
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 1; }
+  }
+  
+}
+
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
