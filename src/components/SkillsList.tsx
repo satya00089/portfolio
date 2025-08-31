@@ -1,11 +1,10 @@
 import React from "react";
 import { motion } from "framer-motion";
-
-export type Skill = { name: string; level: number };
+import type { Skill } from "../types/portfolio";
 
 export const SkillsList: React.FC<{ skills?: Skill[] }> = ({ skills = [] }) => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
       {skills.map((s) => (
         <div
           key={s.name}

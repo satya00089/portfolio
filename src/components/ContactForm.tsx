@@ -72,10 +72,7 @@ export const ContactForm: React.FC<{ endpoint?: string }> = ({
         <button
           type="submit"
           disabled={loading}
-          className="px-4 py-2 rounded-lg text-white"
-          style={{
-            background: "linear-gradient(90deg, var(--brand), var(--accent))",
-          }}
+          className="px-4 py-2 rounded-lg text-white bg-[var(--brand)]"
         >
           {loading ? "Sending..." : "Send message"}
         </button>

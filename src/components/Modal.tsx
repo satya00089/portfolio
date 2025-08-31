@@ -41,11 +41,11 @@ export const Modal: React.FC<{
         className="relative z-10 w-full max-w-3xl p-6 rounded-2xl bg-[var(--surface)] border border-[var(--border)] shadow-lg focus:outline-none"
       >
         <div className="flex items-start justify-between">
-          <h3 className="text-xl font-semibold text-[var(--text)]">{title}</h3>
+          <h3 className="text-2xl font-semibold text-[var(--brand)]">{title}</h3>
           <button
             onClick={onClose}
             aria-label="Close dialog"
-            className="ml-3 p-2 rounded-md border border-[var(--border)] bg-[var(--surface)]"
+            className="ml-3 p-2 bg-[var(--surface)] cursor-pointer"
           >
             ✕
           </button>

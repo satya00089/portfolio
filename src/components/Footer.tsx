@@ -1,5 +1,5 @@
 import React from "react";
-import { SiGithub, SiLinkedin } from "react-icons/si";
+import { SiKaggle, SiGithub, SiLinkedin } from "react-icons/si";
 
 export const Footer: React.FC = () => {
   return (
@@ -13,6 +13,15 @@ export const Footer: React.FC = () => {
 
         {/* Right: social icons */}
         <div className="flex items-center gap-4">
+          <a
+            href="https://www.kaggle.com/satyasubudhi"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Kaggle"
+            className="hover:text-[var(--text)] transition-colors"
+          >
+            <SiKaggle size={40} />
+          </a>
           <a
             href="https://github.com/satya00089"
             target="_blank"

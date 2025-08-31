@@ -11,6 +11,14 @@ module.exports = {
       colors: {
         // keep your existing named color plus any semantic tokens if you want
         nightSky: "#0d1117",
+        primary: "#A695E7",
+        secondary: "var(--secondary)",
+        accent: "var(--accent)",
+        background: "var(--background)",
+        surface: "var(--surface)",
+        border: "var(--border)",
+        muted: "var(--muted)",
+        // add more semantic tokens as needed
       },
       animation: {
         float: "float 6s ease-in-out infinite",
@@ -23,5 +31,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 };

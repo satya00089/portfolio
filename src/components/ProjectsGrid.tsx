@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { ProjectCard } from "./ProjectCard";
-import type { Project } from "./ProjectCard";
+import type { Project } from "../types/portfolio";
+
 
 export const ProjectsGrid: React.FC<{
   projects?: Project[];
@@ -25,7 +26,7 @@ export const ProjectsGrid: React.FC<{
           <button
             key={f}
             onClick={() => setFilter(f)}
-            className={`px-3 py-1 rounded-full text-sm ${
+            className={`px-3 py-1 cursor-pointer font-semibold rounded-full text-sm ${
               filter === f
                 ? "bg-[var(--brand)] text-white"
                 : "bg-[var(--surface)] border border-[var(--border)] text-[var(--text)]"
