@@ -46,33 +46,33 @@ export const PROJECTS_DATA: Project[] = [
 
 export const SKILLS: Skill[] = [
   // Frontend
-  { name: "React", level: 90 },
-  { name: "HTML", level: 90 },
-  { name: "CSS", level: 88 },
+  { name: "React", level: 90, icon: "SiReact" },
+  { name: "HTML5", level: 90, icon: "SiHtml5" },
+  { name: "CSS3", level: 88, icon: "SiCss3" },
   // Backend
-  { name: "Python", level: 88 },
-  { name: "FastAPI", level: 80 },
+  { name: "Python", level: 88, icon: "SiPython" },
+  { name: "FastAPI", level: 80, icon: "SiFastapi" },
   // Data Science / ML
-  { name: "NumPy", level: 85 },
-  { name: "Pandas", level: 85 },
-  { name: "Scikit-learn", level: 80 },
-  { name: "TensorFlow", level: 75 },
-  { name: "PyTorch", level: 75 },
+  { name: "NumPy", level: 85, icon: "SiNumpy" },
+  { name: "Pandas", level: 85, icon: "SiPandas" },
+  { name: "Scikit-learn", level: 80, icon: "SiScikitlearn" },
+  { name: "TensorFlow", level: 75, icon: "SiTensorflow" },
+  { name: "PyTorch", level: 75, icon: "SiPytorch" },
   { name: "RAG", level: 70 },
   // IaC
-  { name: "Terraform", level: 80 },
-  { name: "Bicep", level: 70 },
+  { name: "Terraform", level: 80, icon: "SiTerraform" },
+  { name: "Bicep", level: 70, icon: "VscAzure" },
   // Cloud Platforms
-  { name: "AWS", level: 78 },
-  { name: "Azure", level: 78 },
+  { name: "AWS", level: 78, icon: "FaAws" },
+  { name: "Azure", level: 78, icon: "VscAzure" },
   // Version Control
-  { name: "Git", level: 90 },
-  { name: "GitHub", level: 88 },
-  { name: "GitLab", level: 82 },
+  { name: "Git", level: 90, icon: "SiGit" },
+  { name: "GitHub", level: 88, icon: "SiGithub" },
+  { name: "GitLab", level: 82, icon: "SiGitlab" },
   // Databases
-  { name: "PostgreSQL", level: 80 },
-  { name: "MySQL", level: 78 },
-  { name: "MongoDB", level: 78 },
+  { name: "PostgreSQL", level: 80, icon: "SiPostgresql" },
+  { name: "MySQL", level: 78, icon: "SiMysql" },
+  { name: "MongoDB", level: 78, icon: "SiMongodb" },
 ];
 
 // ---------- SMALL HELPERS ----------

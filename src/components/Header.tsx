@@ -45,7 +45,6 @@ export const Header: React.FC<{
             className="p-2 rounded-md bg-[color:var(--surface)/0.6] cursor-pointer hover:bg-[color:var(--surface)/0.8] duration-300 hover:scale-110 transition"
           >
             {dark ? <PiSunDuotone size={24} /> : <PiMoonDuotone size={24} />}
-            
           </button>
         </nav>
       </div>

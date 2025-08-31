@@ -119,7 +119,7 @@ export const ProjectModal: React.FC<{
         <div className="h-70 overflow-auto rounded-md border border-[var(--border)] bg-[var(--surface)] mt-6">
           <div
             className={`p-4 markdown-body ${
-              dark ? "markdown-dark" : "markdown-light"
+              dark ? "markdown-body-dark" : "markdown-body-light"
             }`}
           >
             <ReactMarkdown remarkPlugins={[remarkGfm]}>{readme}</ReactMarkdown>

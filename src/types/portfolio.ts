@@ -19,7 +19,7 @@ export type Project = {
   long?: string;
 };
 
-export type Skill = { name: string; level: number };
+export type Skill = { name: string; level: number, icon?: string };
 
 export type TagColors = {
   [tag: string]: string;
