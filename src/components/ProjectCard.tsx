@@ -24,26 +24,23 @@ export const ProjectCard: React.FC<{
     <motion.article
       layout
       whileHover={{ y: -6 }}
-      className="p-4 rounded-2xl bg-[var(--surface)] border border-[var(--border)] cursor-pointer"
-      onClick={() => onOpen?.(project)}
-      role={onOpen ? "button" : undefined}
-      tabIndex={0}
-      onKeyDown={(e) =>
-        (e.key === "Enter" || e.key === " ") && onOpen?.(project)
-      }
+      className="p-4 rounded-2xl bg-[var(--surface)] border border-[var(--border)] shadow-sm hover:shadow-md transition-shadow"
     >
       <div className="flex items-start justify-between gap-4">
         <div>
           {/* Arrow overlay */}
-          <div
+          <button
+            title="Open project"
+            type="button"
+            onClick={() => onOpen?.(project)}
             className="absolute top-2 right-2 
                     bg-[var(--surface)]/80 backdrop-blur-sm 
-                    rounded-full shadow-md"
+                    rounded-full shadow-md cursor-pointer hover:scale-110 transition duration-300"
           >
             <span className="leading-none text-[var(--brand)]">
               <BsArrowUpRightCircleFill size={32} />
             </span>
-          </div>
+          </button>
           {project.image && (
             <div className="w-full flex justify-center mb-4">
               <img
