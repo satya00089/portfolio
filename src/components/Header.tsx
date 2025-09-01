@@ -10,7 +10,7 @@ export const Header: React.FC<{
   const { dark, toggle } = useTheme();
 
   return (
-    <header className="w-full border-theme bg-[var(--surface)]">
+    <header className="fixed top-0 left-0 z-50 backdrop-blur-md w-full border-b border-theme bg-[var(--surface)]/80">
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         <a
           href="/"

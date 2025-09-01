@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { tagColors } from "../config/portfolioData";
 import type { Project } from "../types/portfolio";
 import * as SiIcons from "react-icons/si"; // dynamic icon imports
+import { BsArrowUpRightCircleFill } from "react-icons/bs";
 
 export const ProjectCard: React.FC<{
   project: Project;
@@ -33,8 +34,27 @@ export const ProjectCard: React.FC<{
     >
       <div className="flex items-start justify-between gap-4">
         <div>
+          {/* Arrow overlay */}
+          <div
+            className="absolute top-2 right-2 
+                    bg-[var(--surface)]/80 backdrop-blur-sm 
+                    rounded-full shadow-md"
+          >
+            <span className="leading-none text-[var(--brand)]">
+              <BsArrowUpRightCircleFill size={32} />
+            </span>
+          </div>
+          {project.image && (
+            <div className="w-full flex justify-center mb-4">
+              <img
+                src={project.image}
+                alt={project.title}
+                className="rounded-lg border border-[var(--border)] w-full h-auto object-cover max-h-20"
+              />
+            </div>
+          )}
           {/* Title + Description */}
-          <h3 className="font-semibold text-lg text-[var(--text)]">
+          <h3 className="font-semibold text-lg text-[var(--brand)]">
             {project.title}
           </h3>
           <p className="text-sm text-[var(--muted)] mt-1">{project.desc}</p>
@@ -87,9 +107,6 @@ export const ProjectCard: React.FC<{
             )}
           </div>
         </div>
-
-        {/* Arrow indicator */}
-        <div className="text-xs text-[var(--muted)]">→</div>
       </div>
     </motion.article>
   );

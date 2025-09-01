@@ -7,7 +7,7 @@ export const About: React.FC<{ personal: Personal }> = ({ personal }) => {
   return (
     <section
       id="about"
-      className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start py-8"
+      className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start pt-40 pb-8"
     >
       <motion.div
         initial={{ opacity: 0, y: 6 }}

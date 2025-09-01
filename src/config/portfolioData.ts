@@ -15,7 +15,7 @@ export const PROJECTS_DATA: Project[] = [
     title: "MUI Color Wheel",
     desc: "A Material-UI based color wheel component with real-time color picking.",
     tags: ["React", "Material-UI", "NPM Package", "Storybook"],
-    image: undefined,
+    image: "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExYTJxYjhmdTVjam41aWlzczZreGZ2eXc5eThjdDRpMXgxYzVuYTAzMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/tWnCyw4rmoFY8CmhLV/giphy.gif",
     href: "https://mui-color-wheel.vercel.app/",
     links: [
       { label: "Storybook", url: "https://mui-color-wheel.vercel.app/", icon: "SiStorybook" },

@@ -1,9 +1,5 @@
 @import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 /* --- Theme variables --- */
 :root {
   /* light theme tokens */
@@ -38,4 +34,20 @@ html, body {
 .text-muted { color: var(--muted); }
 .border-theme { border-color: var(--border); }
 
-/* Example: prefer Tailwind classes but utilities above are convenient */
+/* Global scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2); /* light in dark mode */
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
