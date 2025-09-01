@@ -19,7 +19,12 @@ export type Project = {
   long?: string;
 };
 
-export type Skill = { name: string; level: number, icon?: string };
+export type Skill = {
+  name: string;
+  level: number;
+  icon?: string;
+  stack?: "frontend" | "backend" | "database" | "ai & ml" | "others";
+};
 
 export type TagColors = {
   [tag: string]: string;

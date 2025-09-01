@@ -30,7 +30,10 @@ export const PROJECTS_DATA: Project[] = [
     desc: "A component library and living documentation for a design system.",
     tags: ["Design System", "Storybook", "React"],
     image: undefined,
-    href: "#",
+    href: "https://satya00089.github.io/diagrammatic",
+    links: [
+      { label: "GitHub", url: "https://github.com/satya00089/diagrammatic", icon: "SiGithub" },
+    ],
     long: "Built atomic components, token system, and automated visual tests.",
   },
   {
@@ -46,33 +49,35 @@ export const PROJECTS_DATA: Project[] = [
 
 export const SKILLS: Skill[] = [
   // Frontend
-  { name: "React", level: 90, icon: "SiReact" },
-  { name: "HTML5", level: 90, icon: "SiHtml5" },
-  { name: "CSS3", level: 88, icon: "SiCss3" },
+  { name: "React", level: 90, icon: "SiReact", stack: "frontend" },
+  { name: "HTML5", level: 90, icon: "SiHtml5", stack: "frontend" },
+  { name: "CSS3", level: 88, icon: "SiCss3", stack: "frontend" },
+  { name: "JavaScript", level: 90, icon: "SiJavascript", stack: "frontend" },
+  { name: "TypeScript", level: 85, icon: "SiTypescript", stack: "frontend" },
+  { name: "Tailwind CSS", level: 80, icon: "SiTailwindcss", stack: "frontend" },
   // Backend
-  { name: "Python", level: 88, icon: "SiPython" },
-  { name: "FastAPI", level: 80, icon: "SiFastapi" },
+  { name: "Python", level: 88, icon: "SiPython", stack: "backend" },
+  { name: "FastAPI", level: 80, icon: "SiFastapi", stack: "backend" },
   // Data Science / ML
-  { name: "NumPy", level: 85, icon: "SiNumpy" },
-  { name: "Pandas", level: 85, icon: "SiPandas" },
-  { name: "Scikit-learn", level: 80, icon: "SiScikitlearn" },
-  { name: "TensorFlow", level: 75, icon: "SiTensorflow" },
-  { name: "PyTorch", level: 75, icon: "SiPytorch" },
-  { name: "RAG", level: 70 },
+  { name: "NumPy", level: 85, icon: "SiNumpy", stack: "ai & ml" },
+  { name: "Pandas", level: 85, icon: "SiPandas", stack: "ai & ml" },
+  { name: "Scikit-learn", level: 80, icon: "SiScikitlearn", stack: "ai & ml" },
+  { name: "TensorFlow", level: 75, icon: "SiTensorflow", stack: "ai & ml" },
+  { name: "PyTorch", level: 75, icon: "SiPytorch", stack: "ai & ml" },
+  { name: "RAG", level: 70, stack: "ai & ml" },
   // IaC
-  { name: "Terraform", level: 80, icon: "SiTerraform" },
-  { name: "Bicep", level: 70, icon: "VscAzure" },
+  { name: "Terraform", level: 80, icon: "SiTerraform", stack: "others" },
+  { name: "Bicep", level: 70, stack: "others" },
   // Cloud Platforms
-  { name: "AWS", level: 78, icon: "FaAws" },
-  { name: "Azure", level: 78, icon: "VscAzure" },
+  { name: "AWS", level: 78, stack: "others" },
+  { name: "Azure", level: 78, stack: "others" },
   // Version Control
-  { name: "Git", level: 90, icon: "SiGit" },
-  { name: "GitHub", level: 88, icon: "SiGithub" },
-  { name: "GitLab", level: 82, icon: "SiGitlab" },
+  { name: "Git", level: 90, icon: "SiGit", stack: "others" },
+  { name: "GitHub", level: 88, icon: "SiGithub", stack: "others" },
   // Databases
-  { name: "PostgreSQL", level: 80, icon: "SiPostgresql" },
-  { name: "MySQL", level: 78, icon: "SiMysql" },
-  { name: "MongoDB", level: 78, icon: "SiMongodb" },
+  { name: "PostgreSQL", level: 80, icon: "SiPostgresql", stack: "database" },
+  { name: "MySQL", level: 78, icon: "SiMysql", stack: "database" },
+  { name: "MongoDB", level: 78, icon: "SiMongodb", stack: "database" },
 ];
 
 // ---------- SMALL HELPERS ----------
