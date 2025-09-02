@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import * as SiIcons from "react-icons/si";
 import * as FaIcons from "react-icons/fa";
 import ReactMarkdown from "react-markdown";
@@ -7,7 +6,7 @@ import remarkGfm from "remark-gfm";
 import type { Project } from "../types/portfolio";
 import { tagColors } from "../config/portfolioData";
 import { useTheme } from "../context/ThemeContext";
-
+import { motion, AnimatePresence } from "framer-motion";
 
 import "github-markdown-css/github-markdown-light.css";
 import "github-markdown-css/github-markdown-dark.css";
@@ -19,8 +18,37 @@ export const ProjectModal: React.FC<{
 }> = ({ project, open, onClose }) => {
   const { dark } = useTheme();
   const [readme, setReadme] = useState<string | null>(null);
+  const [iframeAllowed, setIframeAllowed] = useState(false);
+  const [activeTab, setActiveTab] = useState<"playground" | "details">(
+    "playground"
+  );
 
-  // Try fetching GitHub README if github link exists
+  // Reset tab when modal opens
+  useEffect(() => {
+    if (open) setActiveTab("playground");
+  }, [open]);
+
+  // Check if href can be embedded in iframe
+  useEffect(() => {
+    async function checkIframe() {
+      if (!project?.href) {
+        setIframeAllowed(false);
+        return;
+      }
+      if (
+        project.href.includes("github.io") ||
+        project.href.includes("vercel.app") ||
+        project.href.includes("netlify.app")
+      ) {
+        setIframeAllowed(true);
+      } else {
+        setIframeAllowed(false);
+      }
+    }
+    if (open) checkIframe();
+  }, [open, project]);
+
+  // Fetch GitHub README
   useEffect(() => {
     async function fetchReadme() {
       if (!project) return;
@@ -31,7 +59,6 @@ export const ProjectModal: React.FC<{
       }
 
       try {
-        // Extract owner/repo from GitHub URL
         const regex = /github\.com\/([^/]+)\/([^/]+)/;
         const match = regex.exec(githubLink.url);
         if (!match) return;
@@ -42,8 +69,7 @@ export const ProjectModal: React.FC<{
         );
 
         if (res.ok) {
-          const text = await res.text();
-          setReadme(text);
+          setReadme(await res.text());
         } else {
           setReadme(null);
         }
@@ -51,7 +77,6 @@ export const ProjectModal: React.FC<{
         setReadme(null);
       }
     }
-
     if (open) fetchReadme();
   }, [open, project]);
 
@@ -77,101 +102,147 @@ export const ProjectModal: React.FC<{
           <motion.dialog
             open={open}
             aria-modal="true"
-            className="relative z-10 w-full max-w-3xl rounded-2xl bg-[var(--surface)] border border-[var(--border)] shadow-lg flex flex-col max-h-[90vh]"
+            className="relative z-10 w-full max-w-4xl max-h-[90vh] overflow-y-auto p-6 rounded-2xl bg-[var(--surface)] border border-[var(--border)] shadow-lg"
             initial={{ y: 50, opacity: 0, scale: 0.95 }}
             animate={{ y: 0, opacity: 1, scale: 1 }}
             exit={{ y: 40, opacity: 0, scale: 0.95 }}
             transition={{ type: "spring", damping: 20, stiffness: 300 }}
           >
-            {/* Header */}
-            <div className="p-6 border-b border-[var(--border)] flex items-center justify-between">
-              <h3 className="text-xl font-bold text-[var(--brand)]">
-                {project.title}
-              </h3>
+            {/* Close */}
+            <button
+              onClick={onClose}
+              className="absolute top-4 right-4 text-[var(--muted)] hover:text-[var(--text)]"
+            >
+              ✕
+            </button>
+
+            {/* Tabs */}
+            <div className="flex border-b border-[var(--border)] mb-4">
               <button
-                onClick={onClose}
-                className="cursor-pointer text-[var(--muted)] hover:text-[var(--text)]"
+                onClick={() => setActiveTab("playground")}
+                className={`px-4 py-2 text-sm font-medium ${
+                  activeTab === "playground"
+                    ? "text-[var(--brand)] border-b-2 border-[var(--brand)]"
+                    : "text-[var(--muted)] hover:text-[var(--text)]"
+                }`}
               >
-                ✕
+                Playground
+              </button>
+              <button
+                onClick={() => setActiveTab("details")}
+                className={`px-4 py-2 text-sm font-medium ${
+                  activeTab === "details"
+                    ? "text-[var(--brand)] border-b-2 border-[var(--brand)]"
+                    : "text-[var(--muted)] hover:text-[var(--text)]"
+                }`}
+              >
+                Details
               </button>
             </div>
 
-            {/* Scrollable content */}
-            <div className="p-6 overflow-y-auto flex-1">
-              {project.image && (
-                <div className="w-full flex justify-center mb-4">
+            {/* Playground Tab */}
+            {activeTab === "playground" && (
+              <div>
+                {iframeAllowed ? (
+                  <div className="mb-4">
+                    <iframe
+                      src={project.href}
+                      title={project.title}
+                      className="w-full h-[400px] rounded-lg border border-[var(--border)]"
+                      loading="lazy"
+                    />
+                    <div className="mt-2 text-right">
+                      <a
+                        href={project.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-[var(--brand)] hover:underline"
+                      >
+                        Open Fullscreen ↗
+                      </a>
+                    </div>
+                  </div>
+                ) : project.image ? (
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="rounded-lg border border-[var(--border)] mb-4 w-full h-auto object-cover max-h-70"
+                    className="rounded-lg border border-[var(--border)] mb-4"
                   />
-                </div>
-              )}
+                ) : null}
+              </div>
+            )}
 
-              <p className="text-sm text-[var(--text)] mb-4">{project.long}</p>
+            {/* Details Tab */}
+            {activeTab === "details" && (
+              <div>
+                {/* Description */}
+                <p className="text-sm text-[var(--text)] mb-4">
+                  {project.long}
+                </p>
 
-              {/* Links */}
-              {project.links && project.links.length > 0 && (
-                <div className="flex gap-3 flex-wrap mb-4">
-                  {project.href && (
-                    <a
-                      href={project.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 px-3 py-1 text-sm font-medium rounded-md border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] hover:bg-[var(--border)]/30"
-                    >
-                      🔗 Demo
-                    </a>
-                  )}
-                  {project.links.map((link) => {
-                    const Icon =
-                      SiIcons[link.icon as keyof typeof SiIcons] ??
-                      FaIcons[link.icon as keyof typeof FaIcons];
-                    return (
+                {/* Links */}
+                {project.links && project.links.length > 0 && (
+                  <div className="flex gap-3 flex-wrap mb-4">
+                    {project.href && (
                       <a
-                        key={link.label}
-                        href={link.url}
+                        href={project.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 px-3 py-1 text-sm font-medium rounded-md border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] hover:bg-[var(--border)]/30"
+                        className="inline-flex items-center gap-1 px-3 py-1 text-sm font-medium rounded-md border border-[var(--border)] bg-[var(--surface)] hover:underline"
                       >
-                        {Icon && <Icon className="w-4 h-4" />}
-                        {link.label}
+                        🔗 Demo
                       </a>
-                    );
-                  })}
-                </div>
-              )}
-
-              {/* Tags */}
-              <div className="mt-3 flex gap-2 flex-wrap">
-                {project.tags?.map((t) => (
-                  <span
-                    key={t}
-                    className={`text-xs font-semibold px-2 py-1 rounded-full ${
-                      tagColors[t] || "bg-gray-100 text-gray-800"
-                    }`}
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-
-              {/* README */}
-              {readme && (
-                <div className="h-full overflow-auto rounded-md border border-[var(--border)] bg-[var(--surface)] mt-6">
-                  <div
-                    className={`p-4 markdown-body ${
-                      dark ? "markdown-body-dark" : "markdown-body-light"
-                    }`}
-                  >
-                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                      {readme}
-                    </ReactMarkdown>
+                    )}
+                    {project.links.map((link) => {
+                      const Icon =
+                        SiIcons[link.icon as keyof typeof SiIcons] ??
+                        FaIcons[link.icon as keyof typeof FaIcons];
+                      return (
+                        <a
+                          key={link.label}
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 px-3 py-1 text-sm font-medium rounded-md border border-[var(--border)] bg-[var(--surface)] hover:underline"
+                        >
+                          {Icon && <Icon className="w-4 h-4" />}
+                          {link.label}
+                        </a>
+                      );
+                    })}
                   </div>
+                )}
+
+                {/* Tags */}
+                <div className="mt-3 flex gap-2 flex-wrap">
+                  {project.tags?.map((t) => (
+                    <span
+                      key={t}
+                      className={`text-xs font-semibold px-2 py-1 rounded-full ${
+                        tagColors[t] || "bg-gray-100 text-gray-800"
+                      }`}
+                    >
+                      {t}
+                    </span>
+                  ))}
                 </div>
-              )}
-            </div>
+
+                {/* README */}
+                {readme && (
+                  <div className="h-70 overflow-auto rounded-md border border-[var(--border)] bg-[var(--surface)] mt-6">
+                    <div
+                      className={`p-4 markdown-body ${
+                        dark ? "markdown-body-dark" : "markdown-body-light"
+                      }`}
+                    >
+                      <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                        {readme}
+                      </ReactMarkdown>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
           </motion.dialog>
         </motion.div>
       )}
