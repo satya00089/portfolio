@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { ThemeProvider } from "../components/ThemeProvider";
-import { Header } from "../components/Header";
+import { Header } from "../components/shared/Header";
 import { ProjectsGrid } from "../components/ProjectsGrid";
 import { SkillsList } from "../components/SkillsList";
 import { ContactForm } from "../components/ContactForm";
-import { Footer } from "../components/Footer";
+import { Footer } from "../components/shared/Footer";
 import { PERSONAL, PROJECTS_DATA, SKILLS } from "../config/portfolioData";
 import { About } from "../components/About";
 import type { Project } from "../types/portfolio";

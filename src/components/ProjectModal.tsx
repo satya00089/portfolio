@@ -19,34 +19,36 @@ export const ProjectModal: React.FC<{
   const { dark } = useTheme();
   const [readme, setReadme] = useState<string | null>(null);
   const [iframeAllowed, setIframeAllowed] = useState(false);
-  const [activeTab, setActiveTab] = useState<"playground" | "details">(
-    "playground"
+  const [activeTab, setActiveTab] = useState<"details" | "playground">(
+    "details"
   );
+  const [iframeLoaded, setIframeLoaded] = useState(false);
+  const FaLink = FaIcons["FaLink" as keyof typeof FaIcons];
 
-  // Reset tab when modal opens
+  // Reset state when modal opens
   useEffect(() => {
-    if (open) setActiveTab("playground");
+    if (open) {
+      setActiveTab("details");
+      setIframeLoaded(false);
+    }
   }, [open]);
 
   // Check if href can be embedded in iframe
   useEffect(() => {
-    async function checkIframe() {
-      if (!project?.href) {
-        setIframeAllowed(false);
-        return;
-      }
-      if (
-        project.href.includes("github.io") ||
-        project.href.includes("vercel.app") ||
-        project.href.includes("netlify.app")
-      ) {
-        setIframeAllowed(true);
-      } else {
-        setIframeAllowed(false);
-      }
+    if (!project?.href) {
+      setIframeAllowed(false);
+      return;
     }
-    if (open) checkIframe();
-  }, [open, project]);
+    if (
+      project.href.includes("github.io") ||
+      project.href.includes("vercel.app") ||
+      project.href.includes("netlify.app")
+    ) {
+      setIframeAllowed(true);
+    } else {
+      setIframeAllowed(false);
+    }
+  }, [project]);
 
   // Fetch GitHub README
   useEffect(() => {
@@ -111,138 +113,163 @@ export const ProjectModal: React.FC<{
             {/* Close */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 text-[var(--muted)] hover:text-[var(--text)]"
+              className="absolute top-4 right-4 cursor-pointer text-[var(--muted)] hover:text-[var(--text)]"
             >
               ✕
             </button>
 
-            {/* Tabs */}
-            <div className="flex border-b border-[var(--border)] mb-4">
-              <button
-                onClick={() => setActiveTab("playground")}
-                className={`px-4 py-2 text-sm font-medium ${
-                  activeTab === "playground"
-                    ? "text-[var(--brand)] border-b-2 border-[var(--brand)]"
-                    : "text-[var(--muted)] hover:text-[var(--text)]"
-                }`}
-              >
-                Playground
-              </button>
-              <button
-                onClick={() => setActiveTab("details")}
-                className={`px-4 py-2 text-sm font-medium ${
-                  activeTab === "details"
-                    ? "text-[var(--brand)] border-b-2 border-[var(--brand)]"
-                    : "text-[var(--muted)] hover:text-[var(--text)]"
-                }`}
-              >
-                Details
-              </button>
-            </div>
+            {/* Title */}
+            <h3 className="text-xl font-semibold text-[var(--text)] mb-4">
+              {project.title}
+            </h3>
 
-            {/* Playground Tab */}
-            {activeTab === "playground" && (
-              <div>
-                {iframeAllowed ? (
-                  <div className="mb-4">
-                    <iframe
-                      src={project.href}
-                      title={project.title}
-                      className="w-full h-[400px] rounded-lg border border-[var(--border)]"
-                      loading="lazy"
-                    />
-                    <div className="mt-2 text-right">
-                      <a
-                        href={project.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm text-[var(--brand)] hover:underline"
-                      >
-                        Open Fullscreen ↗
-                      </a>
-                    </div>
-                  </div>
-                ) : project.image ? (
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="rounded-lg border border-[var(--border)] mb-4"
-                  />
-                ) : null}
+            {/* Tabs (only if iframe allowed) */}
+            {iframeAllowed && (
+              <div className="flex border-b border-[var(--border)] mb-4">
+                <button
+                  onClick={() => setActiveTab("details")}
+                  className={`px-4 py-2 text-sm font-medium cursor-pointer ${
+                    activeTab === "details"
+                      ? "text-[var(--brand)] border-b-2 border-[var(--brand)]"
+                      : "text-[var(--muted)] hover:text-[var(--text)]"
+                  }`}
+                >
+                  Details
+                </button>
+                <button
+                  onClick={() => {
+                    setActiveTab("playground");
+                    setIframeLoaded(true);
+                  }}
+                  className={`px-4 py-2 text-sm font-medium cursor-pointer ${
+                    activeTab === "playground"
+                      ? "text-[var(--brand)] border-b-2 border-[var(--brand)]"
+                      : "text-[var(--muted)] hover:text-[var(--text)]"
+                  }`}
+                >
+                  Playground
+                </button>
               </div>
             )}
 
-            {/* Details Tab */}
-            {activeTab === "details" && (
-              <div>
-                {/* Description */}
-                <p className="text-sm text-[var(--text)] mb-4">
-                  {project.long}
-                </p>
-
-                {/* Links */}
-                {project.links && project.links.length > 0 && (
-                  <div className="flex gap-3 flex-wrap mb-4">
-                    {project.href && (
-                      <a
-                        href={project.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 px-3 py-1 text-sm font-medium rounded-md border border-[var(--border)] bg-[var(--surface)] hover:underline"
-                      >
-                        🔗 Demo
-                      </a>
+            {/* Tab Content */}
+            <div className="mt-4">
+              <AnimatePresence mode="wait">
+                {activeTab === "details" && (
+                  <motion.div
+                    key="details"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 20 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {/* Project image */}
+                    {project.image && (
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="rounded-lg border border-[var(--border)] mb-4 w-full h-auto object-cover max-h-60"
+                      />
                     )}
-                    {project.links.map((link) => {
-                      const Icon =
-                        SiIcons[link.icon as keyof typeof SiIcons] ??
-                        FaIcons[link.icon as keyof typeof FaIcons];
-                      return (
+                    {/* Description */}
+                    <p className="text-sm text-[var(--text)] mb-4">
+                      {project.long}
+                    </p>
+
+                    {/* Links */}
+                    {project.links && project.links.length > 0 && (
+                      <div className="flex gap-3 flex-wrap mb-4">
+                        {project.href && (
+                          <a
+                            href={project.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 px-3 py-1 text-sm font-medium rounded-md border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] hover:underline"
+                          >
+                            {FaLink && <FaLink className="w-4 h-4" />} Demo
+                          </a>
+                        )}
+                        {project.links.map((link) => {
+                          const Icon =
+                            SiIcons[link.icon as keyof typeof SiIcons] ??
+                            FaIcons[link.icon as keyof typeof FaIcons];
+                          return (
+                            <a
+                              key={link.label}
+                              href={link.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1 px-3 py-1 text-sm font-medium rounded-md border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] hover:underline"
+                            >
+                              {Icon && <Icon className="w-4 h-4" />}
+                              {link.label}
+                            </a>
+                          );
+                        })}
+                      </div>
+                    )}
+
+                    {/* Tags */}
+                    <div className="mt-3 flex gap-2 flex-wrap">
+                      {project.tags?.map((t) => (
+                        <span
+                          key={t}
+                          className={`text-xs font-semibold px-2 py-1 rounded-full ${
+                            tagColors[t] || "bg-gray-100 text-gray-800"
+                          }`}
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* README */}
+                    {readme && (
+                      <div className="h-full overflow-auto rounded-md border border-[var(--border)] bg-[var(--surface)] mt-6">
+                        <div
+                          className={`p-4 markdown-body ${
+                            dark ? "markdown-body-dark" : "markdown-body-light"
+                          }`}
+                        >
+                          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                            {readme}
+                          </ReactMarkdown>
+                        </div>
+                      </div>
+                    )}
+                  </motion.div>
+                )}
+
+                {activeTab === "playground" &&
+                  iframeAllowed &&
+                  iframeLoaded && (
+                    <motion.div
+                      key="playground"
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -20 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <iframe
+                        src={project.href}
+                        title={project.title}
+                        className="w-full h-[400px] rounded-lg border border-[var(--border)]"
+                        loading="lazy"
+                      />
+                      <div className="mt-2 text-right">
                         <a
-                          key={link.label}
-                          href={link.url}
+                          href={project.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 px-3 py-1 text-sm font-medium rounded-md border border-[var(--border)] bg-[var(--surface)] hover:underline"
+                          className="text-sm text-[var(--brand)] hover:underline"
                         >
-                          {Icon && <Icon className="w-4 h-4" />}
-                          {link.label}
+                          Open Fullscreen ↗
                         </a>
-                      );
-                    })}
-                  </div>
-                )}
-
-                {/* Tags */}
-                <div className="mt-3 flex gap-2 flex-wrap">
-                  {project.tags?.map((t) => (
-                    <span
-                      key={t}
-                      className={`text-xs font-semibold px-2 py-1 rounded-full ${
-                        tagColors[t] || "bg-gray-100 text-gray-800"
-                      }`}
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-
-                {/* README */}
-                {readme && (
-                  <div className="h-70 overflow-auto rounded-md border border-[var(--border)] bg-[var(--surface)] mt-6">
-                    <div
-                      className={`p-4 markdown-body ${
-                        dark ? "markdown-body-dark" : "markdown-body-light"
-                      }`}
-                    >
-                      <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                        {readme}
-                      </ReactMarkdown>
-                    </div>
-                  </div>
-                )}
-              </div>
-            )}
+                      </div>
+                    </motion.div>
+                  )}
+              </AnimatePresence>
+            </div>
           </motion.dialog>
         </motion.div>
       )}

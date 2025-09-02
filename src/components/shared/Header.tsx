@@ -1,6 +1,6 @@
 import React from "react";
-import { useTheme } from "../context/ThemeContext";
-import { PERSONAL } from "../config/portfolioData";
+import { useTheme } from "../../context/ThemeContext";
+import { PERSONAL } from "../../config/portfolioData";
 import { PiSunDuotone, PiMoonDuotone } from "react-icons/pi";
 
 export const Header: React.FC<{
