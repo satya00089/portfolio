@@ -7,6 +7,7 @@ import type { Project } from "../types/portfolio";
 import { tagColors } from "../config/portfolioData";
 import { useTheme } from "../context/ThemeContext";
 import { motion, AnimatePresence } from "framer-motion";
+import { Spinner } from "./shared/Spinner";
 
 import "github-markdown-css/github-markdown-light.css";
 import "github-markdown-css/github-markdown-dark.css";
@@ -23,6 +24,8 @@ export const ProjectModal: React.FC<{
     "details"
   );
   const [iframeLoaded, setIframeLoaded] = useState(false);
+  const [iframeReady, setIframeReady] = useState(false);
+
   const FaLink = FaIcons["FaLink" as keyof typeof FaIcons];
 
   // Reset state when modal opens
@@ -30,6 +33,7 @@ export const ProjectModal: React.FC<{
     if (open) {
       setActiveTab("details");
       setIframeLoaded(false);
+      setIframeReady(false);
     }
   }, [open]);
 
@@ -104,7 +108,7 @@ export const ProjectModal: React.FC<{
           <motion.dialog
             open={open}
             aria-modal="true"
-            className="relative z-10 w-full max-w-4xl max-h-[90vh] overflow-y-auto p-6 rounded-2xl bg-[var(--surface)] border border-[var(--border)] shadow-lg"
+            className="relative z-10 w-full max-w-4xl max-h-[90vh] p-6 rounded-2xl bg-[var(--surface)] border border-[var(--border)] shadow-lg flex flex-col"
             initial={{ y: 50, opacity: 0, scale: 0.95 }}
             animate={{ y: 0, opacity: 1, scale: 1 }}
             exit={{ y: 40, opacity: 0, scale: 0.95 }}
@@ -119,7 +123,7 @@ export const ProjectModal: React.FC<{
             </button>
 
             {/* Title */}
-            <h3 className="text-xl font-semibold text-[var(--text)] mb-4">
+            <h3 className="text-xl font-bold text-[var(--brand)] mb-4">
               {project.title}
             </h3>
 
@@ -140,6 +144,7 @@ export const ProjectModal: React.FC<{
                   onClick={() => {
                     setActiveTab("playground");
                     setIframeLoaded(true);
+                    setIframeReady(false);
                   }}
                   className={`px-4 py-2 text-sm font-medium cursor-pointer ${
                     activeTab === "playground"
@@ -152,8 +157,8 @@ export const ProjectModal: React.FC<{
               </div>
             )}
 
-            {/* Tab Content */}
-            <div className="mt-4">
+            {/* Body (scroll only here) */}
+            <div className="flex-1 overflow-y-auto mt-2 pr-1 custom-scroll">
               <AnimatePresence mode="wait">
                 {activeTab === "details" && (
                   <motion.div
@@ -249,12 +254,29 @@ export const ProjectModal: React.FC<{
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: -20 }}
                       transition={{ duration: 0.3 }}
+                      className="relative"
                     >
+                      <AnimatePresence>
+                        {!iframeReady && (
+                          <motion.div
+                            key="spinner"
+                            className="absolute inset-0 flex items-center justify-center bg-[var(--surface)]/60 rounded-lg"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.4 }}
+                          >
+                            <Spinner size={40} color="var(--brand)" />
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+
                       <iframe
                         src={project.href}
                         title={project.title}
                         className="w-full h-[400px] rounded-lg border border-[var(--border)]"
                         loading="lazy"
+                        onLoad={() => setIframeReady(true)}
                       />
                       <div className="mt-2 text-right">
                         <a
