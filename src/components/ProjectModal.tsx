@@ -123,13 +123,13 @@ export const ProjectModal: React.FC<{
             </button>
 
             {/* Title */}
-            <h3 className="text-xl font-bold text-[var(--brand)] mb-4">
+            <h3 className="text-xl font-bold text-[var(--brand)] mb-2">
               {project.title}
             </h3>
 
             {/* Tabs (only if iframe allowed) */}
             {iframeAllowed && (
-              <div className="flex border-b border-[var(--border)] mb-4">
+              <div className="flex border-b border-[var(--border)] mb-2">
                 <button
                   onClick={() => setActiveTab("details")}
                   className={`px-4 py-2 text-sm font-medium cursor-pointer ${
@@ -158,7 +158,7 @@ export const ProjectModal: React.FC<{
             )}
 
             {/* Body (scroll only here) */}
-            <div className="flex-1 overflow-y-auto mt-2 pr-1 custom-scroll">
+            <div className="flex-1 overflow-y-auto pr-1 max-h-[500px] custom-scroll">
               <AnimatePresence mode="wait">
                 {activeTab === "details" && (
                   <motion.div
@@ -271,14 +271,7 @@ export const ProjectModal: React.FC<{
                         )}
                       </AnimatePresence>
 
-                      <iframe
-                        src={project.href}
-                        title={project.title}
-                        className="w-full h-[400px] rounded-lg border border-[var(--border)]"
-                        loading="lazy"
-                        onLoad={() => setIframeReady(true)}
-                      />
-                      <div className="mt-2 text-right">
+                      <div className="text-right">
                         <a
                           href={project.href}
                           target="_blank"
@@ -288,6 +281,14 @@ export const ProjectModal: React.FC<{
                           Open Fullscreen ↗
                         </a>
                       </div>
+
+                      <iframe
+                        src={project.href}
+                        title={project.title}
+                        className="w-full h-100 rounded-lg border border-[var(--border)]"
+                        loading="lazy"
+                        onLoad={() => setIframeReady(true)}
+                      />
                     </motion.div>
                   )}
               </AnimatePresence>
