@@ -54,7 +54,7 @@ export const SkillsList: React.FC<{ skills?: Skill[]; isBar?: boolean }> = ({
   };
 
   // Netflix-style grid height
-  const rowHeight = 145; // px per row
+  const rowHeight = 140; // px per row
   const maxHeight = `${rowHeight * 3}px`;
 
   return (
@@ -119,7 +119,7 @@ export const SkillsList: React.FC<{ skills?: Skill[]; isBar?: boolean }> = ({
                     />
                   </div>
                 ) : (
-                  <div className="mt-3 bg-[var(--border)]/40 rounded-full overflow-hidden">
+                  <div className="mt-3 bg-[var(--border)]/40 rounded-full overflow-hidden sm:h-32 sm:w-32 w-24 h-24 mx-auto">
                     <SkillCircle level={s.level} />
                   </div>
                 )}

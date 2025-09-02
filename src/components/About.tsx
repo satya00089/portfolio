@@ -4,6 +4,9 @@ import { SiGithub, SiLinkedin } from "react-icons/si";
 import { IoIosMail } from "react-icons/io";
 
 export const About: React.FC<{ personal: Personal }> = ({ personal }) => {
+
+  const text = personal.name.split("");
+
   return (
     <section
       id="about"
@@ -15,12 +18,19 @@ export const About: React.FC<{ personal: Personal }> = ({ personal }) => {
         transition={{ duration: 0.5 }}
         className="md:col-span-2"
       >
-        <h1 className="text-4xl md:text-5xl font-bold leading-tight text-[var(--brand)]">
-          {personal.name}
-        </h1>
-        <p className="mt-4 text-lg max-w-prose">
-          {personal.tagline}
-        </p>
+        <motion.h1 className="text-4xl md:text-5xl font-bold leading-tight text-[var(--brand)]">
+          {text.map((char, i) => (
+            <motion.span
+              key={i}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.5 }}
+            >
+              {char}
+            </motion.span>
+          ))}
+        </motion.h1>
+        <p className="mt-4 text-lg max-w-prose">{personal.tagline}</p>
 
         <div className="mt-6 text-md dark:prose-invert max-w-none text-[var(--muted)]">
           <p>

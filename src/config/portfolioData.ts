@@ -25,6 +25,19 @@ export const PROJECTS_DATA: Project[] = [
     long: "Published an open-source React component that provides a smooth and customizable color wheel built with Material-UI. Supports HSV/RGB color models, real-time updates, and easy integration into design tools or dashboards.",
   },
   {
+    id: 5,
+    title: "Night Skyline",
+    desc: "A breathtaking recreation of the city skyline under a starlit night sky, capturing the serene beauty and glowing atmosphere of the evening.",
+    tags: ["React", "CSS"],
+    image: "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGNpeWk3aGxxYTk4Z3R6bWpheWk3NnhiaWtpdnJuc2s4ZGJpYjkzdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HbOOBZrU8cAqNOvsNO/giphy.gif",
+    href: "https://satya00089.github.io/night-sky",
+    links: [
+      { label: "Watch", url: "https://www.loom.com/share/1516014366e34135a67f5dd4e551fec5", icon: "FaPlay" },
+      { label: "GitHub", url: "https://github.com/satya00089/night-sky", icon: "SiGithub" },
+    ],
+    long: "A breathtaking recreation of the city skyline under a starlit night sky, capturing the serene beauty and glowing atmosphere of the evening.",
+  },
+  {
     id: 2,
     title: "Design System Playground",
     desc: "A component library and living documentation for a design system.",
@@ -44,6 +57,18 @@ export const PROJECTS_DATA: Project[] = [
     image: undefined,
     href: "#",
     long: "Realtime pipelines ingesting metrics, with anomaly detection and alerting.",
+  },
+  {
+    id: 4,
+    title: "Design System Playground",
+    desc: "A component library and living documentation for a design system.",
+    tags: ["Design System", "Storybook", "React"],
+    image: undefined,
+    href: "https://satya00089.github.io/diagrammatic",
+    links: [
+      { label: "GitHub", url: "https://github.com/satya00089/diagrammatic", icon: "SiGithub" },
+    ],
+    long: "Built atomic components, token system, and automated visual tests.",
   },
 ];
 

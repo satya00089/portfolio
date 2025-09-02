@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { tagColors } from "../config/portfolioData";
 import type { Project } from "../types/portfolio";
-import * as SiIcons from "react-icons/si"; // dynamic icon imports
+import * as SiIcons from "react-icons/si";
+import * as FaIcons from "react-icons/fa";
 import { BsArrowUpRightCircleFill } from "react-icons/bs";
 
 export const ProjectCard: React.FC<{
@@ -15,6 +16,8 @@ export const ProjectCard: React.FC<{
   // how many tags to show before "+x"
   const VISIBLE_COUNT = 3;
 
+  const FaLink = FaIcons["FaLink" as keyof typeof FaIcons];
+
   const visibleTags = showAll
     ? project?.tags
     : project?.tags?.slice(0, VISIBLE_COUNT);
@@ -24,7 +27,7 @@ export const ProjectCard: React.FC<{
     <motion.article
       layout
       whileHover={{ y: -6 }}
-      className="p-4 rounded-2xl bg-[var(--surface)] border border-[var(--border)] shadow-sm hover:shadow-md transition-shadow"
+      className="p-4 group rounded-2xl bg-[var(--surface)] border border-[var(--border)] shadow-sm hover:shadow-md transition-shadow"
     >
       <div className="flex items-start justify-between gap-4">
         <div>
@@ -35,7 +38,9 @@ export const ProjectCard: React.FC<{
             onClick={() => onOpen?.(project)}
             className="absolute top-2 right-2 
                     bg-[var(--surface)]/80 backdrop-blur-sm 
-                    rounded-full shadow-md cursor-pointer hover:scale-110 transition duration-300"
+                    rounded-full shadow-md cursor-pointer
+                    hover:scale-110 transition duration-300
+                    opacity-0 group-hover:opacity-100"
           >
             <span className="leading-none text-[var(--brand)]">
               <BsArrowUpRightCircleFill size={32} />
@@ -46,21 +51,39 @@ export const ProjectCard: React.FC<{
               <img
                 src={project.image}
                 alt={project.title}
-                className="rounded-lg border border-[var(--border)] w-full h-auto object-cover max-h-20"
+                className="rounded-lg border border-[var(--border)] w-full h-auto object-cover max-h-25"
               />
             </div>
           )}
           {/* Title + Description */}
-          <h3 className="font-semibold text-lg text-[var(--brand)]">
+          <button
+            title="Open project"
+            type="button"
+            onClick={() => onOpen?.(project)}
+            className="font-bold text-xl text-[var(--brand)] cursor-pointer"
+          >
             {project.title}
-          </h3>
+          </button>
           <p className="text-sm text-[var(--muted)] mt-1">{project.desc}</p>
-
-          {/* Links (dynamic icons) */}
-          {project.links && project.links.length > 0 && (
-            <div className="mt-4 flex gap-3 flex-wrap text-[var(--muted)]">
-              {project.links.map((link) => {
-                const Icon = SiIcons[link.icon as keyof typeof SiIcons];
+          <div className="mt-4 flex gap-3 flex-wrap text-[var(--muted)]">
+            {project.href && (
+              <a
+                href={project.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="hover:text-[var(--text)] inline-flex items-center gap-1 text-sm font-medium text-[var(--link)] hover:underline"
+              >
+                {FaLink && <FaLink className="w-4 h-4" />} Demo
+              </a>
+            )}
+            {/* Links (dynamic icons) */}
+            {project.links &&
+              project.links.length > 0 &&
+              project.links.map((link) => {
+                const Icon =
+                  SiIcons[link.icon as keyof typeof SiIcons] ??
+                  FaIcons[link.icon as keyof typeof FaIcons];
                 return (
                   <a
                     key={link.label}
@@ -75,8 +98,7 @@ export const ProjectCard: React.FC<{
                   </a>
                 );
               })}
-            </div>
-          )}
+          </div>
 
           {/* Tags */}
           <div className="mt-3 flex gap-2 flex-wrap">
