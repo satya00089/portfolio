@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useTheme } from "../../context/ThemeContext";
 import { PERSONAL } from "../../config/portfolioData";
 import { PiSunDuotone, PiMoonDuotone } from "react-icons/pi";
@@ -7,9 +7,27 @@ export const Header: React.FC<{
   links?: { href: string; label: string }[];
 }> = ({ links = [] }) => {
   const { dark, toggle } = useTheme();
+  const headerRef = useRef<HTMLElement | null>(null);
+
+  // Smooth scroll with offset for the sticky header
+  const onNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (!href.startsWith("#")) return; // let external links behave normally
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (!target) return;
+
+    const headerEl = headerRef.current ?? document.querySelector("header");
+    const headerH = headerEl?.offsetHeight ?? 0;
+
+    const y = target.getBoundingClientRect().top + window.scrollY - headerH - 8; // extra padding
+    window.scrollTo({ top: y, behavior: "smooth" });
+  };
 
   return (
-    <header className="fixed top-0 left-0 z-50 backdrop-blur-md w-full border-b border-theme bg-[var(--surface)]/80">
+    <header
+      ref={headerRef}
+      className="fixed top-0 left-0 z-50 backdrop-blur-md w-full border-b border-theme bg-[var(--surface)]/80"
+    >
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         <a
           href="/portfolio/"
@@ -41,6 +59,7 @@ export const Header: React.FC<{
               <a
                 key={l.href}
                 href={l.href}
+                onClick={(e) => onNavClick(e, l.href)}
                 className="text-sm text-[var(--text)] hover:underline duration-300 hover:scale-110 transition"
               >
                 {l.label}

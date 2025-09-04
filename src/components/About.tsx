@@ -4,14 +4,10 @@ import { SiGithub, SiLinkedin } from "react-icons/si";
 import { IoIosMail } from "react-icons/io";
 
 export const About: React.FC<{ personal: Personal }> = ({ personal }) => {
-
   const text = personal.name.split("");
 
   return (
-    <section
-      id="about"
-      className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start pt-40 pb-8"
-    >
+    <>
       <motion.div
         initial={{ opacity: 0, y: 6 }}
         animate={{ opacity: 1, y: 0 }}
@@ -113,6 +109,6 @@ export const About: React.FC<{ personal: Personal }> = ({ personal }) => {
           </div>
         </div>
       </motion.aside>
-    </section>
+    </>
   );
 };

@@ -25,21 +25,28 @@ const PortfolioPage: React.FC = () => {
       />
 
       <main className="max-w-6xl mx-auto px-6 py-10">
-        <About personal={PERSONAL} />
+        <section
+          id="about"
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start pt-40 pb-8"
+        >
+          <About personal={PERSONAL} />
+        </section>
 
         <section id="projects" className="py-8">
           <h2 className="text-2xl font-semibold text-[var(--brand)]">
             Projects
           </h2>
-          <p className="mb-6 text-sm text-gray-500 dark:text-gray-400 mt-1">Selected work — click a card for details.</p>
+          <p className="mb-6 text-sm text-gray-500 dark:text-gray-400 mt-1">
+            Selected work — click a card for details.
+          </p>
           <ProjectsGrid projects={PROJECTS_DATA} onOpen={setSelected} />
         </section>
 
         <section id="skills" className="py-8">
-          <h2 className="text-2xl font-semibold text-[var(--brand)]">
-            Skills
-          </h2>
-          <p className="mb-6 text-sm text-gray-500 dark:text-gray-400 mt-1">Tools and technologies I use regularly.</p>
+          <h2 className="text-2xl font-semibold text-[var(--brand)]">Skills</h2>
+          <p className="mb-6 text-sm text-gray-500 dark:text-gray-400 mt-1">
+            Tools and technologies I use regularly.
+          </p>
           <SkillsList skills={SKILLS} isBar={false} />
         </section>
 
@@ -47,7 +54,9 @@ const PortfolioPage: React.FC = () => {
           <h2 className="text-2xl font-semibold text-[var(--brand)]">
             Contact
           </h2>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Tell me about your project, or just say hi.</p>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+            Tell me about your project, or just say hi.
+          </p>
           <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--border)]">
               <ContactForm />
@@ -56,7 +65,10 @@ const PortfolioPage: React.FC = () => {
             <div className="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--border)] flex flex-col gap-4">
               <div>
                 <div className="font-semibold">Let's collaborate</div>
-                <div className="text-sm text-gray-500 dark:text-gray-400">I’m available for freelance and contract work. My inbox is open.</div>
+                <div className="text-sm text-gray-500 dark:text-gray-400">
+                  I’m available for freelance and contract work. My inbox is
+                  open.
+                </div>
               </div>
               <div className="mt-2">
                 <div className="font-semibold">Quick contact</div>
@@ -69,7 +81,12 @@ const PortfolioPage: React.FC = () => {
               </div>
               <div className="mt-auto">
                 <div className="text-sm font-medium">Resume</div>
-                <a href="/" className="block mt-2 px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700">Download PDF</a>
+                <a
+                  href="/"
+                  className="block mt-2 px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700"
+                >
+                  Download PDF
+                </a>
               </div>
             </div>
           </div>
