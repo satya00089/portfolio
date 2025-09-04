@@ -15,48 +15,70 @@ export const PROJECTS_DATA: Project[] = [
     title: "MUI Color Wheel",
     desc: "A Material-UI based color wheel component with real-time color picking.",
     tags: ["React", "Material-UI", "NPM Package", "Storybook"],
-    image: "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExYTJxYjhmdTVjam41aWlzczZreGZ2eXc5eThjdDRpMXgxYzVuYTAzMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/tWnCyw4rmoFY8CmhLV/giphy.gif",
+    image:
+      "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExYTJxYjhmdTVjam41aWlzczZreGZ2eXc5eThjdDRpMXgxYzVuYTAzMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/tWnCyw4rmoFY8CmhLV/giphy.gif",
     href: "https://mui-color-wheel.vercel.app/",
     links: [
-      { label: "Storybook", url: "https://mui-color-wheel.vercel.app/", icon: "SiStorybook" },
-      { label: "NPM", url: "https://www.npmjs.com/package/mui-color-wheel", icon: "SiNpm" },
-      { label: "GitHub", url: "https://github.com/satya00089/mui-color-wheel", icon: "SiGithub" },
+      {
+        label: "Storybook",
+        url: "https://mui-color-wheel.vercel.app/",
+        icon: "SiStorybook",
+      },
+      {
+        label: "NPM",
+        url: "https://www.npmjs.com/package/mui-color-wheel",
+        icon: "SiNpm",
+      },
+      {
+        label: "GitHub",
+        url: "https://github.com/satya00089/mui-color-wheel",
+        icon: "SiGithub",
+      },
     ],
     long: "Published an open-source React component that provides a smooth and customizable color wheel built with Material-UI. Supports HSV/RGB color models, real-time updates, and easy integration into design tools or dashboards.",
   },
   {
-    id: 5,
+    id: 2,
     title: "Night Skyline",
     desc: "A breathtaking recreation of the city skyline under a starlit night sky, capturing the serene beauty and glowing atmosphere of the evening.",
     tags: ["React", "CSS"],
-    image: "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGNpeWk3aGxxYTk4Z3R6bWpheWk3NnhiaWtpdnJuc2s4ZGJpYjkzdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HbOOBZrU8cAqNOvsNO/giphy.gif",
+    image:
+      "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGNpeWk3aGxxYTk4Z3R6bWpheWk3NnhiaWtpdnJuc2s4ZGJpYjkzdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HbOOBZrU8cAqNOvsNO/giphy.gif",
     href: "https://satya00089.github.io/night-sky",
     links: [
-      { label: "Watch", url: "https://www.loom.com/share/1516014366e34135a67f5dd4e551fec5", icon: "FaPlay" },
-      { label: "GitHub", url: "https://github.com/satya00089/night-sky", icon: "SiGithub" },
+      {
+        label: "Watch",
+        url: "https://www.loom.com/share/1516014366e34135a67f5dd4e551fec5",
+        icon: "FaPlay",
+      },
+      {
+        label: "GitHub",
+        url: "https://github.com/satya00089/night-sky",
+        icon: "SiGithub",
+      },
     ],
     long: "A breathtaking recreation of the city skyline under a starlit night sky, capturing the serene beauty and glowing atmosphere of the evening.",
   },
   {
-    id: 2,
-    title: "Design System Playground",
-    desc: "A component library and living documentation for a design system.",
-    tags: ["Design System", "Storybook", "React"],
-    image: undefined,
-    href: "https://satya00089.github.io/diagrammatic",
-    links: [
-      { label: "GitHub", url: "https://github.com/satya00089/diagrammatic", icon: "SiGithub" },
-    ],
-    long: "Built atomic components, token system, and automated visual tests.",
-  },
-  {
     id: 3,
-    title: "Data Dashboard (POC)",
-    desc: "Real-time charts and alerts for operational metrics.",
-    tags: ["React", "D3", "Realtime"],
-    image: undefined,
-    href: "#",
-    long: "Realtime pipelines ingesting metrics, with anomaly detection and alerting.",
+    title: "Alochona",
+    desc: "A simple chatbot built with Hugging Face Spaces and OpenAI.",
+    long: "Alochona is an experimental chatbot hosted on Hugging Face Spaces. It uses OpenAI under the hood for responses. This project was built as a way to explore chatbot UIs, Hugging Face deployment, and integrating OpenAI APIs.",
+    image: "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZmc5dDY1c2ZnOGs0ODF0eDkwbzBvMHZ2ZXJvYml2amRmdzN2dnZueSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/7AFQj6uviWpwudbOWg/giphy.gif",
+    href: "https://huggingface.co/spaces/satya00089/alochona",
+    links: [
+      {
+        label: "Huggingface",
+        url: "https://huggingface.co/spaces/satya00089/alochona/tree/main",
+        icon: "SiHuggingface",
+      },
+      {
+        label: "Github",
+        url: "https://github.com/satya00089/alochona",
+        icon: "SiGithub"
+      }
+    ],
+    tags: ["Chatbot", "OpenAI", "Hugging Face", "Beginner Project"],
   },
   {
     id: 4,
@@ -66,7 +88,36 @@ export const PROJECTS_DATA: Project[] = [
     image: undefined,
     href: "https://satya00089.github.io/diagrammatic",
     links: [
-      { label: "GitHub", url: "https://github.com/satya00089/diagrammatic", icon: "SiGithub" },
+      {
+        label: "GitHub",
+        url: "https://github.com/satya00089/diagrammatic",
+        icon: "SiGithub",
+      },
+    ],
+    long: "Built atomic components, token system, and automated visual tests.",
+  },
+  {
+    id: 5,
+    title: "Data Dashboard (POC)",
+    desc: "Real-time charts and alerts for operational metrics.",
+    tags: ["React", "D3", "Realtime"],
+    image: undefined,
+    href: "#",
+    long: "Realtime pipelines ingesting metrics, with anomaly detection and alerting.",
+  },
+  {
+    id: 6,
+    title: "Design System Playground",
+    desc: "A component library and living documentation for a design system.",
+    tags: ["Design System", "Storybook", "React"],
+    image: undefined,
+    href: "https://satya00089.github.io/diagrammatic",
+    links: [
+      {
+        label: "GitHub",
+        url: "https://github.com/satya00089/diagrammatic",
+        icon: "SiGithub",
+      },
     ],
     long: "Built atomic components, token system, and automated visual tests.",
   },
@@ -108,6 +159,8 @@ export const SKILLS: Skill[] = [
 // ---------- SMALL HELPERS ----------
 export const tagColors: TagColors = {
   React: "bg-blue-100 text-blue-800",
+  CSS: "bg-teal-100 text-teal-800",
+  CSS3: "bg-teal-100 text-teal-800",
   Tailwind: "bg-teal-100 text-teal-800",
   Stripe: "bg-purple-100 text-purple-800",
   "Design System": "bg-yellow-100 text-yellow-800",
@@ -116,4 +169,9 @@ export const tagColors: TagColors = {
   Storybook: "bg-pink-100 text-pink-800",
   "NPM Package": "bg-red-100 text-red-800",
   "Material-UI": "bg-indigo-100 text-indigo-800",
+  "Chatbot": "bg-violet-100 text-violet-800",
+  OpenAI: "bg-gray-100 text-gray-800",
+  "Hugging Face": "bg-orange-100 text-orange-800",
+  Beginner: "bg-cyan-100 text-cyan-800",
+  "Beginner Project": "bg-cyan-100 text-cyan-800",
 };

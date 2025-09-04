@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import * as SiIcons from "react-icons/si";
 import * as FaIcons from "react-icons/fa";
-import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import type { Project } from "../types/portfolio";
 import { tagColors } from "../config/portfolioData";
@@ -9,8 +8,9 @@ import { useTheme } from "../context/ThemeContext";
 import { motion, AnimatePresence } from "framer-motion";
 import { Spinner } from "./shared/Spinner";
 
+const ReactMarkdown = React.lazy(() => import("react-markdown"));
+
 import "github-markdown-css/github-markdown-light.css";
-import "github-markdown-css/github-markdown-dark.css";
 
 export const ProjectModal: React.FC<{
   project: Project | null;
@@ -232,9 +232,11 @@ export const ProjectModal: React.FC<{
                     {readme && (
                       <div className="h-full overflow-auto rounded-md border border-[var(--border)] bg-[var(--surface)] mt-6">
                         <div
-                          className={`p-4 markdown-body ${
-                            dark ? "markdown-body-dark" : "markdown-body-light"
-                          }`}
+                          className="p-4 markdown-body"
+                          style={{
+                            backgroundColor: dark ? "#0d1117" : "white",
+                            color: dark ? "white" : "black",
+                          }}
                         >
                           <ReactMarkdown remarkPlugins={[remarkGfm]}>
                             {readme}

@@ -13,6 +13,7 @@
     "tw:init": "tailwindcss init -p"
   },
   "dependencies": {
+    "@tailwindcss/line-clamp": "^0.4.4",
     "@tailwindcss/typography": "^0.5.16",
     "@tailwindcss/vite": "^4.1.12",
     "clsx": "^2.1.1",
