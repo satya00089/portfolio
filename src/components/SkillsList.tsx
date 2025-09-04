@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import type { Skill } from "../types/portfolio";
 import * as SiIcons from "react-icons/si";
 import { SkillCircle } from "./SkillCircle";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { FaChevronUp, FaChevronDown } from "react-icons/fa6";
 
 // include "all" option
 const STACKS: (Skill["stack"] | "all")[] = [
@@ -136,7 +136,7 @@ export const SkillsList: React.FC<{ skills?: Skill[]; isBar?: boolean }> = ({
             onClick={() => setExpanded((prev) => !prev)}
             className="flex items-center gap-2 px-2 py-2 rounded-full cursor-pointer border-4 border-[var(--border)] bg-[var(--surface)] hover:bg-[var(--border)]/30 text-[var(--text)] transition"
           >
-            {expanded ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
+            {expanded ? <FaChevronUp size={24} /> : <FaChevronDown size={24} />}
           </button>
         </div>
       )}

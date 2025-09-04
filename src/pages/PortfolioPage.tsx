@@ -9,12 +9,15 @@ import { PERSONAL, PROJECTS_DATA, SKILLS } from "../config/portfolioData";
 import { About } from "../components/About";
 import type { Project } from "../types/portfolio";
 import { ProjectModal } from "../components/ProjectModal";
+import { ScrollProgressBar } from "../components/shared/ScrollProgressBar";
+import { ScrollToTop } from "../components/shared/ScrollToTop";
 
 const PortfolioPage: React.FC = () => {
   const [selected, setSelected] = useState<Project | null>(null);
 
   return (
     <ThemeProvider>
+      <ScrollProgressBar />
       <Header
         links={[
           { href: "#about", label: "About" },
@@ -66,7 +69,7 @@ const PortfolioPage: React.FC = () => {
               <div>
                 <div className="font-semibold">Let's collaborate</div>
                 <div className="text-sm text-gray-500 dark:text-gray-400">
-                  I’m available for freelance and contract work. My inbox is
+                  I'm available for freelance and contract work. My inbox is
                   open.
                 </div>
               </div>
@@ -92,7 +95,7 @@ const PortfolioPage: React.FC = () => {
           </div>
         </section>
       </main>
-
+      <ScrollToTop />
       <Footer />
 
       <ProjectModal

@@ -51,7 +51,7 @@ export const ProjectCard: React.FC<{
               <img
                 src={project.image}
                 alt={project.title}
-                className="rounded-lg border border-[var(--border)] w-full h-auto object-cover max-h-25"
+                className="rounded-lg border border-[var(--border)] w-full object-cover h-45"
               />
             </div>
           )}

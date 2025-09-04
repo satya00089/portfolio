@@ -43,7 +43,7 @@ export const PROJECTS_DATA: Project[] = [
     desc: "A breathtaking recreation of the city skyline under a starlit night sky, capturing the serene beauty and glowing atmosphere of the evening.",
     tags: ["React", "CSS"],
     image:
-      "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGNpeWk3aGxxYTk4Z3R6bWpheWk3NnhiaWtpdnJuc2s4ZGJpYjkzdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HbOOBZrU8cAqNOvsNO/giphy.gif",
+      "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2RjaHAxY3N3enY0d3RldWVpczg2ZTNzMHhsY2dpam0yYnp6bWh2byZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/P2jddT5c9g9OeHI17p/giphy.gif",
     href: "https://satya00089.github.io/night-sky",
     links: [
       {
@@ -73,7 +73,7 @@ export const PROJECTS_DATA: Project[] = [
         icon: "SiHuggingface",
       },
       {
-        label: "Github",
+        label: "GitHub",
         url: "https://github.com/satya00089/alochona",
         icon: "SiGithub"
       }
