@@ -73,7 +73,7 @@ export const Header: React.FC<{ links?: NavLink[] }> = ({ links = [] }) => {
   return (
     <motion.header
       ref={headerRef}
-      className="fixed top-0 left-0 z-50 w-full border-b border-theme bg-[var(--surface)]/70"
+      className="fixed top-0 left-0 z-50 w-full border-b border-theme bg-[var(--surface)]/80 backdrop-blur-sm"
       style={{ backdropFilter: backdrop, WebkitBackdropFilter: backdrop }}
     >
       {/* animated overlay to add subtle tint regardless of theme */}
@@ -144,7 +144,7 @@ export const Header: React.FC<{ links?: NavLink[] }> = ({ links = [] }) => {
           <button
             onClick={toggle}
             aria-label="Toggle color theme"
-            className="p-2 rounded-md border border-[var(--border)] bg-[var(--surface)] hover:bg-[var(--border)]/30 transition"
+            className="p-2 rounded-full border border-[var(--border)] bg-[var(--surface)] hover:bg-[var(--border)]/30 transition cursor-pointer"
           >
             {dark ? <PiSunDuotone size={22} /> : <PiMoonDuotone size={22} />}
           </button>

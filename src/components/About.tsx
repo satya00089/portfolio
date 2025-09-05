@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import type { Personal } from "../types/portfolio";
 import { SiGithub, SiLinkedin } from "react-icons/si";
 import { IoIosMail } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 export const About: React.FC<{ personal: Personal }> = ({ personal }) => {
   const text = personal.name.split("");
@@ -46,6 +47,14 @@ export const About: React.FC<{ personal: Personal }> = ({ personal }) => {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--brand)] text-white font-medium"
           >
             See projects
+          </a>
+          <a
+            href="#projects"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-800"
+          >
+            <Link to="/resume" className="hover:underline">
+              See Resume
+            </Link>
           </a>
           <a
             href="#contact"

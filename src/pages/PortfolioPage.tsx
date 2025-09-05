@@ -11,6 +11,8 @@ import type { Project } from "../types/portfolio";
 import { ProjectModal } from "../components/ProjectModal";
 import { ScrollProgressBar } from "../components/shared/ScrollProgressBar";
 import { ScrollToTop } from "../components/shared/ScrollToTop";
+import { Resume } from "../components/resume/Resume";
+import { PrintResumeButton } from "../components/resume/PrintResumeButton";
 
 const PortfolioPage: React.FC = () => {
   const [selected, setSelected] = useState<Project | null>(null);
@@ -92,6 +94,12 @@ const PortfolioPage: React.FC = () => {
                 </a>
               </div>
             </div>
+          </div>
+        </section>
+        <section id="resume" className="py-8">
+          <div className="mx-auto max-w-4xl p-6">
+            <Resume />
+            <PrintResumeButton />
           </div>
         </section>
       </main>

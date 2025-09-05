@@ -1,4 +1,5 @@
 import type { Personal, Project, Skill, TagColors } from "../types/portfolio";
+import type { Resume } from "../types/resume";
 
 export const PERSONAL: Personal = {
   name: "Satya Subudhi",
@@ -174,4 +175,98 @@ export const tagColors: TagColors = {
   "Hugging Face": "bg-orange-100 text-orange-800",
   Beginner: "bg-cyan-100 text-cyan-800",
   "Beginner Project": "bg-cyan-100 text-cyan-800",
+};
+
+
+
+
+
+
+
+export const RESUME_INFO: Resume = {
+  meta: {
+    createdAt: "2025-09-04T21:02:32.456Z",
+    locale: "en-US",
+    url: "https://your-site.com/resume",
+  },
+  personal: {
+    name: "Satya Subudhi",
+    title: "Full Stack Developer",
+    headline: "React · Python · FastAPI · ML · IaC",
+    avatar: "/profile.jpg",
+    summary:
+      "Full Stack Developer building production-grade applications with React, FastAPI and cloud infrastructure. I focus on developer experience, automations and sustainable code.",
+    contact: {
+      email: "satyasubudhi089@gmail.com",
+      location: "Remote",
+      website: "https://satya00089.github.io/portfolio",
+      socials: [
+        { label: "GitHub", url: "https://github.com/satya00089", icon: "SiGithub" },
+        { label: "Hugging Face", url: "https://huggingface.co/spaces/satya00089/", icon: "SiHuggingface" },
+      ],
+    },
+  },
+  skills: [
+    {
+      title: "Core",
+      skills: [
+        { name: "React", level: 8, years: 4, category: "frontend" },
+        { name: "TypeScript", level: 7, years: 3, category: "frontend" },
+        { name: "Python", level: 8, years: 5, category: "backend" },
+        { name: "FastAPI", level: 7, years: 2, category: "backend" },
+        { name: "AWS", level: 7, years: 3, category: "devops" },
+      ],
+    },
+  ],
+  experience: [
+    {
+      title: "Full Stack Developer",
+      company: "Acme Inc",
+      location: "Remote",
+      date: { start: "2022-03", present: true },
+      summary: "Building customer-facing web apps and internal tools",
+      bullets: [
+        "Built a dashboard with React, TypeScript and Tailwind to manage data pipelines.",
+        "Authored backend services in FastAPI and deployed on AWS with Terraform.",
+      ],
+      tech: ["React", "TypeScript", "FastAPI", "AWS", "Terraform"],
+    },
+  ],
+  projects: [
+    {
+      title: "Night Sky",
+      short: "Starry UI demo with animations",
+      description: "A small interactive site showcasing animated star backgrounds and theme toggles.",
+      image: "/projects/night-sky.png",
+      href: "https://satya00089.github.io/night-sky/",
+      tags: ["React", "Tailwind", "Framer Motion"],
+      featured: true,
+      date: { start: "2024-02" },
+    },
+    {
+      title: "Alochona",
+      short: "Chatbot on Hugging Face (OpenAI powered)",
+      description: "Simple chatbot experimenting with conversational UI and deployment on Hugging Face Spaces.",
+      href: "https://huggingface.co/spaces/satya00089/alochona",
+      tags: ["Chatbot", "OpenAI", "Hugging Face"],
+    },
+  ],
+  education: [
+    {
+      degree: "B.Sc. Computer Science",
+      school: "Some University",
+      date: "2018-2021",
+    },
+  ],
+  certifications: [
+    {
+      name: "Terraform Associate",
+      issuer: "HashiCorp",
+      date: "2023",
+    },
+  ],
+  extras: {
+    languages: [{ name: "English", level: "Native" }],
+    interests: ["astronomy", "music"],
+  },
 };

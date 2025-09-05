@@ -52,3 +52,61 @@ html, body {
 ::-webkit-scrollbar-thumb:hover {
   background-color: rgba(255, 255, 255, 0.4);
 }
+
+
+
+/* print overrides */
+@media print {
+  /* hide elements that should not be printed */
+  header, nav, .no-print, .not-for-print, .ScrollProgressBar, .no-print * {
+    display: none !important;
+  }
+
+  /* ensure the resume fills the page width nicely */
+  #resume-print-area {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    box-shadow: none !important;
+    background: white !important;
+    color: black !important;
+  }
+
+  /* default page margins (use 1cm margins or adjust) */
+  @page {
+    margin: 1cm;
+    size: A4; /* optionally set to portrait A4 */
+  }
+
+  /* avoid page breaks inside sections that should be kept together */
+  #resume-print-area section {
+    page-break-inside: avoid;
+  }
+
+  /* small typography improvements for print */
+  body {
+    -webkit-print-color-adjust: exact; /* preserve colors */
+  }
+
+  /* if you use prose plugin you can force color scheme */
+  .markdown-body {
+    color: #111 !important;
+    background: #fff !important;
+  }
+}
+
+/* hide the on-screen print button in print */
+@media screen {
+  .print-only {
+    display: none;
+  }
+}
+@media print {
+  .screen-only {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+}
