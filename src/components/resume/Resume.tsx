@@ -91,13 +91,37 @@ export const Resume: React.FC<{ className?: string }> = ({
               {contact.socials.map((s) => {
                 const Icon = SiIcons[s.icon as keyof typeof SiIcons];
                 return (
-                  <Icon
+                  <a
                     key={s.label}
-                    title={s.label}
-                    size={s.size || 16}
-                    className={`cursor-pointer text-[var(--text)] hover:text-[var(--brand)] transition`}
-                    onClick={() => window.open(s.url, "_blank")}
-                  />
+                    href={s.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="relative group"
+                  >
+                    {Icon ? (
+                      <Icon
+                        key={s.label}
+                        size={s.size || 16}
+                        className={`cursor-pointer text-[var(--text)] hover:text-[var(--brand)] transition`}
+                        onClick={() => window.open(s.url, "_blank")}
+                      />
+                    ) : (
+                      s.label
+                    )}
+
+                    {/* Tooltip */}
+                    <span
+                      className="absolute bottom-full mb-1 left-1/2 -translate-x-1/2
+                       px-2 py-1 text-xs rounded-md
+                       bg-[var(--surface)] text-[var(--text)]
+                       border border-[var(--border)]
+                       opacity-0 group-hover:opacity-100
+                       transition duration-200 pointer-events-none
+                       whitespace-nowrap z-10"
+                    >
+                      {s.label}
+                    </span>
+                  </a>
                 );
               })}
             </div>

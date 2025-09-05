@@ -179,23 +179,20 @@ export const tagColors: TagColors = {
 
 
 
-
-
-
-
 export const RESUME_INFO: Resume = {
   meta: {
-    createdAt: "2025-09-04T21:02:32.456Z",
+    createdAt: new Date().toISOString(),
     locale: "en-US",
-    url: "https://your-site.com/resume",
+    url: "https://satya00089.github.io/portfolio", // update if you have a custom domain
+    pdf: "/resume.pdf",
   },
   personal: {
     name: "Satya Subudhi",
-    title: "Full Stack Developer",
-    headline: "React · Python · FastAPI · ML · IaC",
+    title: "Senior Engineer — Full Stack (Python & React)",
+    headline: "React · Python · FastAPI · IaC · Cloud",
     avatar: "/profile.jpg",
     summary:
-      "Full Stack Developer building production-grade applications with React, FastAPI and cloud infrastructure. I focus on developer experience, automations and sustainable code.",
+      "Senior Engineer with 7+ years of experience delivering enterprise-grade applications. Over the last 3 years I have focused on building production systems using Python (FastAPI) and React — designing APIs, building responsive frontends, and automating deployments with IaC. Experienced across AWS & Azure and comfortable owning full delivery from design to production.",
     contact: {
       email: "satyasubudhi089@gmail.com",
       phone: "+91 9937 446 070",
@@ -205,38 +202,86 @@ export const RESUME_INFO: Resume = {
         { label: "LinkedIn", url: "https://www.linkedin.com/in/satya-subudhi/", icon: "SiLinkedin" },
         { label: "GitHub", url: "https://github.com/satya00089", icon: "SiGithub" },
         { label: "Hugging Face", url: "https://huggingface.co/spaces/satya00089/", icon: "SiHuggingface" },
-        { label: "kaggle", url: "https://www.kaggle.com/satya00089", icon: "SiKaggle", size: 40 },
+        { label: "Kaggle", url: "https://www.kaggle.com/satya00089", icon: "SiKaggle", size: 32 },
       ],
     },
   },
+  highlights: [
+    "Senior Engineer at Unisys (Jun 2025 – Present)",
+    "3+ years focused on Python (FastAPI) and React",
+    "Experienced with AWS, Azure, Terraform, and CI/CD pipelines",
+  ],
   skills: [
     {
       title: "Core",
       skills: [
-        { name: "React", level: 8, years: 4, category: "frontend" },
-        { name: "TypeScript", level: 7, years: 3, category: "frontend" },
-        { name: "Python", level: 8, years: 5, category: "backend" },
-        { name: "FastAPI", level: 7, years: 2, category: "backend" },
+        { name: "React", level: 9, years: 4, category: "frontend" },
+        { name: "TypeScript", level: 8, years: 3, category: "frontend" },
+        { name: "Python", level: 9, years: 6, category: "backend" },
+        { name: "FastAPI", level: 8, years: 3, category: "backend" },
+        { name: "NumPy / Pandas", level: 7, years: 3, category: "data" },
+        { name: "TensorFlow / PyTorch", level: 6, years: 2, category: "data" },
+        { name: "Terraform", level: 7, years: 3, category: "devops" },
         { name: "AWS", level: 7, years: 3, category: "devops" },
+        { name: "Azure", level: 6, years: 2, category: "devops" },
+        { name: "PostgreSQL / MySQL", level: 7, years: 4, category: "database" },
+        { name: "MongoDB", level: 6, years: 3, category: "database" },
       ],
     },
   ],
   experience: [
     {
-      title: "Full Stack Developer",
-      company: "Acme Inc",
-      location: "Remote",
-      date: { start: "2022-03", present: true },
-      summary: "Building customer-facing web apps and internal tools",
+      id: "unisys-senior-2025",
+      title: "Senior Engineer",
+      company: "Unisys",
+      location: "Bengaluru, India",
+      date: { start: "2025-06", present: true },
+      summary:
+        "Leading full-stack efforts around Python-based backends and React frontends for enterprise customers. Driving architecture, mentoring teammates and implementing IaC and cloud deployment practices.",
       bullets: [
-        "Built a dashboard with React, TypeScript and Tailwind to manage data pipelines.",
-        "Authored backend services in FastAPI and deployed on AWS with Terraform.",
+        "Lead development of microservices using FastAPI and Python for enterprise-scale workloads.",
+        "Design and implement responsive React frontends and component libraries with TypeScript and Tailwind.",
+        "Drive IaC adoption using Terraform and Bicep; implement CI/CD pipelines and deployment automation.",
+        "Mentor engineers, conduct design reviews, and improve code quality and observability.",
       ],
-      tech: ["React", "TypeScript", "FastAPI", "AWS", "Terraform"],
+      tech: ["Python", "FastAPI", "React", "TypeScript", "Terraform", "AWS", "Azure"],
+    },
+    {
+      id: "unisys-se-2022",
+      title: "Software Engineer",
+      company: "Unisys",
+      location: "Bengaluru, India",
+      date: { start: "2022-01", end: "2025-05" },
+      summary:
+        "Worked on web and desktop applications, cloud deployment tooling, and multi-cloud automation for Unisys products.",
+      bullets: [
+        "Built desktop and web UI features using React, Electron.js, TypeScript and Node.js.",
+        "Implemented cloud deployment workflows for Azure (ARM) and AWS (CloudFormation).",
+        "Improved code quality and CI pipelines, addressing SonarQube findings and standardizing testing.",
+        "Delivered features around redeployment, resource deletions and automation across cloud providers.",
+      ],
+      tech: ["React", "Electron", "TypeScript", "Node.js", "Azure", "AWS"],
+    },
+    {
+      id: "unisys-rae-aircore",
+      title: "Software Engineer (RAE, AirCore projects)",
+      company: "Unisys",
+      location: "Bengaluru, India",
+      date: { start: "2018-03", end: "2021-12" },
+      summary:
+        "Worked on UI and backend components for airline/travel solutions and internal tooling.",
+      bullets: [
+        "Developed front-end UIs using Angular and React and integrated with Unisys Design System.",
+        "Built REST APIs using Java (Vert.x) and integrated with NoSQL stores (MongoDB, Couchbase).",
+        "Implemented role-based access with Keycloak and developed data visualization tools.",
+        "Contributed to NDC stabilization, import/export features and product maintenance.",
+      ],
+      tech: ["Angular", "React", "Java (Vert.x)", "MongoDB", "Couchbase", "Keycloak"],
     },
   ],
   projects: [
     {
+      id: "night-sky",
       title: "Night Sky",
       short: "Starry UI demo with animations",
       description: "A small interactive site showcasing animated star backgrounds and theme toggles.",
@@ -247,21 +292,39 @@ export const RESUME_INFO: Resume = {
       date: { start: "2024-02" },
     },
     {
+      id: "alochona",
       title: "Alochona",
       short: "Chatbot on Hugging Face (OpenAI powered)",
       description: "Simple chatbot experimenting with conversational UI and deployment on Hugging Face Spaces.",
       href: "https://huggingface.co/spaces/satya00089/alochona",
       tags: ["Chatbot", "OpenAI", "Hugging Face"],
+      date: { start: "2024-06" },
     },
   ],
   education: [
     {
-      degree: "B.Sc. Computer Science",
-      school: "Some University",
-      date: "2018-2021",
+      degree: "B.Tech in Computer Science Engineering",
+      school: "Biju Patnaik University of Technology",
+      date: "2013-2017",
+    },
+    {
+      degree: "Higher Secondary",
+      school: "Bellaguntha Science College",
+      date: "2011-2013",
+    },
+    {
+      degree: "High School",
+      school: "G.T High School Bellaguntha",
+      date: "2011",
     },
   ],
   certifications: [
+    {
+      name: "Microsoft Certified: Azure Fundamentals (AZ-900)",
+      issuer: "Microsoft",
+      date: "2022",
+      url: "https://www.credly.com/badges/56ba404b-b2ec-49d7-b869-d41c8c88d7b5",
+    },
     {
       name: "Terraform Associate",
       issuer: "HashiCorp",

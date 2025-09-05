@@ -53,7 +53,7 @@ export type Skill = {
   name: string; // "React"
   level?: number; // 1-10 or %
   years?: number; // years of experience
-  category?: "frontend" | "backend" | "data" | "devops" | "tooling" | "other";
+  category?: "frontend" | "backend" | "data" | "devops" | "tooling" | "database" | "other";
   note?: string; // optional note e.g. "used at work since 2020"
 };
 
