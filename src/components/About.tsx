@@ -48,14 +48,12 @@ export const About: React.FC<{ personal: Personal }> = ({ personal }) => {
           >
             See projects
           </a>
-          <a
-            href="#projects"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-800"
+          <Link
+            to="/resume"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-800 hover:underline"
           >
-            <Link to="/resume" className="hover:underline">
-              See Resume
-            </Link>
-          </a>
+            See Resume
+          </Link>
           <a
             href="#contact"
             className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-800"

@@ -11,6 +11,8 @@ import type { Project } from "../types/portfolio";
 import { ProjectModal } from "../components/ProjectModal";
 import { ScrollProgressBar } from "../components/shared/ScrollProgressBar";
 import { ScrollToTop } from "../components/shared/ScrollToTop";
+import HeroOutOfWorld from "../components/HeroOutOfWorld";
+import CLIResume from "../components/CLIResume";
 
 const PortfolioPage: React.FC = () => {
   const [selected, setSelected] = useState<Project | null>(null);
@@ -26,6 +28,8 @@ const PortfolioPage: React.FC = () => {
           { href: "#contact", label: "Contact" },
         ]}
       />
+      <HeroOutOfWorld />
+      <CLIResume />
 
       <main className="max-w-6xl mx-auto px-6 py-10">
         <section

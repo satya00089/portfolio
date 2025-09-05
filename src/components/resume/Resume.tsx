@@ -7,7 +7,7 @@ import { TbWorldWww } from "react-icons/tb";
 import { IoPhonePortrait } from "react-icons/io5";
 import * as SiIcons from "react-icons/si";
 import { RESUME_INFO } from "../../config/portfolioData";
-import type { Resume as ResumeType } from "../../types/resume";
+import type { DateRange, Resume as ResumeType } from "../../types/resume";
 
 export const Resume: React.FC<{ className?: string }> = ({
   className = "",
@@ -25,6 +25,16 @@ export const Resume: React.FC<{ className?: string }> = ({
 
   const contact = personal.contact ?? {};
   const meta = resumeInfo.meta ?? {};
+
+  function formatDate(date?: string | DateRange): string {
+    if (!date) return "";
+    if (typeof date === "string") return date;
+
+    const start = date.start ?? "";
+    if (date.present) return `${start} — Present`;
+    if (date.end) return `${start} — ${date.end}`;
+    return start;
+  }
 
   return (
     <article
@@ -112,12 +122,12 @@ export const Resume: React.FC<{ className?: string }> = ({
                     {/* Tooltip */}
                     <span
                       className="absolute bottom-full mb-1 left-1/2 -translate-x-1/2
-                       px-2 py-1 text-xs rounded-md
-                       bg-[var(--surface)] text-[var(--text)]
-                       border border-[var(--border)]
-                       opacity-0 group-hover:opacity-100
-                       transition duration-200 pointer-events-none
-                       whitespace-nowrap z-10"
+                        px-2 py-1 text-xs rounded-md
+                        bg-[var(--surface)] text-[var(--text)]
+                        border border-[var(--border)]
+                        opacity-0 group-hover:opacity-100
+                        transition duration-200 pointer-events-none
+                        whitespace-nowrap z-10"
                     >
                       {s.label}
                     </span>
@@ -210,15 +220,7 @@ export const Resume: React.FC<{ className?: string }> = ({
                     )}
                   </div>
                   <div className="text-[var(--muted)] mt-2 sm:mt-0">
-                    {typeof exp.date === "string"
-                      ? exp.date
-                      : `${exp.date?.start ?? ""}${
-                          exp.date?.present
-                            ? " — Present"
-                            : exp.date?.end
-                            ? ` — ${exp.date.end}`
-                            : ""
-                        }`}
+                    {formatDate(exp?.date)}
                   </div>
                 </div>
 
@@ -318,30 +320,48 @@ export const Resume: React.FC<{ className?: string }> = ({
           <ul className="text-sm list-disc list-inside">
             {resumeInfo.certifications.map((c) => (
               <li key={c.name}>
-                <div className="font-medium">
+                <span className="font-medium">
                   {c.name}
-                  {c.issuer ? (
-                    <span className="text-[var(--muted)]"> — {c.issuer}</span>
-                  ) : null}
-                </div>
+                  {(c.issuer || c.url) && (
+                    <span className="text-[var(--muted)]">
+                      {c.issuer && (
+                        <>
+                          {" — "}
+                          {c.url ? (
+                            <a
+                              href={c.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="underline text-sm"
+                            >
+                              {c.issuer}
+                            </a>
+                          ) : (
+                            <span>{c.issuer}</span>
+                          )}
+                        </>
+                      )}
+
+                      {/* If there's a URL but no issuer, just show "Link" */}
+                      {!c.issuer && c.url && (
+                        <a
+                          href={c.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline text-sm"
+                        >
+                          Link
+                        </a>
+                      )}
+                    </span>
+                  )}
+                </span>
                 {c.date && (
-                  <div className="text-xs text-[var(--muted)]">
+                  <span className="text-xs text-[var(--muted)] ml-3">
                     {typeof c.date === "string"
                       ? c.date
                       : c.date.start ?? c.date.end}
-                  </div>
-                )}
-                {c.url && (
-                  <div>
-                    <a
-                      href={c.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="underline text-sm"
-                    >
-                      Link
-                    </a>
-                  </div>
+                  </span>
                 )}
               </li>
             ))}
