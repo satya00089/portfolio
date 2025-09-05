@@ -26,6 +26,7 @@ export type SocialLink = {
   label: string; // e.g. "GitHub", "LinkedIn"
   url: Url;
   icon?: string; // optional icon key (e.g., "SiGithub")
+  size?: number; // optional icon size
 };
 
 export type Contact = {

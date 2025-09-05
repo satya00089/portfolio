@@ -198,11 +198,14 @@ export const RESUME_INFO: Resume = {
       "Full Stack Developer building production-grade applications with React, FastAPI and cloud infrastructure. I focus on developer experience, automations and sustainable code.",
     contact: {
       email: "satyasubudhi089@gmail.com",
-      location: "Remote",
+      phone: "+91 9937 446 070",
+      location: "Bangalore, India",
       website: "https://satya00089.github.io/portfolio",
       socials: [
+        { label: "LinkedIn", url: "https://www.linkedin.com/in/satya-subudhi/", icon: "SiLinkedin" },
         { label: "GitHub", url: "https://github.com/satya00089", icon: "SiGithub" },
         { label: "Hugging Face", url: "https://huggingface.co/spaces/satya00089/", icon: "SiHuggingface" },
+        { label: "kaggle", url: "https://www.kaggle.com/satya00089", icon: "SiKaggle", size: 40 },
       ],
     },
   },
