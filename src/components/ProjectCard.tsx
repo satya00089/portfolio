@@ -64,7 +64,7 @@ export const ProjectCard: React.FC<{
           >
             {project.title}
           </button>
-          <p className="text-sm text-[var(--muted)] mt-1 line-clamp-2">{project.desc}</p>
+          <p className="text-sm text-[var(--muted)] mt-1 line-clamp-2">{project.description}</p>
           <div className="mt-4 flex gap-3 flex-wrap text-[var(--muted)]">
             {project.href && (
               <a

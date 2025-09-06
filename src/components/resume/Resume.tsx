@@ -6,13 +6,13 @@ import { FaFileDownload } from "react-icons/fa";
 import { TbWorldWww } from "react-icons/tb";
 import { IoPhonePortrait } from "react-icons/io5";
 import * as SiIcons from "react-icons/si";
-import { RESUME_INFO } from "../../config/portfolioData";
-import type { DateRange, Resume as ResumeType } from "../../types/resume";
+import { PORTFOLIO_INFO } from "../../config/portfolioData";
+import type { DateRange, Portfolio } from "../../types/portfolio";
 
 export const Resume: React.FC<{ className?: string }> = ({
   className = "",
 }) => {
-  const resumeInfo: ResumeType = RESUME_INFO;
+  const resumeInfo: Portfolio = PORTFOLIO_INFO;
 
   const personal = resumeInfo.personal ?? {
     name: "Your Name",

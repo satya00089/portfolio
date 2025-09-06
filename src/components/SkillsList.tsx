@@ -6,13 +6,15 @@ import { SkillCircle } from "./SkillCircle";
 import { FaChevronUp, FaChevronDown } from "react-icons/fa6";
 
 // include "all" option
-const STACKS: (Skill["stack"] | "all")[] = [
+const STACKS: (Skill["category"] | "all")[] = [
   "all",
   "frontend",
   "backend",
-  "ai & ml",
+  "data",
   "database",
-  "others",
+  "devops",
+  "tooling",
+  "other",
 ];
 
 export const SkillsList: React.FC<{ skills?: Skill[]; isBar?: boolean }> = ({
@@ -20,12 +22,12 @@ export const SkillsList: React.FC<{ skills?: Skill[]; isBar?: boolean }> = ({
   isBar = true,
 }) => {
   const [selectedStacks, setSelectedStacks] = useState<
-    (Skill["stack"] | "all")[]
+    (Skill["category"] | "all")[]
   >(["all"]);
   const [expanded, setExpanded] = useState(false);
 
   // toggle stack chip
-  const toggleStack = (stack: Skill["stack"] | "all") => {
+  const toggleStack = (stack: Skill["category"] | "all") => {
     if (stack === "all") {
       setSelectedStacks(["all"]);
     } else {
@@ -44,13 +46,13 @@ export const SkillsList: React.FC<{ skills?: Skill[]; isBar?: boolean }> = ({
   // filtered skills
   const filteredSkills = useMemo(() => {
     if (selectedStacks.includes("all")) return skills;
-    return skills.filter((s) => selectedStacks.includes(s.stack ?? "others"));
+    return skills.filter((s) => selectedStacks.includes(s.category ?? "other"));
   }, [skills, selectedStacks]);
 
   // count per stack
-  const getCount = (stack: Skill["stack"] | "all") => {
-    if (stack === "all") return skills.length;
-    return skills.filter((s) => (s.stack ?? "others") === stack).length;
+  const getCount = (category: Skill["category"] | "all") => {
+    if (category === "all") return category.length;
+    return skills.filter((s) => (s.category ?? "other") === category).length;
   };
 
   // Netflix-style grid height
@@ -105,7 +107,7 @@ export const SkillsList: React.FC<{ skills?: Skill[]; isBar?: boolean }> = ({
                   {Icon && <Icon className="w-6 h-6" />}
                 </div>
 
-                {isBar ? (
+                {s.level && isBar && (
                   <div className="mt-3 bg-[var(--border)]/40 h-2 rounded-full overflow-hidden">
                     <motion.div
                       initial={{ width: 0 }}
@@ -118,7 +120,8 @@ export const SkillsList: React.FC<{ skills?: Skill[]; isBar?: boolean }> = ({
                       }}
                     />
                   </div>
-                ) : (
+                )}
+                {s.level && !isBar && (
                   <div className="mt-3 bg-[var(--border)]/40 rounded-full overflow-hidden sm:h-32 sm:w-32 w-24 h-24 mx-auto">
                     <SkillCircle level={s.level} />
                   </div>

@@ -5,7 +5,7 @@ import { ProjectsGrid } from "../components/ProjectsGrid";
 import { SkillsList } from "../components/SkillsList";
 import { ContactForm } from "../components/ContactForm";
 import { Footer } from "../components/shared/Footer";
-import { PERSONAL, PROJECTS_DATA, SKILLS } from "../config/portfolioData";
+import { PORTFOLIO_INFO } from "../config/portfolioData";
 import { About } from "../components/About";
 import type { Project } from "../types/portfolio";
 import { ProjectModal } from "../components/ProjectModal";
@@ -36,7 +36,7 @@ const PortfolioPage: React.FC = () => {
           id="about"
           className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start pt-40 pb-8"
         >
-          <About personal={PERSONAL} />
+          <About personal={PORTFOLIO_INFO.personal} />
         </section>
 
         <section id="projects" className="py-8">
@@ -46,7 +46,7 @@ const PortfolioPage: React.FC = () => {
           <p className="mb-6 text-sm text-gray-500 dark:text-gray-400 mt-1">
             Selected work — click a card for details.
           </p>
-          <ProjectsGrid projects={PROJECTS_DATA} onOpen={setSelected} />
+          <ProjectsGrid projects={PORTFOLIO_INFO.projects} onOpen={setSelected} />
         </section>
 
         <section id="skills" className="py-8">
@@ -54,7 +54,7 @@ const PortfolioPage: React.FC = () => {
           <p className="mb-6 text-sm text-gray-500 dark:text-gray-400 mt-1">
             Tools and technologies I use regularly.
           </p>
-          <SkillsList skills={SKILLS} isBar={false} />
+          <SkillsList skills={PORTFOLIO_INFO.skills?.[0].skills ?? []} isBar={false} />
         </section>
 
         <section id="contact" className="py-8">

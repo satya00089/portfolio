@@ -190,7 +190,7 @@ export const ProjectModal: React.FC<{
                       )}
                       {/* Description */}
                       <p className="text-sm text-[var(--text)] mb-4">
-                        {project.long}
+                        {project.description}
                       </p>
 
                       {/* Links */}

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import type { Personal } from "../types/portfolio";
-import { SiGithub, SiLinkedin } from "react-icons/si";
-import { IoIosMail } from "react-icons/io";
+// import { SiGithub, SiLinkedin } from "react-icons/si";
+// import { IoIosMail } from "react-icons/io";
 import { Link } from "react-router-dom";
 
 export const About: React.FC<{ personal: Personal }> = ({ personal }) => {
@@ -27,7 +27,7 @@ export const About: React.FC<{ personal: Personal }> = ({ personal }) => {
             </motion.span>
           ))}
         </motion.h1>
-        <p className="mt-4 text-lg max-w-prose">{personal.tagline}</p>
+        <p className="mt-4 text-lg max-w-prose">{personal.headline}</p>
 
         <div className="mt-6 text-md dark:prose-invert max-w-none text-[var(--muted)]">
           <p>
@@ -86,7 +86,7 @@ export const About: React.FC<{ personal: Personal }> = ({ personal }) => {
             {personal.title}
           </div>
 
-          <div className="mt-3 flex gap-5 text-[var(--muted)]">
+          {/* <div className="mt-3 flex gap-5 text-[var(--muted)]">
             <a
               href="https://github.com/satya00089"
               aria-label="github"
@@ -113,7 +113,7 @@ export const About: React.FC<{ personal: Personal }> = ({ personal }) => {
             >
               <IoIosMail size={24} />
             </a>
-          </div>
+          </div> */}
         </div>
       </motion.aside>
     </>

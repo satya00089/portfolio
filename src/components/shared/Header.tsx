@@ -8,14 +8,16 @@ import {
   useMotionTemplate,
 } from "framer-motion";
 import { useTheme } from "../../context/ThemeContext";
-import { PERSONAL } from "../../config/portfolioData";
 import { PiSunDuotone, PiMoonDuotone } from "react-icons/pi";
+import { PORTFOLIO_INFO } from "../../config/portfolioData";
 
 type NavLink = { href: string; label: string };
 
 export const Header: React.FC<{ links?: NavLink[] }> = ({ links = [] }) => {
   const { dark, toggle } = useTheme();
   const headerRef = useRef<HTMLElement | null>(null);
+
+  const PERSONAL = PORTFOLIO_INFO.personal;
 
   const [active, setActive] = useState<string>(links[0]?.href ?? "#about");
   useEffect(() => {
