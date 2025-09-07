@@ -146,3 +146,13 @@ export type Portfolio = {
     interests?: string[]; // e.g. "astronomy, photography"
   };
 };
+
+
+
+
+export interface Source {
+  id: string;
+  text: string;
+  meta?: Record<string, unknown>;
+  score?: number;
+}

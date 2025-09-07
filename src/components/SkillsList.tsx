@@ -1,148 +1,220 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import type { Skill } from "../types/portfolio";
+import type { SkillGroup } from "../types/portfolio";
 import * as SiIcons from "react-icons/si";
 import { SkillCircle } from "./SkillCircle";
 import { FaChevronUp, FaChevronDown } from "react-icons/fa6";
 
-// include "all" option
-const STACKS: (Skill["category"] | "all")[] = [
-  "all",
-  "frontend",
-  "backend",
-  "data",
-  "database",
-  "devops",
-  "tooling",
-  "other",
-];
-
-export const SkillsList: React.FC<{ skills?: Skill[]; isBar?: boolean }> = ({
+export const SkillsList: React.FC<{ skills?: SkillGroup[]; isBar?: boolean }> = ({
   skills = [],
   isBar = true,
 }) => {
-  const [selectedStacks, setSelectedStacks] = useState<
-    (Skill["category"] | "all")[]
-  >(["all"]);
+  const groupTitles = useMemo(() => skills.map((g) => g.title ?? "Other"), [skills]);
+
+  const [selectedTitles, setSelectedTitles] = useState<(string | "all")[]>(["all"]);
   const [expanded, setExpanded] = useState(false);
 
-  // toggle stack chip
-  const toggleStack = (stack: Skill["category"] | "all") => {
-    if (stack === "all") {
-      setSelectedStacks(["all"]);
-    } else {
-      setSelectedStacks((prev) => {
-        const withoutAll = prev.filter((s) => s !== "all");
-        if (withoutAll.includes(stack)) {
-          const newStacks = withoutAll.filter((s) => s !== stack);
-          return newStacks.length === 0 ? ["all"] : newStacks;
-        } else {
-          return [...withoutAll, stack];
-        }
-      });
+  const contentRef = useRef<HTMLDivElement | null>(null);
+
+  const toggleTitle = (title: string | "all") => {
+    if (title === "all") {
+      setSelectedTitles(["all"]);
+      return;
     }
+    setSelectedTitles((prev) => {
+      const withoutAll = prev.filter((t) => t !== "all");
+      if (withoutAll.includes(title)) {
+        const next = withoutAll.filter((t) => t !== title);
+        return next.length === 0 ? ["all"] : next;
+      }
+      return [...withoutAll, title];
+    });
   };
 
-  // filtered skills
-  const filteredSkills = useMemo(() => {
-    if (selectedStacks.includes("all")) return skills;
-    return skills.filter((s) => selectedStacks.includes(s.category ?? "other"));
-  }, [skills, selectedStacks]);
+  const filteredGroups = useMemo(() => {
+    if (selectedTitles.includes("all")) return skills;
+    return skills.filter((g) => selectedTitles.includes(g.title ?? "Other"));
+  }, [skills, selectedTitles]);
 
-  // count per stack
-  const getCount = (category: Skill["category"] | "all") => {
-    if (category === "all") return category.length;
-    return skills.filter((s) => (s.category ?? "other") === category).length;
+  const getCount = (title: string | "all") => {
+    if (title === "all") return skills.flatMap((g) => g.skills ?? []).length;
+    const found = skills.find((g) => g.title === title);
+    return found ? (found.skills ?? []).length : 0;
   };
 
-  // Netflix-style grid height
-  const rowHeight = 140; // px per row
-  const maxHeight = `${rowHeight * 3}px`;
+  // collapse sizing
+  const colsMd = 6;
+  const rowHeight = 140;
+  const maxRowsCollapsed = 3;
+  const collapsedPx = rowHeight * maxRowsCollapsed;
+  const maxHeight = `${collapsedPx}px`;
+  const totalSkillCount = skills.flatMap((g) => g.skills ?? []).length;
+
+  const [hasOverflow, setHasOverflow] = useState(false);
+
+  useEffect(() => {
+    const el = contentRef.current;
+    if (!el) {
+      setHasOverflow(false);
+      return;
+    }
+    const check = () => {
+      setHasOverflow(el.scrollHeight > collapsedPx);
+    };
+    check();
+    const ro = new ResizeObserver(() => check());
+    ro.observe(el);
+    const onResize = () => check();
+    window.addEventListener("resize", onResize);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", onResize);
+    };
+  }, [filteredGroups, collapsedPx, selectedTitles, totalSkillCount, expanded]);
+
+  useEffect(() => setExpanded(false), [selectedTitles]);
+
+  // If no overflow, collapsedHeightTarget is "auto" (so no empty space).
+  const collapsedHeightTarget = hasOverflow ? maxHeight : "auto";
 
   return (
     <div className="space-y-6">
-      {/* stack filter chips */}
       <div className="flex flex-wrap gap-2">
-        {STACKS.map((stack) => (
-          <button
-            key={stack}
-            onClick={() => toggleStack(stack)}
-            onKeyDown={(e) =>
-              (e.key === "Enter" || e.key === " ") && toggleStack(stack)
+        <button
+          onClick={() => toggleTitle("all")}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              toggleTitle("all");
             }
-            tabIndex={0}
-            className={`px-3 py-1 rounded-full text-sm border transition capitalize cursor-pointer ${
-              selectedStacks.includes(stack)
-                ? "bg-[var(--brand)] text-white border-[var(--brand)]"
-                : "bg-[var(--surface)] text-[var(--text)] border-[var(--border)] hover:bg-[var(--border)]/30"
-            }`}
-          >
-            {stack === "all" ? "All" : stack} ({getCount(stack)})
-          </button>
-        ))}
+          }}
+          aria-pressed={selectedTitles.includes("all")}
+          className={`px-3 py-1 rounded-full text-sm border transition select-none ${
+            selectedTitles.includes("all")
+              ? "bg-[var(--brand)] text-white border-[var(--brand)]"
+              : "bg-[var(--surface)] text-[var(--text)] border-[var(--border)] hover:bg-[var(--border)]/30"
+          }`}
+        >
+          All ({getCount("all")})
+        </button>
+
+        {groupTitles.map((t) => {
+          const active = selectedTitles.includes(t);
+          return (
+            <button
+              key={t}
+              onClick={() => toggleTitle(t)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  toggleTitle(t);
+                }
+              }}
+              aria-pressed={active}
+              className={`px-3 py-1 rounded-full text-sm border transition select-none ${
+                active
+                  ? "bg-[var(--brand)] text-white border-[var(--brand)]"
+                  : "bg-[var(--surface)] text-[var(--text)] border-[var(--border)] hover:bg-[var(--border)]/30"
+              }`}
+            >
+              {t} ({getCount(t)})
+            </button>
+          );
+        })}
       </div>
 
+      {/* key change: only force the collapsed maxHeight when hasOverflow === true.
+          Otherwise use "auto" to avoid empty space. */}
       <motion.div
-        animate={{ height: expanded ? "auto" : maxHeight }}
-        transition={{ duration: 0.5 }}
+        animate={{ height: expanded ? "auto" : collapsedHeightTarget }}
+        transition={{ duration: 0.45 }}
         className="overflow-hidden"
       >
         <motion.div
-          key={selectedStacks.join("-")}
+          key={selectedTitles.join("-")}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.4 }}
-          className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-6 gap-4"
+          transition={{ duration: 0.35 }}
+          className="space-y-6"
+          ref={contentRef}
         >
-          {filteredSkills.map((s) => {
-            const Icon = SiIcons[s.icon as keyof typeof SiIcons];
+          {filteredGroups.map((group) => {
+            const groupTitle = group.title ?? "Other";
+            const groupSkills = group.skills ?? [];
             return (
-              <div
-                key={s.name}
-                className="p-4 rounded-xl bg-[var(--surface)] border border-[var(--border)] hover:scale-105 transition duration-300 cursor-pointer text-[var(--muted)] hover:text-[var(--text)]"
-                aria-label={`${s.name} skill ${s.level} percent`}
-              >
-                <div className="flex justify-between items-center">
-                  <div className="font-medium">{s.name}</div>
-                  {Icon && <Icon className="w-6 h-6" />}
-                </div>
+              <section key={groupTitle} aria-labelledby={`skills-${groupTitle}`} className="">
+                <h3 id={`skills-${groupTitle}`} className="text-sm font-semibold text-[var(--brand)] mb-3">
+                  {groupTitle}
+                </h3>
 
-                {s.level && isBar && (
-                  <div className="mt-3 bg-[var(--border)]/40 h-2 rounded-full overflow-hidden">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={{ width: `${s.level}%` }}
-                      transition={{ duration: 0.8 }}
-                      className="h-2 rounded-full"
-                      style={{
-                        background:
-                          "linear-gradient(90deg, var(--brand), var(--accent))",
-                      }}
-                    />
-                  </div>
-                )}
-                {s.level && !isBar && (
-                  <div className="mt-3 bg-[var(--border)]/40 rounded-full overflow-hidden sm:h-32 sm:w-32 w-24 h-24 mx-auto">
-                    <SkillCircle level={s.level} />
-                  </div>
-                )}
-              </div>
+                <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-6 gap-4">
+                  {groupSkills.map((s) => {
+                    const Icon = (s.icon && (SiIcons as any)[s.icon]) || null;
+                    return (
+                      <div
+                        key={s.name}
+                        className="p-4 rounded-xl bg-[var(--surface)] border border-[var(--border)] hover:scale-105 transition duration-300 cursor-default text-[var(--muted)] hover:text-[var(--text)]"
+                        aria-label={`${s.name} skill ${s.level ?? "n/a"} percent`}
+                        role="group"
+                      >
+                        <div className="flex items-start justify-between gap-3">
+                          <div>
+                            <div className="font-medium text-sm">{s.name}</div>
+                            <div className="text-xs text-slate-400 mt-1">
+                              {s.years ? `${s.years} yr${s.years > 1 ? "s" : ""}` : null}
+                              {s.note ? <span className="ml-2">• {s.note}</span> : null}
+                            </div>
+                          </div>
+
+                          <div className="flex items-center shrink-0">
+                            {Icon ? <Icon className="w-6 h-6 text-[var(--muted)]" /> : <div className="w-6 h-6 rounded bg-slate-700/40" />}
+                          </div>
+                        </div>
+
+                        {s.level != null && isBar && (
+                          <div className="mt-3 bg-[var(--border)]/40 h-2 rounded-full overflow-hidden">
+                            <motion.div
+                              initial={{ width: 0 }}
+                              animate={{ width: `${s.level}%` }}
+                              transition={{ duration: 0.8 }}
+                              className="h-2 rounded-full"
+                              style={{
+                                background: "linear-gradient(90deg, var(--brand), var(--accent))",
+                              }}
+                            />
+                          </div>
+                        )}
+
+                        {s.level != null && !isBar && (
+                          <div className="mt-3 mx-auto w-24 h-24 sm:w-32 sm:h-32">
+                            <SkillCircle level={s.level} />
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </section>
             );
           })}
         </motion.div>
       </motion.div>
 
-      {/* expand/collapse button */}
-      {filteredSkills.length > 3 * 6 && (
+      {/* show expand control only when content actually overflows or when expanded */}
+      {(hasOverflow || expanded) && (
         <div className="flex justify-center">
           <button
             onClick={() => setExpanded((prev) => !prev)}
-            className="flex items-center gap-2 px-2 py-2 rounded-full cursor-pointer border-4 border-[var(--border)] bg-[var(--surface)] hover:bg-[var(--border)]/30 text-[var(--text)] transition"
+            className="flex items-center gap-2 px-3 py-2 rounded-full cursor-pointer border border-[var(--border)] bg-[var(--surface)] hover:bg-[var(--border)]/30 text-[var(--text)] transition"
+            aria-expanded={expanded}
           >
-            {expanded ? <FaChevronUp size={24} /> : <FaChevronDown size={24} />}
+            {expanded ? <FaChevronUp size={16} /> : <FaChevronDown size={16} />}
+            <span className="text-sm">{expanded ? "Show less" : "Show more"}</span>
           </button>
         </div>
       )}
     </div>
   );
 };
+
+export default SkillsList;

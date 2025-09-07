@@ -1,3 +1,4 @@
+// Header.tsx
 import React, { useEffect, useRef, useState } from "react";
 import {
   motion,
@@ -13,7 +14,10 @@ import { PORTFOLIO_INFO } from "../../config/portfolioData";
 
 type NavLink = { href: string; label: string };
 
-export const Header: React.FC<{ links?: NavLink[] }> = ({ links = [] }) => {
+export const Header: React.FC<{ links?: NavLink[]; onTryCLI?: () => void }> = ({
+  links = [],
+  onTryCLI,
+}) => {
   const { dark, toggle } = useTheme();
   const headerRef = useRef<HTMLElement | null>(null);
 
@@ -111,8 +115,8 @@ export const Header: React.FC<{ links?: NavLink[] }> = ({ links = [] }) => {
           </div>
         </a>
 
-        {/* Right: nav + theme */}
-        <nav aria-label="Primary" className="relative flex items-center gap-4">
+        {/* Right: nav + theme + Try CLI */}
+        <nav aria-label="Primary" className="relative flex items-center gap-3">
           <div className="relative hidden sm:flex gap-4">
             {links.map((l) => {
               const isActive = active === l.href;
@@ -124,7 +128,6 @@ export const Header: React.FC<{ links?: NavLink[] }> = ({ links = [] }) => {
                   className="relative px-1 py-0.5 text-sm text-[var(--text)]"
                 >
                   {l.label}
-                  {/* 1) sliding underline */}
                   <AnimatePresence initial={false}>
                     {isActive && (
                       <motion.span
@@ -142,6 +145,14 @@ export const Header: React.FC<{ links?: NavLink[] }> = ({ links = [] }) => {
               );
             })}
           </div>
+
+          <button
+            onClick={onTryCLI}
+            className="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded text-sm border border-[var(--border)] hover:bg-[var(--border)]/30 transition"
+            aria-label="Try CLI"
+          >
+            Try CLI
+          </button>
 
           <button
             onClick={toggle}

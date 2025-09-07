@@ -1,3 +1,4 @@
+// PortfolioPage.tsx
 import React, { useState } from "react";
 import { ThemeProvider } from "../components/ThemeProvider";
 import { Header } from "../components/shared/Header";
@@ -11,11 +12,11 @@ import type { Project } from "../types/portfolio";
 import { ProjectModal } from "../components/ProjectModal";
 import { ScrollProgressBar } from "../components/shared/ScrollProgressBar";
 import { ScrollToTop } from "../components/shared/ScrollToTop";
-import HeroOutOfWorld from "../components/HeroOutOfWorld";
 import CLIResume from "../components/CLIResume";
 
 const PortfolioPage: React.FC = () => {
   const [selected, setSelected] = useState<Project | null>(null);
+  const [showCLI, setShowCLI] = useState(false);
 
   return (
     <ThemeProvider>
@@ -27,11 +28,12 @@ const PortfolioPage: React.FC = () => {
           { href: "#skills", label: "Skills" },
           { href: "#contact", label: "Contact" },
         ]}
+        onTryCLI={() => setShowCLI(true)}
       />
-      <HeroOutOfWorld />
-      <CLIResume />
+      {/* CLI panel (docked / overlay) */}
+      <CLIResume open={showCLI} onClose={() => setShowCLI(false)} />
 
-      <main className="max-w-6xl mx-auto px-6 py-10">
+      <main className="max-w-6xl 2xl:max-w-9xl mx-auto px-6 py-10">
         <section
           id="about"
           className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start pt-40 pb-8"
@@ -54,7 +56,7 @@ const PortfolioPage: React.FC = () => {
           <p className="mb-6 text-sm text-gray-500 dark:text-gray-400 mt-1">
             Tools and technologies I use regularly.
           </p>
-          <SkillsList skills={PORTFOLIO_INFO.skills?.[0].skills ?? []} isBar={false} />
+          <SkillsList skills={PORTFOLIO_INFO.skills} isBar={true} />
         </section>
 
         <section id="contact" className="py-8">
