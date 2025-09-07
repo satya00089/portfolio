@@ -68,7 +68,7 @@ export default function HeroTimeline() {
 
           {/* timeline graphic */}
           <div className="mt-4 border-l border-slate-200/10 pl-4">
-            {timeline.map((t, idx) => {
+            {timeline.map((t) => {
               const active = selected === t.id;
               return (
                 <div key={t.id} className="relative mb-6">

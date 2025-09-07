@@ -5,18 +5,23 @@ import * as SiIcons from "react-icons/si";
 import { SkillCircle } from "./SkillCircle";
 import { FaChevronUp, FaChevronDown } from "react-icons/fa6";
 
-export const SkillsList: React.FC<{ skills?: SkillGroup[]; isBar?: boolean }> = ({
-  skills = [],
-  isBar = true,
-}) => {
-  const groupTitles = useMemo(() => skills.map((g) => g.title ?? "Other"), [skills]);
+export const SkillsList: React.FC<{
+  skills?: SkillGroup[];
+  isBar?: boolean;
+}> = ({ skills = [], isBar = true }) => {
+  const groupTitles = useMemo(
+    () => skills.map((g) => g.title ?? "Other"),
+    [skills]
+  );
 
-  const [selectedTitles, setSelectedTitles] = useState<(string | "all")[]>(["all"]);
+  const [selectedTitles, setSelectedTitles] = useState<(string)[]>([
+    "all",
+  ]);
   const [expanded, setExpanded] = useState(false);
 
   const contentRef = useRef<HTMLDivElement | null>(null);
 
-  const toggleTitle = (title: string | "all") => {
+  const toggleTitle = (title: string) => {
     if (title === "all") {
       setSelectedTitles(["all"]);
       return;
@@ -36,14 +41,13 @@ export const SkillsList: React.FC<{ skills?: SkillGroup[]; isBar?: boolean }> = 
     return skills.filter((g) => selectedTitles.includes(g.title ?? "Other"));
   }, [skills, selectedTitles]);
 
-  const getCount = (title: string | "all") => {
+  const getCount = (title: string) => {
     if (title === "all") return skills.flatMap((g) => g.skills ?? []).length;
     const found = skills.find((g) => g.title === title);
     return found ? (found.skills ?? []).length : 0;
   };
 
   // collapse sizing
-  const colsMd = 6;
   const rowHeight = 140;
   const maxRowsCollapsed = 3;
   const collapsedPx = rowHeight * maxRowsCollapsed;
@@ -142,33 +146,44 @@ export const SkillsList: React.FC<{ skills?: SkillGroup[]; isBar?: boolean }> = 
             const groupTitle = group.title ?? "Other";
             const groupSkills = group.skills ?? [];
             return (
-              <section key={groupTitle} aria-labelledby={`skills-${groupTitle}`} className="">
-                <h3 id={`skills-${groupTitle}`} className="text-sm font-semibold text-[var(--brand)] mb-3">
+              <section
+                key={groupTitle}
+                aria-labelledby={`skills-${groupTitle}`}
+                className=""
+              >
+                <h3
+                  id={`skills-${groupTitle}`}
+                  className="text-sm font-semibold text-[var(--brand)] mb-3"
+                >
                   {groupTitle}
                 </h3>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-6 gap-4">
                   {groupSkills.map((s) => {
-                    const Icon = (s.icon && (SiIcons as any)[s.icon]) || null;
+                    const Icon = SiIcons[s.icon as keyof typeof SiIcons];
                     return (
-                      <div
+                      <fieldset
                         key={s.name}
                         className="p-4 rounded-xl bg-[var(--surface)] border border-[var(--border)] hover:scale-105 transition duration-300 cursor-default text-[var(--muted)] hover:text-[var(--text)]"
-                        aria-label={`${s.name} skill ${s.level ?? "n/a"} percent`}
-                        role="group"
                       >
                         <div className="flex items-start justify-between gap-3">
                           <div>
                             <div className="font-medium text-sm">{s.name}</div>
                             <div className="text-xs text-slate-400 mt-1">
-                              {s.years ? `${s.years} yr${s.years > 1 ? "s" : ""}` : null}
-                              {s.note ? <span className="ml-2">• {s.note}</span> : null}
+                              {s.years
+                                ? `${s.years} yr${s.years > 1 ? "s" : ""}`
+                                : null}
+                              {s.note ? (
+                                <span className="ml-2">• {s.note}</span>
+                              ) : null}
                             </div>
                           </div>
 
-                          <div className="flex items-center shrink-0">
-                            {Icon ? <Icon className="w-6 h-6 text-[var(--muted)]" /> : <div className="w-6 h-6 rounded bg-slate-700/40" />}
-                          </div>
+                          {Icon && (
+                            <div className="flex items-center shrink-0">
+                              <Icon className="w-6 h-6 text-[var(--muted)]" />
+                            </div>
+                          )}
                         </div>
 
                         {s.level != null && isBar && (
@@ -179,7 +194,8 @@ export const SkillsList: React.FC<{ skills?: SkillGroup[]; isBar?: boolean }> = 
                               transition={{ duration: 0.8 }}
                               className="h-2 rounded-full"
                               style={{
-                                background: "linear-gradient(90deg, var(--brand), var(--accent))",
+                                background:
+                                  "linear-gradient(90deg, var(--brand), var(--accent))",
                               }}
                             />
                           </div>
@@ -190,7 +206,7 @@ export const SkillsList: React.FC<{ skills?: SkillGroup[]; isBar?: boolean }> = 
                             <SkillCircle level={s.level} />
                           </div>
                         )}
-                      </div>
+                      </fieldset>
                     );
                   })}
                 </div>
@@ -204,12 +220,15 @@ export const SkillsList: React.FC<{ skills?: SkillGroup[]; isBar?: boolean }> = 
       {(hasOverflow || expanded) && (
         <div className="flex justify-center">
           <button
+            type="button"
             onClick={() => setExpanded((prev) => !prev)}
             className="flex items-center gap-2 px-3 py-2 rounded-full cursor-pointer border border-[var(--border)] bg-[var(--surface)] hover:bg-[var(--border)]/30 text-[var(--text)] transition"
             aria-expanded={expanded}
           >
             {expanded ? <FaChevronUp size={16} /> : <FaChevronDown size={16} />}
-            <span className="text-sm">{expanded ? "Show less" : "Show more"}</span>
+            <span className="text-sm">
+              {expanded ? "Show less" : "Show more"}
+            </span>
           </button>
         </div>
       )}
