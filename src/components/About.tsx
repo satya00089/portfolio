@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import type { Personal } from "../types/portfolio";
-// import { SiGithub, SiLinkedin } from "react-icons/si";
-// import { IoIosMail } from "react-icons/io";
+import * as SiIcons from "react-icons/si";
 import { Link } from "react-router-dom";
 
 export const About: React.FC<{ personal: Personal }> = ({ personal }) => {
@@ -50,7 +49,7 @@ export const About: React.FC<{ personal: Personal }> = ({ personal }) => {
           </a>
           <Link
             to="/resume"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-800 hover:underline"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-800"
           >
             See Resume
           </Link>
@@ -85,35 +84,26 @@ export const About: React.FC<{ personal: Personal }> = ({ personal }) => {
           <div className="text-sm text-gray-500 dark:text-gray-400">
             {personal.title}
           </div>
-
-          {/* <div className="mt-3 flex gap-5 text-[var(--muted)]">
-            <a
-              href="https://github.com/satya00089"
-              aria-label="github"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[var(--text)] transition-colors"
-            >
-              <SiGithub size={24} />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/satya-subudhi/"
-              aria-label="linkedin"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[var(--text)] transition-colors"
-            >
-              <SiLinkedin size={24} />
-            </a>
-            <a
-              href={`mailto:${personal.email}`}
-              aria-label="email"
-              rel="noopener noreferrer"
-              className="hover:text-[var(--text)] transition-colors"
-            >
-              <IoIosMail size={24} />
-            </a>
-          </div> */}
+          <div className="mt-3 flex gap-5 text-[var(--muted)]">
+            {personal?.contact?.socials?.map((social, index) => {
+              const Icon = SiIcons[social.icon as keyof typeof SiIcons];
+              return (
+                <a
+                  key={social.label + index}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2"
+                >
+                  {Icon ? (
+                    <Icon className="hover:text-[var(--brand)]" size={social?.size ?? 16} />
+                  ) : (
+                    <span>{social.label}</span>
+                  )}
+                </a>
+              );
+            })}
+          </div>
         </div>
       </motion.aside>
     </>

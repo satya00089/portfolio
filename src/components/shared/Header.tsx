@@ -8,8 +8,8 @@ import {
   animate,
   useMotionTemplate,
 } from "framer-motion";
-import { useTheme } from "../../context/ThemeContext";
 import { PiSunDuotone, PiMoonDuotone } from "react-icons/pi";
+import { useTheme } from "../../context/ThemeContext";
 import { PORTFOLIO_INFO } from "../../config/portfolioData";
 
 type NavLink = { href: string; label: string };
@@ -148,7 +148,7 @@ export const Header: React.FC<{ links?: NavLink[]; onTryCLI?: () => void }> = ({
 
           <button
             onClick={onTryCLI}
-            className="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded text-sm border border-[var(--border)] hover:bg-[var(--border)]/30 transition"
+            className="sm:inline-flex items-center gap-2 px-3 py-1.5 rounded text-sm border border-[var(--border)] hover:bg-[var(--border)]/30 transition"
             aria-label="Try CLI"
           >
             Try CLI

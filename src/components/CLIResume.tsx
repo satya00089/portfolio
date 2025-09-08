@@ -423,13 +423,13 @@ export default function CLIResume({ open = false, onClose }: Props) {
       <div
         className={`fixed inset-0 transition-opacity ${
           fullscreen ? "bg-black/60" : "pointer-events-none"
-        } z-40`}
+        } z-60`}
         aria-hidden
       />
 
       {/* centered/docked panel */}
       <div
-        className={`fixed z-50 bottom-4 left-1/2 transform -translate-x-1/2 px-4`}
+        className={`fixed z-60 bottom-4 left-1/2 transform -translate-x-1/2 px-4`}
         role="dialog"
         aria-modal="true"
       >
