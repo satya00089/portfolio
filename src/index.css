@@ -110,3 +110,67 @@ html, body {
     display: block !important;
   }
 }
+
+
+
+/* subtle moving light + brand glow for CTA buttons */
+.btn-light-flare {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate; /* keep effect contained */
+}
+
+/* sweep / sheen */
+.btn-light-flare::before {
+  content: "";
+  position: absolute;
+  left: -120%;
+  top: 0;
+  width: 60%;
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.18) 45%, rgba(255,255,255,0.12) 55%, transparent 100%);
+  transform: skewX(-20deg) translateX(0);
+  transition: transform 0.9s cubic-bezier(.2,.9,.2,1);
+  mix-blend-mode: screen;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+/* soft brand glow */
+.btn-light-flare::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 0 0 transparent;
+  transition: box-shadow 220ms ease, opacity 220ms ease;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* active hover state: sweep + glow */
+.btn-light-flare:hover::before {
+  transform: skewX(-20deg) translateX(260%);
+}
+
+.btn-light-flare:hover::after {
+  /* uses your --brand token; adjust alpha if you want a softer glow */
+  box-shadow: 0 10px 30px -12px var(--brand);
+  opacity: 0.9;
+}
+
+/* focus for keyboard users */
+.btn-light-flare:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--brand) 40%, transparent);
+  outline-offset: 2px;
+}
+
+/* reduce motion respectful */
+@media (prefers-reduced-motion: reduce) {
+  .btn-light-flare::before,
+  .btn-light-flare::after {
+    transition: none !important;
+    transform: none !important;
+  }
+}
