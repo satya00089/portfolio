@@ -9,6 +9,33 @@ type Props = { open?: boolean; onClose?: () => void };
 const resumeData: Portfolio = PORTFOLIO_INFO;
 type HistoryItem = { kind: "cmd" | "out"; text: string; meta?: any };
 
+/* ---------- JumpingDots: small animated loader using Tailwind animate-bounce ---------- */
+function JumpingDots({ className = "" }: { className?: string }) {
+  // three dots with staggered animation delays
+  return (
+    <>
+      <span className="pr-1">🤖</span>
+      <span
+        className={`inline-flex items-center gap-1 ${className}`}
+        aria-hidden
+      >
+        <span
+          className="w-1.5 h-1.5 rounded-full animate-bounce"
+          style={{ background: "var(--brand)", animationDelay: "0s" }}
+        />
+        <span
+          className="w-1.5 h-1.5 rounded-full animate-bounce"
+          style={{ background: "var(--brand)", animationDelay: "0.12s" }}
+        />
+        <span
+          className="w-1.5 h-1.5 rounded-full animate-bounce"
+          style={{ background: "var(--brand)", animationDelay: "0.24s" }}
+        />
+      </span>
+    </>
+  );
+}
+
 export default function CLIResume({ open = false, onClose }: Props) {
   const [visible, setVisible] = useState(open);
   const [minimized, setMinimized] = useState(false);
@@ -102,14 +129,13 @@ export default function CLIResume({ open = false, onClose }: Props) {
     URL.revokeObjectURL(url);
   }
 
-  /* ---------------- command runner (kept intact) ---------------- */
+  /* ---------------- command runner (kept intact except awaiting API) ---------------- */
   async function runCommand(raw: string) {
     const cmd = raw.trim();
     if (!cmd) return;
     setHistory((h) => [...h, { kind: "cmd", text: `$ ${cmd}` }]);
     setCmdHistory((ch) => [...ch, cmd]);
     setCmdIndex(null);
-    setProcessing(true);
 
     const [base, ...args] = cmd.split(/\s+/);
     try {
@@ -280,7 +306,7 @@ export default function CLIResume({ open = false, onClose }: Props) {
               await typeOut("No PDF available (resume.meta.pdf not set).\n");
             }
           } else if (flag === "--json") {
-            await typeOut("Downloading resume JSON...\n");
+            await typeOut("Downloading resume JSON.\n");
             downloadJson(
               resumeData,
               `${resumeData.personal.name.replace(/\s+/g, "_")}_resume.json`
@@ -321,14 +347,19 @@ export default function CLIResume({ open = false, onClose }: Props) {
           await typeOut(`(terminal cleared)\n`);
           break;
         default:
-          queryRagApi(cmd).then(async (resp) => {
+          setProcessing(true);
+          try {
+            const resp = await queryRagApi(cmd);
+            setProcessing(false);
             if (resp?.answer) {
               const out = resp.answer;
-              await typeOut(out + "\n", 6);
+              await typeOut("🤖\t" + out + "\n", 6);
             } else {
               await typeOut(`Unknown command: ${cmd}\n`);
             }
-          });
+          } catch (err) {
+            await typeOut(`Error querying API: ${(err as Error).message}\n`);
+          }
           break;
       }
     } catch (err) {
@@ -387,7 +418,11 @@ export default function CLIResume({ open = false, onClose }: Props) {
     return history.map((h, i) => {
       if (h.kind === "cmd") {
         return (
-          <div key={i} className="whitespace-pre-wrap" style={{ color: "var(--text)" }}>
+          <div
+            key={i}
+            className="whitespace-pre-wrap"
+            style={{ color: "var(--text)" }}
+          >
             <span style={{ color: "var(--brand)" }}>$</span>{" "}
             <span>{h.text.replace(/^\$\s*/, "")}</span>
           </div>
@@ -451,7 +486,10 @@ export default function CLIResume({ open = false, onClose }: Props) {
         >
           {/* Use grid layout: title / content / input rows.
               IMPORTANT: content uses min-h-0 so overflow-y works inside the grid. */}
-          <div className={`h-full grid`} style={{ gridTemplateRows: "auto 1fr auto" }}>
+          <div
+            className={`h-full grid`}
+            style={{ gridTemplateRows: "auto 1fr auto" }}
+          >
             {/* ---------- TITLEBAR: restored to original visual layout ---------- */}
             <div className="flex items-center gap-3 px-3 py-2 border-b border-slate-700">
               <div className="flex items-center gap-2">
@@ -513,6 +551,7 @@ export default function CLIResume({ open = false, onClose }: Props) {
                 </button>
               </div>
             </div>
+
             {/* content: min-h-0 is crucial to allow inner scrolling in flex/grid containers */}
             {!minimized ? (
               <div
@@ -529,17 +568,28 @@ export default function CLIResume({ open = false, onClose }: Props) {
                   const el = e.currentTarget as HTMLDivElement;
                   const atTop = el.scrollTop === 0 && e.deltaY < 0;
                   const atBottom =
-                    Math.ceil(el.scrollTop + el.clientHeight) >= el.scrollHeight && e.deltaY > 0;
+                    Math.ceil(el.scrollTop + el.clientHeight) >=
+                      el.scrollHeight && e.deltaY > 0;
                   if (atTop || atBottom) e.stopPropagation();
                 }}
               >
                 {renderHistory()}
+                {processing && <JumpingDots className="ml-2" />}
               </div>
             ) : (
-              <div className="h-12 flex items-center px-4 text-sm" style={{ color: "var(--muted)" }}>
-                <div className="font-mono mr-2" style={{ color: "var(--brand)" }}>$</div>
+              <div
+                className="flex items-center px-4 text-sm"
+                style={{ color: "var(--muted)" }}
+              >
+                <div
+                  className="font-mono mr-2"
+                  style={{ color: "var(--brand)" }}
+                >
+                  $
+                </div>
                 <div className="truncate">
-                  terminal — minimized. Click the yellow dot to restore or the red dot to close.
+                  terminal — minimized. Click the yellow dot to restore or the
+                  red dot to close.
                 </div>
               </div>
             )}
@@ -548,7 +598,11 @@ export default function CLIResume({ open = false, onClose }: Props) {
             {!minimized && (
               <div
                 className="px-4 py-3 flex items-center gap-3"
-                style={{ borderTop: "1px solid", borderTopColor: "var(--border)", background: "transparent" }}
+                style={{
+                  borderTop: "1px solid",
+                  borderTopColor: "var(--border)",
+                  background: "transparent",
+                }}
               >
                 <span className="font-mono" style={{ color: "var(--brand)" }}>
                   $
@@ -558,7 +612,9 @@ export default function CLIResume({ open = false, onClose }: Props) {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  placeholder={processing ? "processing." : 'type "help" and press Enter'}
+                  placeholder={
+                    processing ? "processing." : 'type "help" and press Enter'
+                  }
                   className="flex-1 bg-transparent outline-none text-sm font-mono"
                   disabled={processing}
                   aria-label="CLI command input"
