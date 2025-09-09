@@ -137,7 +137,7 @@ export default function CLIResume({ open = false, onClose }: Props) {
           const p = resumeData.personal;
           const s = resumeData.summary ?? p.summary ?? p.headline ?? "";
           await typeOut(`${p.name} — ${p.title}\n\n${s}\n`);
-          if (resumeData.highlights && resumeData.highlights.length) {
+          if (resumeData?.highlights?.length) {
             await typeOut(
               `\nHighlights:\n- ${resumeData.highlights.join("\n- ")}\n`
             );
@@ -216,7 +216,7 @@ export default function CLIResume({ open = false, onClose }: Props) {
           if (found.bullets) {
             for (const b of found.bullets) await typeOut(`- ${b}\n`, 6);
           }
-          if (found.tech && found.tech.length)
+          if (found?.tech?.length)
             await typeOut(`Tech: ${found.tech.join(", ")}\n`, 6);
           if (found.link) await typeOut(`Company: ${found.link}\n`, 6);
           break;
@@ -308,7 +308,7 @@ export default function CLIResume({ open = false, onClose }: Props) {
             if (c.phone) await typeOut(`Phone: ${c.phone}\n`);
             if (c.website) await typeOut(`Website: ${c.website}\n`);
             if (c.location) await typeOut(`Location: ${c.location}\n`);
-            if (c.socials && c.socials.length) {
+            if (c?.socials?.length) {
               for (const s of c.socials) {
                 await typeOut(`${s.label}: ${s.url}\n`, 6);
               }
@@ -387,8 +387,8 @@ export default function CLIResume({ open = false, onClose }: Props) {
     return history.map((h, i) => {
       if (h.kind === "cmd") {
         return (
-          <div key={i} className="whitespace-pre-wrap text-slate-200">
-            <span className="text-emerald-400">$</span>{" "}
+          <div key={i} className="whitespace-pre-wrap" style={{ color: "var(--text)" }}>
+            <span style={{ color: "var(--brand)" }}>$</span>{" "}
             <span>{h.text.replace(/^\$\s*/, "")}</span>
           </div>
         );
@@ -396,7 +396,8 @@ export default function CLIResume({ open = false, onClose }: Props) {
       return (
         <pre
           key={i}
-          className="whitespace-pre-wrap text-slate-300 leading-relaxed"
+          className="whitespace-pre-wrap leading-relaxed"
+          style={{ color: "var(--text)", margin: 0 }}
         >
           {h.text}
         </pre>
@@ -441,20 +442,18 @@ export default function CLIResume({ open = false, onClose }: Props) {
                 : minimized
                 ? "h-12"
                 : "h-[420px] rounded-xl"
-            }
-            bg-[var(--vscode-panel,#0f1724)] border border-slate-700 shadow-2xl overflow-hidden`}
-          style={{ backdropFilter: "blur(6px)" }}
+            } border shadow-2xl overflow-hidden`}
+          style={{
+            background: "var(--surface)",
+            borderColor: "var(--border)",
+            backdropFilter: "blur(6px)",
+          }}
         >
-          {/*
-            Use grid layout: title / content / input rows.
-            IMPORTANT: content uses min-h-0 so overflow-y works inside the grid.
-          */}
-          <div
-            className={`h-full grid`}
-            style={{ gridTemplateRows: "auto 1fr auto" }}
-          >
-            {/* titlebar */}
-            <div className="flex items-center gap-3 px-3 py-2 bg-[var(--vscode-bar,#0b1220)] border-b border-slate-700">
+          {/* Use grid layout: title / content / input rows.
+              IMPORTANT: content uses min-h-0 so overflow-y works inside the grid. */}
+          <div className={`h-full grid`} style={{ gridTemplateRows: "auto 1fr auto" }}>
+            {/* ---------- TITLEBAR: restored to original visual layout ---------- */}
+            <div className="flex items-center gap-3 px-3 py-2 border-b border-slate-700">
               <div className="flex items-center gap-2">
                 <button
                   onClick={handleClose}
@@ -485,20 +484,20 @@ export default function CLIResume({ open = false, onClose }: Props) {
               </div>
 
               <div className="ml-3 flex items-center gap-2">
-                <div className="text-xs font-medium text-slate-200 bg-slate-800/30 px-2 py-0.5 rounded-sm">
+                <div className="text-xs font-medium text-[var(--text)] bg-[var(--bg)] px-2 py-0.5 rounded-sm">
                   Terminal
                 </div>
-                <div className="text-xs text-slate-400 ml-2">
+                <div className="text-xs text-[var(--muted)] ml-2">
                   bash —{" "}
                   {resumeData.personal.name.toLowerCase().replace(/\s+/g, "")}
                   @portfolio
                 </div>
               </div>
 
-              <div className="ml-auto flex items-center gap-3 text-slate-300 text-xs">
+              <div className="ml-auto flex items-center gap-3 text-[var(--muted)] text-xs">
                 <div className="hidden sm:block">
                   Press{" "}
-                  <span className="font-mono bg-slate-800 px-1 rounded">
+                  <span className="font-mono text-[var(--text)] bg-[var(--bg)] px-1 rounded">
                     Tab
                   </span>{" "}
                   to autocomplete
@@ -508,61 +507,64 @@ export default function CLIResume({ open = false, onClose }: Props) {
                     setHistory([]);
                     setInput("");
                   }}
-                  className="text-xs px-2 py-1 rounded hover:bg-slate-700/40"
+                  className="text-xs px-2 py-1 rounded hover:bg-[var(--bg)] cursor-pointer"
                 >
                   Clear
                 </button>
               </div>
             </div>
-
             {/* content: min-h-0 is crucial to allow inner scrolling in flex/grid containers */}
             {!minimized ? (
               <div
                 ref={wrapperRef}
-                className="min-h-0 overflow-y-auto font-mono text-sm p-4 bg-gradient-to-b from-slate-900/20 to-transparent text-slate-200"
+                className="min-h-0 overflow-y-auto font-mono text-sm p-4"
                 aria-live="polite"
                 style={{
                   maxHeight: fullscreen ? "calc(100vh - 120px)" : "70vh",
+                  background: "transparent",
+                  color: "var(--text)",
                 }}
                 onWheel={(e) => {
                   // prevent page scroll when inner can scroll
                   const el = e.currentTarget as HTMLDivElement;
                   const atTop = el.scrollTop === 0 && e.deltaY < 0;
                   const atBottom =
-                    Math.ceil(el.scrollTop + el.clientHeight) >=
-                      el.scrollHeight && e.deltaY > 0;
+                    Math.ceil(el.scrollTop + el.clientHeight) >= el.scrollHeight && e.deltaY > 0;
                   if (atTop || atBottom) e.stopPropagation();
                 }}
               >
                 {renderHistory()}
               </div>
             ) : (
-              <div className="h-12 flex items-center px-4 text-sm text-slate-300">
-                <div className="font-mono text-emerald-400 mr-2">$</div>
+              <div className="h-12 flex items-center px-4 text-sm" style={{ color: "var(--muted)" }}>
+                <div className="font-mono mr-2" style={{ color: "var(--brand)" }}>$</div>
                 <div className="truncate">
-                  terminal — minimized. Click the yellow dot to restore or the
-                  red dot to close.
+                  terminal — minimized. Click the yellow dot to restore or the red dot to close.
                 </div>
               </div>
             )}
 
             {/* input row (always visible because grid row is auto) */}
             {!minimized && (
-              <div className="px-4 py-3 bg-[var(--vscode-input,#02111a)] border-t border-slate-700 flex items-center gap-3">
-                <span className="font-mono text-emerald-400">$</span>
+              <div
+                className="px-4 py-3 flex items-center gap-3"
+                style={{ borderTop: "1px solid", borderTopColor: "var(--border)", background: "transparent" }}
+              >
+                <span className="font-mono" style={{ color: "var(--brand)" }}>
+                  $
+                </span>
                 <input
                   ref={inputRef}
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  placeholder={
-                    processing ? "processing..." : 'type "help" and press Enter'
-                  }
-                  className="flex-1 bg-transparent outline-none text-slate-100 placeholder:text-slate-500 font-mono text-sm"
+                  placeholder={processing ? "processing." : 'type "help" and press Enter'}
+                  className="flex-1 bg-transparent outline-none text-sm font-mono"
                   disabled={processing}
                   aria-label="CLI command input"
                   autoComplete="off"
                   spellCheck={false}
+                  style={{ color: "var(--text)", caretColor: "var(--brand)" }}
                 />
 
                 <button
@@ -571,9 +573,14 @@ export default function CLIResume({ open = false, onClose }: Props) {
                     setInput("");
                     inputRef.current?.focus();
                   }}
-                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded bg-emerald-500 hover:bg-emerald-600 text-white text-sm"
+                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded text-sm"
                   aria-label="Run command"
                   disabled={processing}
+                  style={{
+                    background: "var(--brand)",
+                    color: "white",
+                    boxShadow: "0 1px 0 rgba(0,0,0,0.05)",
+                  }}
                 >
                   Run
                 </button>

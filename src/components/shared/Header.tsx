@@ -148,7 +148,7 @@ export const Header: React.FC<{ links?: NavLink[]; onTryCLI?: () => void }> = ({
 
           <button
             onClick={onTryCLI}
-            className="sm:inline-flex items-center gap-2 px-3 py-1.5 rounded text-sm border border-[var(--border)] hover:bg-[var(--border)]/30 transition"
+            className="sm:inline-flex items-center gap-2 px-3 py-1.5 rounded text-sm border border-[var(--border)] hover:bg-[var(--border)]/30 transition cursor-pointer"
             aria-label="Try CLI"
           >
             Try CLI
