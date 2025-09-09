@@ -1,26 +1,32 @@
 import { motion } from "framer-motion";
 import type { Personal } from "../types/portfolio";
-import { SiGithub, SiLinkedin } from "react-icons/si";
-import { IoIosMail } from "react-icons/io";
+import * as SiIcons from "react-icons/si";
+import { Link } from "react-router-dom";
 
 export const About: React.FC<{ personal: Personal }> = ({ personal }) => {
+  const text = personal.name.split("");
+
   return (
-    <section
-      id="about"
-      className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start py-8"
-    >
+    <>
       <motion.div
         initial={{ opacity: 0, y: 6 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className="md:col-span-2"
       >
-        <h1 className="text-4xl md:text-5xl font-bold leading-tight text-[var(--brand)]">
-          {personal.name}
-        </h1>
-        <p className="mt-4 text-lg max-w-prose">
-          {personal.tagline}
-        </p>
+        <motion.h1 className="text-4xl md:text-5xl font-bold leading-tight text-[var(--brand)]">
+          {text.map((char, i) => (
+            <motion.span
+              key={i}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.5 }}
+            >
+              {char}
+            </motion.span>
+          ))}
+        </motion.h1>
+        <p className="mt-4 text-lg max-w-prose">{personal.headline}</p>
 
         <div className="mt-6 text-md dark:prose-invert max-w-none text-[var(--muted)]">
           <p>
@@ -41,6 +47,12 @@ export const About: React.FC<{ personal: Personal }> = ({ personal }) => {
           >
             See projects
           </a>
+          <Link
+            to="/resume"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-800"
+          >
+            See Resume
+          </Link>
           <a
             href="#contact"
             className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-800"
@@ -72,37 +84,28 @@ export const About: React.FC<{ personal: Personal }> = ({ personal }) => {
           <div className="text-sm text-gray-500 dark:text-gray-400">
             {personal.title}
           </div>
-
           <div className="mt-3 flex gap-5 text-[var(--muted)]">
-            <a
-              href="https://github.com/satya00089"
-              aria-label="github"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[var(--text)] transition-colors"
-            >
-              <SiGithub size={24} />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/satya-subudhi/"
-              aria-label="linkedin"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[var(--text)] transition-colors"
-            >
-              <SiLinkedin size={24} />
-            </a>
-            <a
-              href={`mailto:${personal.email}`}
-              aria-label="email"
-              rel="noopener noreferrer"
-              className="hover:text-[var(--text)] transition-colors"
-            >
-              <IoIosMail size={24} />
-            </a>
+            {personal?.contact?.socials?.map((social, index) => {
+              const Icon = SiIcons[social.icon as keyof typeof SiIcons];
+              return (
+                <a
+                  key={social.label + index}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2"
+                >
+                  {Icon ? (
+                    <Icon className="hover:text-[var(--brand)]" size={social?.size ?? 16} />
+                  ) : (
+                    <span>{social.label}</span>
+                  )}
+                </a>
+              );
+            })}
           </div>
         </div>
       </motion.aside>
-    </section>
+    </>
   );
 };
