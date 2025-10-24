@@ -2,11 +2,11 @@ import React, { useMemo, useState } from "react";
 import { ProjectCard } from "./ProjectCard";
 import type { Project } from "../types/portfolio";
 
-
 export const ProjectsGrid: React.FC<{
   projects?: Project[];
   onOpen?: (p: Project) => void;
-}> = ({ projects = [], onOpen }) => {
+  showFilters?: boolean;
+}> = ({ projects = [], onOpen, showFilters = false }) => {
   const [filter, setFilter] = useState<string>("All");
   const filters = useMemo(
     () => [
@@ -21,23 +21,29 @@ export const ProjectsGrid: React.FC<{
 
   return (
     <section>
-      <div className="flex gap-3 flex-wrap">
-        {filters.map((f) => (
-          <button
-            key={f}
-            onClick={() => setFilter(f)}
-            className={`px-3 py-1 cursor-pointer font-semibold rounded-full text-sm ${
-              filter === f
-                ? "bg-[var(--brand)] text-white"
-                : "bg-[var(--surface)] border border-[var(--border)] text-[var(--text)]"
-            }`}
-          >
-            {f}
-          </button>
-        ))}
-      </div>
+      {showFilters && (
+        <div className="flex gap-3 flex-wrap">
+          {filters.map((f) => (
+            <button
+              key={f}
+              onClick={() => setFilter(f)}
+              className={`px-3 py-1 cursor-pointer font-semibold rounded-full text-sm ${
+                filter === f
+                  ? "bg-[var(--brand)] text-white"
+                  : "bg-[var(--surface)] border border-[var(--border)] text-[var(--text)]"
+              }`}
+            >
+              {f}
+            </button>
+          ))}
+        </div>
+      )}
 
-      <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div
+        className={`${
+          showFilters ? "mt-6" : ""
+        } grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6`}
+      >
         {visible.map((p) => (
           <ProjectCard key={p.id} project={p} onOpen={onOpen} />
         ))}

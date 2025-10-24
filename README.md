@@ -1,69 +1,134 @@
-# React + TypeScript + Vite
+# Portfolio Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS. Features an interactive project showcase, skills visualization, CLI-style resume, and smooth animations.
 
-Currently, two official plugins are available:
+🔗 **Live Demo**: [https://satya00089.github.io/portfolio](https://satya00089.github.io/portfolio)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## Expanding the ESLint configuration
+- **Interactive Portfolio**: Showcase your projects with modal views and detailed descriptions
+- **Dynamic Resume**: Interactive resume page with print functionality
+- **CLI Resume**: Terminal-style resume interface for a unique user experience
+- **Skills Visualization**: Circular progress bars and interactive skill displays
+- **Theme Support**: Dark/Light theme toggle with smooth transitions
+- **Smooth Animations**: Powered by Framer Motion for engaging UI interactions
+- **Markdown Support**: Project descriptions rendered with GitHub-flavored markdown
+- **Contact Form**: Interactive contact form for visitor inquiries
+- **Responsive Design**: Fully responsive across all device sizes
+- **Scroll Enhancements**: Progress bar and scroll-to-top functionality
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Tech Stack
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Core
+- **React 19** - UI framework
+- **TypeScript** - Type safety and better developer experience
+- **Vite** - Fast build tool and dev server
+- **React Router DOM** - Client-side routing
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+### Styling
+- **Tailwind CSS 4** - Utility-first CSS framework
+- **Framer Motion** - Animation library
+- **Lucide React** - Icon library
+- **React Icons** - Additional icon sets
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Additional Libraries
+- **React Markdown** - Markdown rendering
+- **React Circular Progressbar** - Skill visualization
+- **React Scroll** - Smooth scrolling functionality
+- **GitHub Markdown CSS** - GitHub-style markdown styling
+
+## 📁 Project Structure
+
+```
+src/
+├── components/          # Reusable UI components
+│   ├── shared/         # Shared components (Header, Footer, etc.)
+│   └── resume/         # Resume-specific components
+├── pages/              # Page components
+│   ├── PortfolioPage.tsx
+│   └── ResumePage.tsx
+├── config/             # Configuration files
+│   └── portfolioData.ts
+├── context/            # React contexts (Theme)
+├── types/              # TypeScript type definitions
+└── assets/             # Static assets
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🚀 Getting Started
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Prerequisites
+- Node.js (v18 or higher)
+- npm or yarn package manager
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/satya00089/portfolio.git
+cd portfolio
 ```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Start the development server:
+```bash
+npm run dev
+```
+
+4. Open your browser and navigate to `http://localhost:5173`
+
+## 📝 Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build locally
+- `npm run lint` - Run ESLint
+- `npm run deploy` - Deploy to GitHub Pages
+
+## 🎨 Customization
+
+### Update Portfolio Data
+Edit `src/config/portfolioData.ts` to customize:
+- Personal information
+- Projects
+- Skills
+- Experience
+- Education
+
+### Modify Theme
+Theme configuration is managed through `src/context/ThemeContext.ts` and `src/components/ThemeProvider.tsx`.
+
+### Styling
+Tailwind configuration can be modified in `tailwind.config.js`.
+
+## 🌐 Deployment
+
+This project is configured for deployment to GitHub Pages:
+
+1. Update the `homepage` field in `package.json` with your GitHub Pages URL
+2. Update the `base` field in `vite.config.ts` to match your repository name
+3. Run the deployment command:
+```bash
+npm run deploy
+```
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## 👤 Author
+
+**Satya Subudhi**
+- GitHub: [@satya00089](https://github.com/satya00089)
+- Email: satyasubudhi089@gmail.com
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/satya00089/portfolio/issues).
+
+---
+
+Built with ❤️ using React + TypeScript + Vite

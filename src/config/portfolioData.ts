@@ -408,6 +408,22 @@ export const PORTFOLIO_INFO: Portfolio = {
   ],
   projects: [
     {
+      id: "landing-zone-orchestrator",
+      title: "Landing Zone Orchestrator",
+      description: "A production-ready platform that transforms cloud infrastructure provisioning from manual IaC coding to an intuitive, form-driven workflow. Built with React, FastAPI, and MongoDB to generate validated Terraform templates for AWS, Azure, and GCP. Features include schema-driven form builder for VPC, Subnets, IAM, and networking resources, real-time Terraform code generation and validation, JWT-based authentication, MongoDB storage for projects and templates, and multi-cloud support.",
+      tags: ["Terraform", "IaC", "React", "FastAPI", "MongoDB", "AWS", "Azure", "Full Stack"],
+      image: "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGtuYjY1emtsZmNjMXp1czdrdXR5bXE5ZDJheHVvZjY1azZxYnJieiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qzImRjQVb2OUI84mTt/giphy.gif",
+      href: "https://satya00089.github.io/landing-zone-orchestrator-ui/#/login",
+      links: [
+        {
+          label: "GitHub",
+          url: "https://github.com/satya00089/landing-zone-orchestrator-ui",
+          icon: "SiGithub",
+        },
+      ],
+      isUnderDevelopment: true,
+    },
+    {
       id: "design-system-playground",
       title: "Design System Playground",
       description: "A component library and living documentation for a design system.",
@@ -559,4 +575,12 @@ export const tagColors: TagColors = {
   "Hugging Face": "bg-orange-100 text-orange-800",
   Beginner: "bg-cyan-100 text-cyan-800",
   "Beginner Project": "bg-cyan-100 text-cyan-800",
+  // Landing Zone Orchestrator tags
+  FastAPI: "bg-teal-500 text-white",
+  MongoDB: "bg-green-600 text-white",
+  Terraform: "bg-purple-600 text-white",
+  IaC: "bg-indigo-500 text-white",
+  AWS: "bg-orange-500 text-white",
+  Azure: "bg-blue-600 text-white",
+  "Full Stack": "bg-gradient-to-r from-blue-500 to-purple-600 text-white",
 };
