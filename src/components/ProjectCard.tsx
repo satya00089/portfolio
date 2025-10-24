@@ -64,6 +64,9 @@ export const ProjectCard: React.FC<{
           >
             {project.title}
           </button>
+          {project.isUnderDevelopment && (
+            <span className="text-xs text-[var(--muted)] pl-2">Under Development</span>
+          )}
           <p className="text-sm text-[var(--muted)] mt-1 line-clamp-2">{project.description}</p>
           <div className="mt-4 flex gap-3 flex-wrap text-[var(--muted)]">
             {project.href && (

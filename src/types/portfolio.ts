@@ -87,6 +87,7 @@ export type Project = {
   links?: ProjectLink[]; // alternate links
   date?: DateRange | string;
   featured?: boolean;
+  isUnderDevelopment?: boolean;
 };
 
 export type Role = {

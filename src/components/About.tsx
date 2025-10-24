@@ -1,10 +1,34 @@
-import { motion } from "framer-motion";
+import { animate, motion } from "framer-motion";
 import type { Personal } from "../types/portfolio";
 import * as SiIcons from "react-icons/si";
 import { Link } from "react-router-dom";
 
 export const About: React.FC<{ personal: Personal }> = ({ personal }) => {
   const text = personal.name.split("");
+
+  const springScrollTo = (y: number) => {
+    const controls = animate(window.scrollY, y, {
+      type: "spring",
+      stiffness: 200,
+      damping: 30,
+      onUpdate: (latest) => window.scrollTo(0, latest),
+    });
+    return () => controls.stop();
+  };
+
+  const onNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    // normal navigation for external links
+    if (!href.startsWith("#")) return;
+
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (!target) return;
+
+    const headerEl = document.querySelector("header");
+    const headerH = headerEl?.offsetHeight ?? 0;
+    const y = target.getBoundingClientRect().top + window.scrollY - headerH;
+    springScrollTo(y);
+  };
 
   return (
     <>
@@ -44,6 +68,7 @@ export const About: React.FC<{ personal: Personal }> = ({ personal }) => {
           <a
             href="#projects"
             className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--brand)] text-white font-medium"
+            onClick={(e) => onNavClick(e, "#projects")}
           >
             See projects
           </a>
@@ -56,6 +81,7 @@ export const About: React.FC<{ personal: Personal }> = ({ personal }) => {
           <a
             href="#contact"
             className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-800"
+            onClick={(e) => onNavClick(e, "#contact")}
           >
             Get in touch
           </a>
@@ -96,7 +122,10 @@ export const About: React.FC<{ personal: Personal }> = ({ personal }) => {
                   className="flex items-center gap-2"
                 >
                   {Icon ? (
-                    <Icon className="hover:text-[var(--brand)]" size={social?.size ?? 16} />
+                    <Icon
+                      className="hover:text-[var(--brand)]"
+                      size={social?.size ?? 16}
+                    />
                   ) : (
                     <span>{social.label}</span>
                   )}
