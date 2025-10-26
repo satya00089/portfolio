@@ -7,6 +7,8 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
   build-deploy:
@@ -37,10 +39,16 @@ jobs:
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
 
+      - name: Configure remote with token
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git
+
       - name: Deploy to GitHub Pages
         run: npm run deploy
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Done
-        run: echo "Deployment step finished. Check GitHub Pages settings if the site did not update immediately."
+      - name: Deployment complete
+        run: echo "🚀 Deployment complete! Visit https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}"
