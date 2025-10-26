@@ -162,9 +162,10 @@ export const SkillsList: React.FC<{
                   {groupSkills.map((s) => {
                     const Icon = SiIcons[s.icon as keyof typeof SiIcons];
                     return (
-                      <fieldset
+                      <motion.fieldset
                         key={s.name}
-                        className="p-4 rounded-xl bg-[var(--surface)] border border-[var(--border)] hover:scale-105 transition duration-300 cursor-default text-[var(--muted)] hover:text-[var(--text)]"
+                        whileHover={{ y: -6 }}
+                        className="p-4 rounded-xl bg-[var(--surface)] border border-[var(--border)] transition duration-300 cursor-default text-[var(--muted)] hover:text-[var(--text)]"
                       >
                         <div className="flex items-start justify-between gap-3">
                           <div>
@@ -206,7 +207,7 @@ export const SkillsList: React.FC<{
                             <SkillCircle level={s.level} />
                           </div>
                         )}
-                      </fieldset>
+                      </motion.fieldset>
                     );
                   })}
                 </div>
