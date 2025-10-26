@@ -32,6 +32,11 @@ jobs:
         env:
           CI: true
 
+      - name: Configure Git author
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+
       - name: Deploy to GitHub Pages
         run: npm run deploy
         env:
