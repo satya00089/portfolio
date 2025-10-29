@@ -424,11 +424,11 @@ export const PORTFOLIO_INFO: Portfolio = {
       isUnderDevelopment: true,
     },
     {
-      id: "design-system-playground",
-      title: "Design System Playground",
-      description: "A component library and living documentation for a design system.",
-      tags: ["Design System", "Ai & ML", "React"],
-      image: "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ29yaGtrNDNpMWZwaWRrZmJudHp2amRxOTM4b2RpMzR6Y210dG93cCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Gv95gyiD1psnfXbdG7/giphy.gif",
+      id: "diagrammatic",
+      title: "Diagrammatic",
+      description: "Diagrammatic (System Design Playground): A component library and living documentation for a design system.",
+      tags: ["System Design", "Ai & ML", "React"],
+      image: "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExeTFnOGF3d3BodjFvY3NhanY5cnl5bmd4Z243aXB5M3hrOHg3d2tmeiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/WvzQektcJxs0oDFkHq/giphy.gif",
       href: "https://satya00089.github.io/diagrammatic",
       links: [
         {
