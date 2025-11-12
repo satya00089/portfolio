@@ -413,7 +413,7 @@ export const PORTFOLIO_INFO: Portfolio = {
       description: "A production-ready platform that transforms cloud infrastructure provisioning from manual IaC coding to an intuitive, form-driven workflow. Built with React, FastAPI, and MongoDB to generate validated Terraform templates for AWS, Azure, and GCP. Features include schema-driven form builder for VPC, Subnets, IAM, and networking resources, real-time Terraform code generation and validation, JWT-based authentication, MongoDB storage for projects and templates, and multi-cloud support.",
       tags: ["Terraform", "IaC", "React", "FastAPI", "MongoDB", "AWS", "Azure", "Full Stack"],
       image: "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGtuYjY1emtsZmNjMXp1czdrdXR5bXE5ZDJheHVvZjY1azZxYnJieiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qzImRjQVb2OUI84mTt/giphy.gif",
-      href: "https://satya00089.github.io/landing-zone-orchestrator-ui/#/login",
+      href: "https://orchestrator.next-zen.dev/login",
       links: [
         {
           label: "GitHub",
@@ -429,7 +429,7 @@ export const PORTFOLIO_INFO: Portfolio = {
       description: "Diagrammatic (System Design Playground): A component library and living documentation for a design system.",
       tags: ["System Design", "Ai & ML", "React"],
       image: "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExeTFnOGF3d3BodjFvY3NhanY5cnl5bmd4Z243aXB5M3hrOHg3d2tmeiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/WvzQektcJxs0oDFkHq/giphy.gif",
-      href: "https://satya00089.github.io/diagrammatic",
+      href: "https://diagrammatic.next-zen.dev",
       links: [
         {
           label: "GitHub",
