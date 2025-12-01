@@ -4,6 +4,19 @@ A modern, responsive portfolio website built with React, TypeScript, and Tailwin
 
 🔗 **Live Demo**: [https://satya00089.github.io/portfolio](https://satya00089.github.io/portfolio)
 
+> Free, modern developer portfolio template with:
+> 
+> - CLI-style resume
+> - Animated skill visualizations
+> - Dark/light theme
+> - Markdown-powered project content
+
+## 📸 Preview
+
+![Home Preview](public/preview-home.png)
+
+![CLI Resume Preview](public/preview-cli.png)
+
 ## ✨ Features
 
 - **Interactive Portfolio**: Showcase your projects with modal views and detailed descriptions
@@ -16,6 +29,43 @@ A modern, responsive portfolio website built with React, TypeScript, and Tailwin
 - **Contact Form**: Interactive contact form for visitor inquiries
 - **Responsive Design**: Fully responsive across all device sizes
 - **Scroll Enhancements**: Progress bar and scroll-to-top functionality
+
+## 🚀 Use this as your own portfolio
+
+This repository is intended to be a ready-to-customize portfolio template. There are two easy ways to get started:
+
+### Option A — Use the GitHub "Use this template" button
+
+1. On the GitHub page for this repo click the **"Use this template"** button
+2. Create a new repository under your account
+3. Clone your new repo locally and follow the quick-start checklist below
+
+### Option B — Clone directly
+
+```bash
+git clone https://github.com/satya00089/portfolio.git my-portfolio
+cd my-portfolio
+npm install
+npm run dev
+```
+
+Quick start (do these first)
+
+- Open `src/config/portfolioData.ts` and replace the sample data with your name, bio, links, and projects — this is the single most important file to customize.
+- Replace social/profile links and contact details.
+- Update or remove example projects (the `projects` array) and add your screenshots or links.
+- (Optional) Add preview images in `public/` named `preview-home.png`, `preview-projects.png`, `preview-cli.png` so the GitHub template page renders them.
+- If you plan to deploy to GitHub Pages, update `package.json` -> `homepage` and `vite.config.ts` -> `base`.
+
+Why `src/config/portfolioData.ts`?
+
+All site content (projects, skills, education, experience, and basic profile info) is driven by `src/config/portfolioData.ts`. Editing that file is the fastest way to make this site yours.
+
+## ☁️ One-click Deploy
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/satya00089/portfolio)
+
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/satya00089/portfolio)
 
 ## 🛠️ Tech Stack
 
