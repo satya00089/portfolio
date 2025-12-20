@@ -408,6 +408,17 @@ export const PORTFOLIO_INFO: Portfolio = {
   ],
   projects: [
     {
+      id: "learn-algo",
+      title: "Learn Algo",
+      description: "Interactive visualizations that transform abstract concepts into intuitive understanding. Watch sorting, searching, and ML algorithms execute step-by-step.",
+      tags: ["Algorithms", "DSA", "ML", "AI", "Visualization", "Next.js"],
+      image: "",
+      href: "https://www.learn-algo.com",
+      links: [
+      ],
+      isUnderDevelopment: true,
+    },
+    {
       id: "landing-zone-orchestrator",
       title: "Landing Zone Orchestrator",
       description: "A production-ready platform that transforms cloud infrastructure provisioning from manual IaC coding to an intuitive, form-driven workflow. Built with React, FastAPI, and MongoDB to generate validated Terraform templates for AWS, Azure, and GCP. Features include schema-driven form builder for VPC, Subnets, IAM, and networking resources, real-time Terraform code generation and validation, JWT-based authentication, MongoDB storage for projects and templates, and multi-cloud support.",
