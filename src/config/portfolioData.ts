@@ -412,9 +412,14 @@ export const PORTFOLIO_INFO: Portfolio = {
       title: "Learn Algo",
       description: "Interactive visualizations that transform abstract concepts into intuitive understanding. Watch sorting, searching, and ML algorithms execute step-by-step.",
       tags: ["Algorithms", "DSA", "ML", "AI", "Visualization", "Next.js"],
-      image: "",
+      image: "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExYXpqYWFhbnBraWt3ZXhvajZsdjg5andyMGZzY2VibGg3bXE0MWxwayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/2PuPWxuLV1FGyh03Ja/giphy.gif",
       href: "https://www.learn-algo.com",
       links: [
+        {
+          label: "GitHub",
+          url: "https://github.com/satya00089/learn-algo",
+          icon: "SiGithub",
+        },
       ],
       isUnderDevelopment: true,
     },
