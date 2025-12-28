@@ -421,7 +421,7 @@ export const PORTFOLIO_INFO: Portfolio = {
           icon: "SiGithub",
         },
       ],
-      isUnderDevelopment: true,
+      isUnderDevelopment: false,
     },
     {
       id: "landing-zone-orchestrator",
