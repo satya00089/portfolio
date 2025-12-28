@@ -410,7 +410,8 @@ export const PORTFOLIO_INFO: Portfolio = {
     {
       id: "learn-algo",
       title: "Learn Algo",
-      description: "Interactive visualizations that transform abstract concepts into intuitive understanding. Watch sorting, searching, and ML algorithms execute step-by-step.",
+      description:
+        "Interactive visualizations that transform abstract concepts into intuitive understanding. Watch sorting, searching, and ML algorithms execute step-by-step.",
       tags: ["Algorithms", "DSA", "ML", "AI", "Visualization", "Next.js"],
       image: "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExYXpqYWFhbnBraWt3ZXhvajZsdjg5andyMGZzY2VibGg3bXE0MWxwayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/2PuPWxuLV1FGyh03Ja/giphy.gif",
       href: "https://www.learn-algo.com",
@@ -421,14 +422,25 @@ export const PORTFOLIO_INFO: Portfolio = {
           icon: "SiGithub",
         },
       ],
-      isUnderDevelopment: true,
+      isUnderDevelopment: false,
     },
     {
       id: "landing-zone-orchestrator",
       title: "Landing Zone Orchestrator",
-      description: "A production-ready platform that transforms cloud infrastructure provisioning from manual IaC coding to an intuitive, form-driven workflow. Built with React, FastAPI, and MongoDB to generate validated Terraform templates for AWS, Azure, and GCP. Features include schema-driven form builder for VPC, Subnets, IAM, and networking resources, real-time Terraform code generation and validation, JWT-based authentication, MongoDB storage for projects and templates, and multi-cloud support.",
-      tags: ["Terraform", "IaC", "React", "FastAPI", "MongoDB", "AWS", "Azure", "Full Stack"],
-      image: "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGtuYjY1emtsZmNjMXp1czdrdXR5bXE5ZDJheHVvZjY1azZxYnJieiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qzImRjQVb2OUI84mTt/giphy.gif",
+      description:
+        "A production-ready platform that transforms cloud infrastructure provisioning from manual IaC coding to an intuitive, form-driven workflow. Built with React, FastAPI, and MongoDB to generate validated Terraform templates for AWS, Azure, and GCP. Features include schema-driven form builder for VPC, Subnets, IAM, and networking resources, real-time Terraform code generation and validation, JWT-based authentication, MongoDB storage for projects and templates, and multi-cloud support.",
+      tags: [
+        "Terraform",
+        "IaC",
+        "React",
+        "FastAPI",
+        "MongoDB",
+        "AWS",
+        "Azure",
+        "Full Stack",
+      ],
+      image:
+        "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGtuYjY1emtsZmNjMXp1czdrdXR5bXE5ZDJheHVvZjY1azZxYnJieiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qzImRjQVb2OUI84mTt/giphy.gif",
       href: "https://orchestrator.next-zen.dev",
       links: [
         {
@@ -442,9 +454,11 @@ export const PORTFOLIO_INFO: Portfolio = {
     {
       id: "diagrammatic",
       title: "Diagrammatic",
-      description: "Diagrammatic (System Design Playground): A component library and living documentation for a design system.",
-      tags: ["System Design", "Ai & ML", "React"],
-      image: "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExeTFnOGF3d3BodjFvY3NhanY5cnl5bmd4Z243aXB5M3hrOHg3d2tmeiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/WvzQektcJxs0oDFkHq/giphy.gif",
+      description:
+        "Diagrammatic (System Design Playground): A component library and living documentation for a design system.",
+      tags: ["System Design", "AI & ML", "React"],
+      image:
+        "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExeTFnOGF3d3BodjFvY3NhanY5cnl5bmd4Z243aXB5M3hrOHg3d2tmeiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/WvzQektcJxs0oDFkHq/giphy.gif",
       href: "https://diagrammatic.next-zen.dev",
       links: [
         {
@@ -485,7 +499,8 @@ export const PORTFOLIO_INFO: Portfolio = {
     {
       id: "alochona",
       title: "Alochona",
-      description: "Alochona is an experimental chatbot hosted on Hugging Face Spaces. It uses OpenAI under the hood for responses. This project was built as a way to explore chatbot UIs, Hugging Face deployment, and integrating OpenAI APIs.",
+      description:
+        "Alochona is an experimental chatbot hosted on Hugging Face Spaces. It uses OpenAI under the hood for responses. This project was built as a way to explore chatbot UIs, Hugging Face deployment, and integrating OpenAI APIs.",
       image:
         "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZmc5dDY1c2ZnOGs0ODF0eDkwbzBvMHZ2ZXJvYml2amRmdzN2dnZueSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/7AFQj6uviWpwudbOWg/giphy.gif",
       href: "https://huggingface.co/spaces/satya00089/alochona",
@@ -506,7 +521,8 @@ export const PORTFOLIO_INFO: Portfolio = {
     {
       id: "night-sky",
       title: "Night Skyline",
-      description: "A breathtaking recreation of the city skyline under a starlit night sky, capturing the serene beauty and glowing atmosphere of the evening.",
+      description:
+        "A breathtaking recreation of the city skyline under a starlit night sky, capturing the serene beauty and glowing atmosphere of the evening.",
       tags: ["React", "CSS"],
       image:
         "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2RjaHAxY3N3enY0d3RldWVpczg2ZTNzMHhsY2dpam0yYnp6bWh2byZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/P2jddT5c9g9OeHI17p/giphy.gif",
@@ -571,8 +587,6 @@ export const PORTFOLIO_INFO: Portfolio = {
   },
 };
 
-
-
 // ---------- SMALL HELPERS ----------
 export const tagColors: TagColors = {
   React: "bg-blue-100 text-blue-800",
@@ -586,7 +600,7 @@ export const tagColors: TagColors = {
   Storybook: "bg-pink-100 text-pink-800",
   "NPM Package": "bg-red-100 text-red-800",
   "Material-UI": "bg-indigo-100 text-indigo-800",
-  "Chatbot": "bg-violet-100 text-violet-800",
+  Chatbot: "bg-violet-100 text-violet-800",
   OpenAI: "bg-gray-100 text-gray-800",
   "Hugging Face": "bg-orange-100 text-orange-800",
   Beginner: "bg-cyan-100 text-cyan-800",
@@ -598,5 +612,13 @@ export const tagColors: TagColors = {
   IaC: "bg-indigo-500 text-white",
   AWS: "bg-orange-500 text-white",
   Azure: "bg-blue-600 text-white",
+  GCP: "bg-red-600 text-white",
+  Algorithms: "bg-blue-500 text-blue-100",
+  DSA: "bg-purple-300 text-purple-900",
+  ML: "bg-blue-200 text-blue-800",
+  AI: "bg-gray-200 text-gray-800",
+  "AI & ML": "bg-amber-100 text-amber-900",
+  Visualization: "bg-orange-100 text-purple-900",
+  "Next.js": "bg-black text-white",
   "Full Stack": "bg-gradient-to-r from-blue-500 to-purple-600 text-white",
 };
