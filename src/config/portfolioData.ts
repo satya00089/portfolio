@@ -469,6 +469,22 @@ export const PORTFOLIO_INFO: Portfolio = {
       ],
     },
     {
+      id: "tic-tac-toe-ai",
+      title: "Tic Tac Toe AI",
+      description: "A minimal Tic-Tac-Toe AI game built with Next.js to understand the Minimax algorithm.",
+      tags: ["Next.js", "AI", "Game", "Minimax"],
+      image: "https://raw.githubusercontent.com/satya00089/tic-tac-toe/main/public/tic-tac-toe.png",
+      href: "https://satya00089.github.io/tic-tac-toe/",
+      links: [
+        {
+          label: "GitHub",
+          url: "https://github.com/satya00089/tic-tac-toe",
+          icon: "SiGithub",
+        },
+      ],
+      isUnderDevelopment: false,
+    },
+    {
       id: "mui-color-wheel",
       title: "MUI Color Wheel",
       description:
@@ -539,15 +555,6 @@ export const PORTFOLIO_INFO: Portfolio = {
           icon: "SiGithub",
         },
       ],
-      isUnderDevelopment: true,
-    },
-    {
-      id: "data-dashboard-poc",
-      title: "Data Dashboard (POC)",
-      description: "Real-time charts and alerts for operational metrics.",
-      tags: ["React", "D3", "Realtime"],
-      image: undefined,
-      href: "#",
       isUnderDevelopment: true,
     },
   ],
