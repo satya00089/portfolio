@@ -70,8 +70,10 @@ export const Header: React.FC<{ links?: NavLink[]; onTryCLI?: () => void }> = ({
   };
 
   const { scrollY } = useScroll();
-  const blurPx = useTransform(scrollY, [0, 200], [8, 16]);
-  const overlayOpacity = useTransform(scrollY, [0, 200], [0.08, 0.14]);
+  const blurPx = useTransform(scrollY, [0, 100], [0, 16]);
+  const bgOpacity = useTransform(scrollY, [0, 100], [0, 0.8]);
+  const borderOpacity = useTransform(scrollY, [0, 100], [0, 1]);
+  const overlayOpacity = useTransform(scrollY, [0, 100], [0, 0.14]);
   const backdrop = useMotionTemplate`blur(${blurPx}px)`;
 
   const BASE = import.meta.env.BASE_URL || "/";
@@ -79,10 +81,29 @@ export const Header: React.FC<{ links?: NavLink[]; onTryCLI?: () => void }> = ({
   return (
     <motion.header
       ref={headerRef}
-      className="fixed top-0 left-0 z-50 w-full border-b border-theme bg-[var(--surface)]/80 backdrop-blur-sm"
-      style={{ backdropFilter: backdrop, WebkitBackdropFilter: backdrop }}
+      className="fixed top-0 left-0 z-50 w-full"
+      style={{ 
+        backdropFilter: backdrop, 
+        WebkitBackdropFilter: backdrop,
+      }}
     >
-      {/* animated overlay to add subtle tint regardless of theme */}
+      {/* Background layer */}
+      <motion.div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none bg-[var(--surface)]"
+        style={{
+          opacity: bgOpacity,
+        }}
+      />
+      {/* Border layer */}
+      <motion.div
+        aria-hidden
+        className="absolute inset-x-0 bottom-0 h-px pointer-events-none bg-[var(--border)]"
+        style={{
+          opacity: borderOpacity,
+        }}
+      />
+      {/* Dark overlay for depth */}
       <motion.div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
