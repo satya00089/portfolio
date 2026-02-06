@@ -413,8 +413,7 @@ export const PORTFOLIO_INFO: Portfolio = {
       description:
         "Interactive visualizations that transform abstract concepts into intuitive understanding. Watch sorting, searching, and ML algorithms execute step-by-step.",
       tags: ["Algorithms", "DSA", "ML", "AI", "Visualization", "Next.js"],
-      image:
-        "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExYXpqYWFhbnBraWt3ZXhvajZsdjg5andyMGZzY2VibGg3bXE0MWxwayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/2PuPWxuLV1FGyh03Ja/giphy.gif",
+      image: "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExYXpqYWFhbnBraWt3ZXhvajZsdjg5andyMGZzY2VibGg3bXE0MWxwayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/2PuPWxuLV1FGyh03Ja/giphy.gif",
       href: "https://www.learn-algo.com",
       links: [
         {
@@ -468,6 +467,22 @@ export const PORTFOLIO_INFO: Portfolio = {
           icon: "SiGithub",
         },
       ],
+    },
+    {
+      id: "tic-tac-toe-ai",
+      title: "Tic Tac Toe AI",
+      description: "A minimal Tic-Tac-Toe AI game built with Next.js to understand the Minimax algorithm.",
+      tags: ["Next.js", "AI", "Game", "Minimax"],
+      image: "https://raw.githubusercontent.com/satya00089/tic-tac-toe/main/public/tic-tac-toe.png",
+      href: "https://satya00089.github.io/tic-tac-toe/",
+      links: [
+        {
+          label: "GitHub",
+          url: "https://github.com/satya00089/tic-tac-toe",
+          icon: "SiGithub",
+        },
+      ],
+      isUnderDevelopment: false,
     },
     {
       id: "mui-color-wheel",
@@ -540,15 +555,6 @@ export const PORTFOLIO_INFO: Portfolio = {
           icon: "SiGithub",
         },
       ],
-      isUnderDevelopment: true,
-    },
-    {
-      id: "data-dashboard-poc",
-      title: "Data Dashboard (POC)",
-      description: "Real-time charts and alerts for operational metrics.",
-      tags: ["React", "D3", "Realtime"],
-      image: undefined,
-      href: "#",
       isUnderDevelopment: true,
     },
   ],
