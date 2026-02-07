@@ -1,25 +1,29 @@
-"use client"
+"use client";
 
-import { motion, type Transition, useAnimation } from "framer-motion"
-import type React from "react"
-import { useEffect, useState } from "react"
+import { motion, type Transition, useAnimation } from "framer-motion";
+import type React from "react";
+import { useEffect, useState } from "react";
 
 interface CircularTextProps {
-  text: string
-  spinDuration?: number
-  onHover?: "slowDown" | "speedUp" | "pause" | "goBonkers"
-  className?: string
-  children?: React.ReactNode
+  text: string;
+  spinDuration?: number;
+  onHover?: "slowDown" | "speedUp" | "pause" | "goBonkers";
+  className?: string;
+  children?: React.ReactNode;
 }
 
-const getRotationTransition = (duration: number, from: number, loop = true) => ({
+const getRotationTransition = (
+  duration: number,
+  from: number,
+  loop = true,
+) => ({
   from,
   to: from + 360,
   ease: "linear" as const,
   duration,
   type: "tween" as const,
   repeat: loop ? Number.POSITIVE_INFINITY : 0,
-})
+});
 
 const getTransition = (duration: number, from: number) => ({
   rotate: getRotationTransition(duration, from),
@@ -28,7 +32,7 @@ const getTransition = (duration: number, from: number) => ({
     damping: 20,
     stiffness: 300,
   },
-})
+});
 
 const CircularText: React.FC<CircularTextProps> = ({
   text,
@@ -37,117 +41,127 @@ const CircularText: React.FC<CircularTextProps> = ({
   className = "",
   children,
 }) => {
-  const letters = Array.from(text)
-  const controls = useAnimation()
-  const [showCenter, setShowCenter] = useState(false)
-  const [reduceMotion, setReduceMotion] = useState(false)
+  const letters = Array.from(text);
+  const controls = useAnimation();
+  const [showCenter, setShowCenter] = useState(false);
+  const [reduceMotion, setReduceMotion] = useState(false);
 
   useEffect(() => {
     // detect prefers-reduced-motion and update state
     try {
-      const mq = window.matchMedia("(prefers-reduced-motion: reduce)")
-      const handle = () => setReduceMotion(Boolean(mq.matches))
-      handle()
-      if (mq.addEventListener) mq.addEventListener("change", handle)
-      else mq.addListener(handle)
+      const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const handle = () => setReduceMotion(Boolean(mq.matches));
+      handle();
+      if (mq.addEventListener) mq.addEventListener("change", handle);
+      else mq.addListener(handle);
       return () => {
-        if (mq.removeEventListener) mq.removeEventListener("change", handle)
-        else mq.removeListener(handle)
-      }
+        if (mq.removeEventListener) mq.removeEventListener("change", handle);
+        else mq.removeListener(handle);
+      };
     } catch {
       // SSR safety: window might not be available; ignore
     }
 
-  const start = 0
+    const start = 0;
     if (reduceMotion) {
       // when reduced motion is preferred, don't animate rotation — keep static
-      controls.set({ rotate: start, scale: 1 })
-      return
+      controls.set({ rotate: start, scale: 1 });
+      return;
     }
 
     controls.start({
       rotate: start + 360,
       scale: 1,
       transition: getTransition(spinDuration, start),
-    })
-  }, [spinDuration, text, onHover, controls, reduceMotion])
+    });
+  }, [spinDuration, text, onHover, controls, reduceMotion]);
 
   // Persist center once shown; do not auto-hide after interaction per user request.
 
   const handleHoverStart = () => {
-  const start = 0
+    const start = 0;
 
     if (!onHover) {
-      return
+      return;
     }
 
-    let transitionConfig: ReturnType<typeof getTransition> | Transition
-    let scaleVal = 1
+    let transitionConfig: ReturnType<typeof getTransition> | Transition;
+    let scaleVal = 1;
 
     switch (onHover) {
       case "slowDown":
-        transitionConfig = getTransition(spinDuration * 2, start)
-        break
+        transitionConfig = getTransition(spinDuration * 2, start);
+        break;
       case "speedUp":
-        transitionConfig = getTransition(spinDuration / 4, start)
-        break
+        transitionConfig = getTransition(spinDuration / 4, start);
+        break;
       case "pause":
         transitionConfig = {
           rotate: { type: "spring", damping: 20, stiffness: 300 },
           scale: { type: "spring", damping: 20, stiffness: 300 },
-        }
-        break
+        };
+        break;
       case "goBonkers":
-        transitionConfig = getTransition(spinDuration / 20, start)
-        scaleVal = 0.8
-        break
+        transitionConfig = getTransition(spinDuration / 20, start);
+        scaleVal = 0.8;
+        break;
       default:
-        transitionConfig = getTransition(spinDuration, start)
+        transitionConfig = getTransition(spinDuration, start);
     }
 
     if (reduceMotion) {
       // only animate scale when reduced-motion is set
-      controls.start({ scale: scaleVal, transition: transitionConfig as unknown as Transition })
-      return
+      controls.start({
+        scale: scaleVal,
+        transition: transitionConfig as unknown as Transition,
+      });
+      return;
     }
 
     controls.start({
       rotate: start + 360,
       scale: scaleVal,
       transition: transitionConfig,
-    })
-  }
+    });
+  };
 
   const handleHoverEnd = () => {
-  const start = 0
+    const start = 0;
     if (reduceMotion) {
-      controls.start({ scale: 1, transition: { type: "spring", damping: 20, stiffness: 300 } as unknown as Transition })
-      return
+      controls.start({
+        scale: 1,
+        transition: {
+          type: "spring",
+          damping: 20,
+          stiffness: 300,
+        } as unknown as Transition,
+      });
+      return;
     }
 
     controls.start({
       rotate: start + 360,
       scale: 1,
       transition: getTransition(spinDuration, start),
-    })
-  }
+    });
+  };
 
   return (
     <div
       className={`m-0 mx-auto rounded-full w-[260px] h-[260px] relative font-black text-foreground text-center cursor-pointer origin-center ${className}`}
       onPointerEnter={() => {
-        handleHoverStart()
+        handleHoverStart();
         // show and persist the center content (do not hide on leave)
-        setShowCenter(true)
+        setShowCenter(true);
       }}
       onPointerMove={() => {
         // show on pointer move and persist
-        setShowCenter(true)
+        setShowCenter(true);
       }}
       onPointerLeave={() => {
         // maintain rotation behavior but keep center visible
-        handleHoverEnd()
-        setShowCenter(true)
+        handleHoverEnd();
+        setShowCenter(true);
       }}
     >
       {/* circular underline (single stroke following the ring) */}
@@ -176,11 +190,11 @@ const CircularText: React.FC<CircularTextProps> = ({
         aria-hidden
       >
         {letters.map((letter, i) => {
-          const rotationDeg = (360 / letters.length) * i
-          const factor = Math.PI / letters.length
-          const x = factor * i
-          const y = factor * i
-          const transform = `rotateZ(${rotationDeg}deg) translate3d(${x}px, ${y}px, 0)`
+          const rotationDeg = (360 / letters.length) * i;
+          const factor = Math.PI / letters.length;
+          const x = factor * i;
+          const y = factor * i;
+          const transform = `rotateZ(${rotationDeg}deg) translate3d(${x}px, ${y}px, 0)`;
 
           return (
             <span
@@ -190,7 +204,7 @@ const CircularText: React.FC<CircularTextProps> = ({
             >
               {letter}
             </span>
-          )
+          );
         })}
       </motion.div>
 
@@ -205,7 +219,7 @@ const CircularText: React.FC<CircularTextProps> = ({
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CircularText
+export default CircularText;

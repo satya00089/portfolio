@@ -1,5 +1,6 @@
 // PortfolioPage.tsx
 import React, { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { ThemeProvider } from "../components/ThemeProvider";
 import { Header } from "../components/shared/Header";
 import { ProjectsGrid } from "../components/ProjectsGrid";
@@ -8,6 +9,7 @@ import { ContactForm } from "../components/ContactForm";
 import { Footer } from "../components/shared/Footer";
 import { PORTFOLIO_INFO } from "../config/portfolioData";
 import { About } from "../components/About";
+import { AppleHelloEnglishEffect } from "../components/HelloEffects";
 import type { Project } from "../types/portfolio";
 import { ProjectModal } from "../components/ProjectModal";
 import { ScrollProgressBar } from "../components/shared/ScrollProgressBar";
@@ -19,6 +21,7 @@ import CurvedLoop from "../components/CurvedLoop";
 const PortfolioPage: React.FC = () => {
   const [selected, setSelected] = useState<Project | null>(null);
   const [showCLI, setShowCLI] = useState(false);
+  const [showHello, setShowHello] = useState(true);
 
   return (
     <ThemeProvider>
@@ -35,8 +38,33 @@ const PortfolioPage: React.FC = () => {
       {/* CLI panel (docked / overlay) */}
       <CLIResume open={showCLI} onClose={() => setShowCLI(false)} />
 
-      <section id="about" className="relative w-full flex items-center justify-center px-4 sm:px-6 lg:px-8 pb-0" style={{ height: '100vh' }}>
-        <div className="absolute inset-0 z-0" style={{ height: '140vh' }}>
+      {/* About / hero: hidden while hello animation plays */}
+      <AnimatePresence>
+        {showHello && (
+          <motion.div
+            key="hello-overlay"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <AppleHelloEnglishEffect
+              className="text-white"
+              onAnimationComplete={() => setShowHello(false)}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <motion.section
+        id="about"
+        className="relative w-full flex items-center justify-center px-4 sm:px-6 lg:px-8 pb-0"
+        style={{ height: "100vh" }}
+        initial={{ opacity: 0, y: 8 }}
+        animate={showHello ? { opacity: 0, y: 8 } : { opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <div className="absolute inset-0 z-0" style={{ height: "140vh" }}>
           <BackgroundBeams />
         </div>
         <div className="relative z-10 w-full max-w-6xl 2xl:max-w-7xl mx-auto py-20 sm:py-24 lg:py-32">
@@ -44,10 +72,10 @@ const PortfolioPage: React.FC = () => {
             <About />
           </div>
         </div>
-      </section>
+      </motion.section>
       <div className="w-full bg-[var(--background)] pt-8 pb-8 relative z-20">
         <CurvedLoop
-          marqueeText={PORTFOLIO_INFO.personal.headline + ' · '}
+          marqueeText={PORTFOLIO_INFO.personal.headline + " · "}
           speed={1}
           className="text-2xl text-[var(--text)] bg-[var(--surface)]"
           curveAmount={400}

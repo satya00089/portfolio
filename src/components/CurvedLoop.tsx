@@ -87,7 +87,7 @@ const CurvedLoop: FC<CurvedLoopProps> = ({
       if (!dragRef.current && textPathRef.current) {
         const delta = dirRef.current === "right" ? speed : -speed;
         const currentOffset = Number.parseFloat(
-          textPathRef.current.getAttribute("startOffset") || "0"
+          textPathRef.current.getAttribute("startOffset") || "0",
         );
         let newOffset = currentOffset + delta;
 
@@ -135,7 +135,7 @@ const CurvedLoop: FC<CurvedLoopProps> = ({
     velRef.current = dx;
 
     const currentOffset = Number.parseFloat(
-      textPathRef.current.getAttribute("startOffset") || "0"
+      textPathRef.current.getAttribute("startOffset") || "0",
     );
     let newOffset = currentOffset + dx;
 

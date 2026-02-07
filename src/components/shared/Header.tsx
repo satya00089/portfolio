@@ -20,12 +20,11 @@ export const Header: React.FC<{ links?: NavLink[]; onTryCLI?: () => void }> = ({
   const { dark, toggle } = useTheme();
   const headerRef = useRef<HTMLElement | null>(null);
 
-
   const [active, setActive] = useState<string>(links[0]?.href ?? "#about");
   useEffect(() => {
     const sections = links
       .map((l) =>
-        l.href.startsWith("#") ? document.querySelector(l.href) : null
+        l.href.startsWith("#") ? document.querySelector(l.href) : null,
       )
       .filter(Boolean) as HTMLElement[];
 
@@ -36,7 +35,7 @@ export const Header: React.FC<{ links?: NavLink[]; onTryCLI?: () => void }> = ({
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
         if (visible?.target?.id) setActive(`#${visible.target.id}`);
       },
-      { rootMargin: "-30% 0px -60% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] }
+      { rootMargin: "-30% 0px -60% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] },
     );
 
     sections.forEach((s) => obs.observe(s));
@@ -80,8 +79,8 @@ export const Header: React.FC<{ links?: NavLink[]; onTryCLI?: () => void }> = ({
     <motion.header
       ref={headerRef}
       className="fixed top-0 left-0 z-50 w-full"
-      style={{ 
-        backdropFilter: backdrop, 
+      style={{
+        backdropFilter: backdrop,
         WebkitBackdropFilter: backdrop,
       }}
     >

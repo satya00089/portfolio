@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
-import React, { useEffect, useRef, useState, useMemo } from "react"
-import { cn } from "../lib/utils"
-import { MouseEnterContext, useMouseEnter } from "./hooks/mouseEnter"
+import React, { useEffect, useRef, useState, useMemo } from "react";
+import { cn } from "../lib/utils";
+import { MouseEnterContext, useMouseEnter } from "./hooks/mouseEnter";
 
 export interface CardContainerProps {
-  children?: React.ReactNode
-  className?: string
-  containerClassName?: string
-  href?: string
-  onActivate?: () => void
+  children?: React.ReactNode;
+  className?: string;
+  containerClassName?: string;
+  href?: string;
+  onActivate?: () => void;
 }
 
 export const CardContainer = ({
@@ -19,41 +19,45 @@ export const CardContainer = ({
   href,
   onActivate,
 }: CardContainerProps) => {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [isMouseEntered, setIsMouseEntered] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isMouseEntered, setIsMouseEntered] = useState(false);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) {
-      return
+      return;
     }
-    const { left, top, width, height } = containerRef.current.getBoundingClientRect()
-    const x = (e.clientX - left - width / 2) / 25
-    const y = (e.clientY - top - height / 2) / 25
-    containerRef.current.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`
-  }
+    const { left, top, width, height } =
+      containerRef.current.getBoundingClientRect();
+    const x = (e.clientX - left - width / 2) / 25;
+    const y = (e.clientY - top - height / 2) / 25;
+    containerRef.current.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+  };
 
   const handleMouseEnter = () => {
-    setIsMouseEntered(true)
-  }
+    setIsMouseEntered(true);
+  };
 
   const handleMouseLeave = () => {
-    setIsMouseEntered(false)
+    setIsMouseEntered(false);
     if (containerRef.current) {
-      containerRef.current.style.transform = "rotateY(0deg) rotateX(0deg)"
+      containerRef.current.style.transform = "rotateY(0deg) rotateX(0deg)";
     }
-  }
+  };
 
   const handleClick = () => {
     if (onActivate) {
-      onActivate()
-      return
+      onActivate();
+      return;
     }
     if (href) {
-      window.open(href, "_blank")
+      window.open(href, "_blank");
     }
-  }
+  };
 
-  const contextValue = useMemo(() => [isMouseEntered, setIsMouseEntered] as const, [isMouseEntered])
+  const contextValue = useMemo(
+    () => [isMouseEntered, setIsMouseEntered] as const,
+    [isMouseEntered],
+  );
 
   return (
     <MouseEnterContext.Provider value={contextValue}>
@@ -76,8 +80,8 @@ export const CardContainer = ({
           onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
             // Activate on Enter or Space for accessibility
             if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault()
-              handleClick()
+              e.preventDefault();
+              handleClick();
             }
           }}
           ref={containerRef}
@@ -89,12 +93,12 @@ export const CardContainer = ({
         </div>
       </div>
     </MouseEnterContext.Provider>
-  )
-}
+  );
+};
 
 export interface CardBodyProps {
-  children: React.ReactNode
-  className?: string
+  children: React.ReactNode;
+  className?: string;
 }
 
 export const CardBody = ({ children, className }: CardBodyProps) => {
@@ -107,20 +111,20 @@ export const CardBody = ({ children, className }: CardBodyProps) => {
     >
       {children}
     </div>
-  )
-}
+  );
+};
 
 export type CardItemProps = {
-  as?: React.ElementType
-  children: React.ReactNode
-  className?: string
-  translateX?: number | string
-  translateY?: number | string
-  translateZ?: number | string
-  rotateX?: number | string
-  rotateY?: number | string
-  rotateZ?: number | string
-} & Record<string, unknown>
+  as?: React.ElementType;
+  children: React.ReactNode;
+  className?: string;
+  translateX?: number | string;
+  translateY?: number | string;
+  translateZ?: number | string;
+  rotateX?: number | string;
+  rotateY?: number | string;
+  rotateZ?: number | string;
+} & Record<string, unknown>;
 
 export const CardItem = ({
   as: Tag = "div",
@@ -134,30 +138,31 @@ export const CardItem = ({
   rotateZ = 0,
   ...rest
 }: CardItemProps) => {
-  const ref = useRef<HTMLElement | null>(null)
-  const [isMouseEntered] = useMouseEnter()
+  const ref = useRef<HTMLElement | null>(null);
+  const [isMouseEntered] = useMouseEnter();
 
   useEffect(() => {
-    handleAnimations()
+    handleAnimations();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isMouseEntered])
+  }, [isMouseEntered]);
 
   const handleAnimations = () => {
     if (!ref.current) {
-      return
+      return;
     }
-    const fmt = (v: number | string) => (typeof v === "number" ? `${v}px` : String(v ?? "0"))
+    const fmt = (v: number | string) =>
+      typeof v === "number" ? `${v}px` : String(v ?? "0");
     if (isMouseEntered) {
       ref.current.style.transform = `translateX(${fmt(translateX)}) translateY(${fmt(
         translateY,
       )}) translateZ(${fmt(translateZ)}) rotateX(${fmt(rotateX)}) rotateY(${fmt(rotateY)}) rotateZ(${fmt(
         rotateZ,
-      )})`
+      )})`;
     } else {
       ref.current.style.transform =
-        "translateX(0px) translateY(0px) translateZ(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg)"
+        "translateX(0px) translateY(0px) translateZ(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg)";
     }
-  }
+  };
 
   return React.createElement(
     Tag,
@@ -167,5 +172,5 @@ export const CardItem = ({
       ...rest,
     },
     children,
-  )
-}
+  );
+};

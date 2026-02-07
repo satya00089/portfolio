@@ -40,6 +40,7 @@ When you create a bug report, include as many details as possible:
 A clear description of the bug.
 
 **Steps to Reproduce:**
+
 1. Go to '...'
 2. Click on '...'
 3. See error
@@ -54,6 +55,7 @@ What actually happened.
 If applicable, add screenshots.
 
 **Environment:**
+
 - OS: [e.g., Windows 11, macOS 13]
 - Browser: [e.g., Chrome 120, Firefox 121]
 - Node Version: [e.g., 18.17.0]
@@ -74,6 +76,7 @@ When suggesting an enhancement:
 ### 🎨 Design Improvements
 
 We welcome design suggestions! If you have ideas for:
+
 - UI/UX improvements
 - Accessibility enhancements
 - Responsive design fixes
@@ -84,6 +87,7 @@ Please open an issue with mockups or detailed descriptions.
 ### 📝 Documentation
 
 Improvements to documentation are always welcome:
+
 - Fix typos or unclear instructions
 - Add examples or tutorials
 - Improve README or Wiki
@@ -149,6 +153,7 @@ git checkout -b fix/your-bug-fix
 ```
 
 Branch naming conventions:
+
 - `feature/` - New features
 - `fix/` - Bug fixes
 - `docs/` - Documentation changes
@@ -221,21 +226,26 @@ git push origin feature/your-feature-name
 
 ```markdown
 ## Description
+
 Brief description of changes
 
 ## Type of Change
+
 - [ ] Bug fix (non-breaking change)
 - [ ] New feature (non-breaking change)
 - [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
 - [ ] Documentation update
 
 ## How Has This Been Tested?
+
 Describe your testing process
 
 ## Screenshots (if applicable)
+
 Add screenshots to demonstrate the changes
 
 ## Checklist
+
 - [ ] My code follows the style guidelines
 - [ ] I have performed a self-review
 - [ ] I have commented my code where necessary
@@ -280,10 +290,10 @@ interface SkillCircleProps {
   category: string;
 }
 
-export const SkillCircle: React.FC<SkillCircleProps> = ({ 
-  skillName, 
-  proficiency, 
-  category 
+export const SkillCircle: React.FC<SkillCircleProps> = ({
+  skillName,
+  proficiency,
+  category
 }) => {
   return (
     <div className="skill-circle">
@@ -338,15 +348,15 @@ components/
 
 ```typescript
 // ✅ Good
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
 
-import { Header } from './components/shared/Header';
-import { SkillCircle } from './components/SkillCircle';
+import { Header } from "./components/shared/Header";
+import { SkillCircle } from "./components/SkillCircle";
 
-import type { Skill, Project } from './types';
+import type { Skill, Project } from "./types";
 
-import './App.css';
+import "./App.css";
 ```
 
 ## Commit Message Guidelines
@@ -413,6 +423,7 @@ git commit -m "refactor(portfolio): extract project modal logic"
 ### Recognition
 
 Contributors will be recognized in:
+
 - README contributors section
 - Release notes
 - Project acknowledgments

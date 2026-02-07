@@ -44,7 +44,9 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
   // memoize provider value so it doesn't change every render
   const value = useMemo(() => ({ dark, toggle }), [dark, toggle]);
 
-  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
+  return (
+    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
+  );
 };
 
 export default ThemeProvider;

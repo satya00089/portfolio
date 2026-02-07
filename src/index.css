@@ -4,18 +4,18 @@
 /* --- Theme variables --- */
 :root {
   /* light theme tokens */
-  --bg: #f8fafc;           /* page background */
-  --surface: #ffffff;      /* cards, panels */
-  --text: #0f172a;         /* main text */
-  --muted: #6b7280;        /* secondary text */
-  --border: #e6e9ee;       /* subtle borders */
-  --brand: #6366f1;        /* primary accent (indigo-500) */
-  --accent: #ec4899;       /* secondary accent */
+  --bg: #f8fafc; /* page background */
+  --surface: #ffffff; /* cards, panels */
+  --text: #0f172a; /* main text */
+  --muted: #6b7280; /* secondary text */
+  --border: #e6e9ee; /* subtle borders */
+  --brand: #6366f1; /* primary accent (indigo-500) */
+  --accent: #ec4899; /* secondary accent */
 
   /* translucent background tokens (used for panels with blur) */
-  --translucent-surface: rgba(255,255,255,0.06);
-  --translucent-surface-strong: rgba(255,255,255,0.12);
-  --translucent-accent: rgba(99,102,241,0.06);
+  --translucent-surface: rgba(255, 255, 255, 0.06);
+  --translucent-surface-strong: rgba(255, 255, 255, 0.12);
+  --translucent-accent: rgba(99, 102, 241, 0.06);
 }
 
 /* dark theme tokens */
@@ -29,13 +29,14 @@
   --accent: #f472b6;
 
   /* dark-mode translucent tokens */
-  --translucent-surface: rgba(15,23,36,0.14);
-  --translucent-surface-strong: rgba(15,23,36,0.22);
-  --translucent-accent: rgba(124,58,237,0.10);
+  --translucent-surface: rgba(15, 23, 36, 0.14);
+  --translucent-surface-strong: rgba(15, 23, 36, 0.22);
+  --translucent-accent: rgba(124, 58, 237, 0.1);
 }
 
 /* apply defaults so non-Tailwind elements inherit colors */
-html, body {
+html,
+body {
   background-color: var(--bg);
   color: var(--text);
   position: relative;
@@ -44,48 +45,76 @@ html, body {
 /* Professional Geometric Background Pattern */
 body {
   /* Keep only subtle accent gradients; remove grid/dot patterns */
-  background-image: 
-    radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.03) 0%, transparent 50%),
-    radial-gradient(circle at 20% 80%, rgba(236, 72, 153, 0.03) 0%, transparent 50%);
-  background-size: 100% 100%, 100% 100%;
-  background-position: 0 0, 0 0;
+  background-image:
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(124, 58, 237, 0.03) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 20% 80%,
+      rgba(236, 72, 153, 0.03) 0%,
+      transparent 50%
+    );
+  background-size:
+    100% 100%,
+    100% 100%;
+  background-position:
+    0 0,
+    0 0;
 }
 
 /* small utilities you can reuse (optional) */
-.bg-surface { background-color: var(--surface); }
-.text-muted { color: var(--muted); }
-.border-theme { border-color: var(--border); }
+.bg-surface {
+  background-color: var(--surface);
+}
+.text-muted {
+  color: var(--muted);
+}
+.border-theme {
+  border-color: var(--border);
+}
 
 /* Translucent panel utilities (use instead of ad-hoc bg-white/20 etc.) */
 .panel-translucent {
   /* translucent panel with robust fallbacks for wide browser support */
   background-color: var(--translucent-surface);
   /* fallback border color when color-mix is not supported */
-  border: 1px solid rgba(255,255,255,0.06);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   /* prefer color-mix if available for better contrast with theme tokens */
   border-color: color-mix(in srgb, var(--translucent-surface) 40%, transparent);
   /* apply blur where supported */
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
-  transition: background-color 180ms ease, box-shadow 180ms ease, border-color 180ms ease, transform 180ms ease;
+  transition:
+    background-color 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
 }
 
 .panel-translucent-strong {
   background-color: var(--translucent-surface-strong);
-  border: 1px solid color-mix(in srgb, var(--translucent-surface-strong) 40%, transparent);
+  border: 1px solid
+    color-mix(in srgb, var(--translucent-surface-strong) 40%, transparent);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
 
 .panel-translucent-accent {
   background-color: var(--translucent-accent);
-  border: 1px solid color-mix(in srgb, var(--translucent-accent) 40%, transparent);
+  border: 1px solid
+    color-mix(in srgb, var(--translucent-accent) 40%, transparent);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
 }
 
 .chip-translucent {
-  background-color: color-mix(in srgb, var(--translucent-surface) 70%, transparent);
+  background-color: color-mix(
+    in srgb,
+    var(--translucent-surface) 70%,
+    transparent
+  );
   padding: 4px 8px;
   border-radius: 9999px;
 }
@@ -105,8 +134,12 @@ body {
 
 /* subtle organic blob using an SVG path fallback for modern browsers */
 .panel-blob {
-  -webkit-clip-path: path('M74.8 3.2C87.3 6.1 97.7 13.3 103.4 23.5C109 33.7 109.1 46 104.3 57.2C99.6 68.4 90 78.6 78 84.9C66.1 91.1 51.8 93.3 38.6 91.1C25.4 89 13.2 82.6 6.1 72.8C-0.9 62.9 -3.9 49.7 0.4 38.8C4.8 27.8 14.5 19 25.9 13.2C37.2 7.5 50.8 4.4 64.9 3.4C69.7 3.1 72.6 2.7 74.8 3.2Z');
-  clip-path: path('M74.8 3.2C87.3 6.1 97.7 13.3 103.4 23.5C109 33.7 109.1 46 104.3 57.2C99.6 68.4 90 78.6 78 84.9C66.1 91.1 51.8 93.3 38.6 91.1C25.4 89 13.2 82.6 6.1 72.8C-0.9 62.9 -3.9 49.7 0.4 38.8C4.8 27.8 14.5 19 25.9 13.2C37.2 7.5 50.8 4.4 64.9 3.4C69.7 3.1 72.6 2.7 74.8 3.2Z');
+  -webkit-clip-path: path(
+    "M74.8 3.2C87.3 6.1 97.7 13.3 103.4 23.5C109 33.7 109.1 46 104.3 57.2C99.6 68.4 90 78.6 78 84.9C66.1 91.1 51.8 93.3 38.6 91.1C25.4 89 13.2 82.6 6.1 72.8C-0.9 62.9 -3.9 49.7 0.4 38.8C4.8 27.8 14.5 19 25.9 13.2C37.2 7.5 50.8 4.4 64.9 3.4C69.7 3.1 72.6 2.7 74.8 3.2Z"
+  );
+  clip-path: path(
+    "M74.8 3.2C87.3 6.1 97.7 13.3 103.4 23.5C109 33.7 109.1 46 104.3 57.2C99.6 68.4 90 78.6 78 84.9C66.1 91.1 51.8 93.3 38.6 91.1C25.4 89 13.2 82.6 6.1 72.8C-0.9 62.9 -3.9 49.7 0.4 38.8C4.8 27.8 14.5 19 25.9 13.2C37.2 7.5 50.8 4.4 64.9 3.4C69.7 3.1 72.6 2.7 74.8 3.2Z"
+  );
 }
 
 /* Poached-egg decorative background (keeps content unclipped by using ::before) */
@@ -126,13 +159,24 @@ body {
   inset: -8% -6% -8% -6%;
   /* base translucent panel look (moved from .panel-translucent) */
   background-color: var(--translucent-surface);
-  border: 1px solid color-mix(in srgb, var(--translucent-surface) 40%, transparent);
+  border: 1px solid
+    color-mix(in srgb, var(--translucent-surface) 40%, transparent);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   /* egg-white + subtle yolk layered on top */
   background-image:
-    radial-gradient(40% 30% at 35% 35%, rgba(250,240,210,0.88) 0%, rgba(250,240,210,0.66) 6%, rgba(255,255,255,0.02) 30%),
-    radial-gradient(80% 60% at 60% 60%, rgba(255,205,80,0.10) 0%, rgba(255,205,80,0.04) 12%, transparent 30%);
+    radial-gradient(
+      40% 30% at 35% 35%,
+      rgba(250, 240, 210, 0.88) 0%,
+      rgba(250, 240, 210, 0.66) 6%,
+      rgba(255, 255, 255, 0.02) 30%
+    ),
+    radial-gradient(
+      80% 60% at 60% 60%,
+      rgba(255, 205, 80, 0.1) 0%,
+      rgba(255, 205, 80, 0.04) 12%,
+      transparent 30%
+    );
   background-repeat: no-repeat;
   background-blend-mode: overlay;
   border-radius: inherit;
@@ -169,14 +213,18 @@ body {
 .panel-translucent:focus-within {
   background-color: var(--surface);
   border-color: color-mix(in srgb, var(--surface) 80%, transparent);
-  box-shadow: 0 10px 30px -12px rgba(2,6,23,0.12);
+  box-shadow: 0 10px 30px -12px rgba(2, 6, 23, 0.12);
   transform: translateY(-2px);
 }
 
 /* Optional: make the chip solid on hover for interactivity */
 .chip-translucent:hover,
 .chip-translucent:focus {
-  background-color: color-mix(in srgb, var(--translucent-surface-strong) 90%, transparent);
+  background-color: color-mix(
+    in srgb,
+    var(--translucent-surface-strong) 90%,
+    transparent
+  );
 }
 
 /* Global scrollbar styling */
@@ -197,12 +245,15 @@ body {
   background-color: rgba(255, 255, 255, 0.4);
 }
 
-
-
 /* print overrides */
 @media print {
   /* hide elements that should not be printed */
-  header, nav, .no-print, .not-for-print, .ScrollProgressBar, .no-print * {
+  header,
+  nav,
+  .no-print,
+  .not-for-print,
+  .ScrollProgressBar,
+  .no-print * {
     display: none !important;
   }
 
@@ -246,7 +297,6 @@ body {
   .print-only {
     display: none;
   }
-
 }
 
 .btn-light-flare::after {
@@ -255,7 +305,9 @@ body {
   inset: 0;
   border-radius: inherit;
   box-shadow: 0 0 0 0 transparent;
-  transition: box-shadow 220ms ease, opacity 220ms ease;
+  transition:
+    box-shadow 220ms ease,
+    opacity 220ms ease;
   z-index: 0;
   pointer-events: none;
 }

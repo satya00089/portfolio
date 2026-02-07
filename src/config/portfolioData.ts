@@ -482,9 +482,11 @@ export const PORTFOLIO_INFO: Portfolio = {
     {
       id: "tic-tac-toe-ai",
       title: "Tic Tac Toe AI",
-      description: "A minimal Tic-Tac-Toe AI game built with Next.js to understand the Minimax algorithm.",
+      description:
+        "A minimal Tic-Tac-Toe AI game built with Next.js to understand the Minimax algorithm.",
       tags: ["Next.js", "AI", "Game", "Minimax"],
-      image: "https://raw.githubusercontent.com/satya00089/tic-tac-toe/main/public/tic-tac-toe.png",
+      image:
+        "https://raw.githubusercontent.com/satya00089/tic-tac-toe/main/public/tic-tac-toe.png",
       href: "https://satya00089.github.io/tic-tac-toe/",
       links: [
         {

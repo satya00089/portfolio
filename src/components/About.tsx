@@ -78,11 +78,14 @@ export const About: React.FC = () => {
     avatarItems = [normalizeAvatar(avatar)];
   }
 
-  const carouselItems = avatarItems.length > 0
-    ? avatarItems.map((it, idx) => ({ id: idx, image: it.url || "/placeholder-1.jpg", label: it.label ?? `Image ${idx + 1}` }))
-    : [
-        { id: 1, image: "/placeholder-1.jpg", label: "Profile" },
-      ];
+  const carouselItems =
+    avatarItems.length > 0
+      ? avatarItems.map((it, idx) => ({
+          id: idx,
+          image: it.url || "/placeholder-1.jpg",
+          label: it.label ?? `Image ${idx + 1}`,
+        }))
+      : [{ id: 1, image: "/placeholder-1.jpg", label: "Profile" }];
 
   // compute corner radius in viewBox units to match the panel's computed border-radius
   useLayoutEffect(() => {
@@ -211,7 +214,14 @@ export const About: React.FC = () => {
                   {/* clip the animated beams to match the rounded corners */}
                   <clipPath id="panel-clip">
                     {/* match the rounded corners (rx/ry bound to computed cornerR in viewBox units) */}
-                    <rect x="0" y="0" width="100" height="100" rx={cornerR} ry={cornerR} />
+                    <rect
+                      x="0"
+                      y="0"
+                      width="100"
+                      height="100"
+                      rx={cornerR}
+                      ry={cornerR}
+                    />
                   </clipPath>
                 </defs>
 
@@ -247,7 +257,7 @@ export const About: React.FC = () => {
               </motion.svg>
 
               <div className="relative z-10">
-                <h1 className="text-4xl md:text-6xl font-extrabold leading-tight">
+                <h1 className="text-4xl md:text-6xl font-extrabold leading-tight flex items-center gap-3">
                   {name}
                 </h1>
 
@@ -319,13 +329,19 @@ export const About: React.FC = () => {
             variants={item}
             className="md:col-span-5 flex items-center justify-center overflow-visible"
           >
-            <div className="relative w-full h-100 flex items-center justify-center" style={{ perspective: "1000px" }}>
-              <div className="relative h-full flex items-center justify-center" style={{ transformStyle: "preserve-3d" }}>
+            <div
+              className="relative w-full h-100 flex items-center justify-center"
+              style={{ perspective: "1000px" }}
+            >
+              <div
+                className="relative h-full flex items-center justify-center"
+                style={{ transformStyle: "preserve-3d" }}
+              >
                 {carouselItems.map((item, index) => {
                   const offset = index - activeIndex;
                   const isActive = index === activeIndex;
                   const absOffset = Math.abs(offset);
-                  
+
                   return (
                     <motion.div
                       key={item.id}
@@ -365,7 +381,7 @@ export const About: React.FC = () => {
                           </div>
                         )}
                       </div>
-                      
+
                       {isActive && (
                         <motion.div
                           initial={{ opacity: 0, y: 10 }}
@@ -379,35 +395,61 @@ export const About: React.FC = () => {
                   );
                 })}
               </div>
-              
+
               {/* Navigation arrows (only when multiple images) */}
               {carouselItems.length > 1 && (
                 <>
                   <button
                     className="absolute left-4 z-20 w-10 h-10 rounded-full bg-background/80 backdrop-blur shadow-lg flex items-center justify-center hover:bg-background transition-colors disabled:opacity-30"
-                    onClick={() => setActiveIndex((prev) => Math.max(0, prev - 1))}
+                    onClick={() =>
+                      setActiveIndex((prev) => Math.max(0, prev - 1))
+                    }
                     disabled={activeIndex === 0}
                     aria-label="Previous slide"
                   >
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15 19l-7-7 7-7"
+                      />
                     </svg>
                   </button>
 
                   <button
                     className="absolute right-4 z-20 w-10 h-10 rounded-full bg-background/80 backdrop-blur shadow-lg flex items-center justify-center hover:bg-background transition-colors disabled:opacity-30"
-                    onClick={() => setActiveIndex((prev) => Math.min(carouselItems.length - 1, prev + 1))}
+                    onClick={() =>
+                      setActiveIndex((prev) =>
+                        Math.min(carouselItems.length - 1, prev + 1),
+                      )
+                    }
                     disabled={activeIndex === carouselItems.length - 1}
                     aria-label="Next slide"
                   >
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
                     </svg>
                   </button>
                 </>
               )}
             </div>
-            
+
             {/* Navigation dots (only when multiple images) */}
             {carouselItems.length > 1 && (
               <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex justify-center gap-2">

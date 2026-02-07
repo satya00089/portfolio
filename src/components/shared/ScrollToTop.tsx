@@ -40,7 +40,7 @@ export const ScrollToTop: React.FC = () => {
   useEffect(() => {
     if (typeof window !== "undefined" && "matchMedia" in window) {
       prefersReducedMotion.current = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
+        "(prefers-reduced-motion: reduce)",
       ).matches;
     }
 

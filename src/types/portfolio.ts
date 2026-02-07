@@ -65,7 +65,14 @@ export type Skill = {
   icon?: string; // optional icon name (e.g., "SiReact")
   level?: number; // 1-10 or %
   years?: number; // years of experience
-  category?: "frontend" | "backend" | "data" | "devops" | "tooling" | "database" | "other";
+  category?:
+    | "frontend"
+    | "backend"
+    | "data"
+    | "devops"
+    | "tooling"
+    | "database"
+    | "other";
   note?: string; // optional note e.g. "used at work since 2020"
 };
 
@@ -137,7 +144,7 @@ export type Portfolio = {
     updatedAt?: string;
     locale?: string;
     url?: string; // canonical url to portfolio/resume
-      pdf?: string; // pre-rendered PDF link if available
+    pdf?: string; // pre-rendered PDF link if available
   };
   personal: Personal;
   summary?: string; // a single summary paragraph (optional)
@@ -153,9 +160,6 @@ export type Portfolio = {
     interests?: string[]; // e.g. "astronomy, photography"
   };
 };
-
-
-
 
 export interface Source {
   id: string;

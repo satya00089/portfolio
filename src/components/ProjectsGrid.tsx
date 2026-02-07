@@ -13,10 +13,10 @@ export const ProjectsGrid: React.FC<{
       "All",
       ...Array.from(new Set(projects.flatMap((p) => p.tags || []))),
     ],
-    [projects]
+    [projects],
   );
   const visible = projects.filter(
-    (p) => filter === "All" || (p.tags || []).includes(filter)
+    (p) => filter === "All" || (p.tags || []).includes(filter),
   );
 
   return (

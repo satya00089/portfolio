@@ -21,7 +21,7 @@ export const ProjectModal: React.FC<{
   const [readme, setReadme] = useState<string | null>(null);
   const [iframeAllowed, setIframeAllowed] = useState(false);
   const [activeTab, setActiveTab] = useState<"details" | "playground">(
-    "details"
+    "details",
   );
   const [iframeLoaded, setIframeLoaded] = useState(false);
   const [iframeReady, setIframeReady] = useState(false);
@@ -61,7 +61,9 @@ export const ProjectModal: React.FC<{
   useEffect(() => {
     async function fetchReadme() {
       if (!project) return;
-      const githubLink = project.links?.find((l) => l.label.toLowerCase() === "github");
+      const githubLink = project.links?.find(
+        (l) => l.label.toLowerCase() === "github",
+      );
       if (!githubLink) {
         setReadme(null);
         return;
@@ -74,7 +76,7 @@ export const ProjectModal: React.FC<{
 
         const [, owner, repo] = match;
         const res = await fetch(
-          `https://raw.githubusercontent.com/${owner}/${repo}/main/README.md`
+          `https://raw.githubusercontent.com/${owner}/${repo}/main/README.md`,
         );
 
         if (res.ok) {
