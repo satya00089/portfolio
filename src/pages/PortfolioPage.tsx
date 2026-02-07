@@ -55,13 +55,17 @@ const PortfolioPage: React.FC = () => {
           interactive={true}
         />
       </div>
+
       <main className="max-w-6xl 2xl:max-w-9xl mx-auto px-6 py-15 sm:py-20 lg:py-32 relative z-20">
         <section id="projects" className="py-8">
           <h2 className="text-2xl font-semibold text-[var(--brand)]">Projects</h2>
           <p className="mb-6 text-sm text-gray-500 dark:text-gray-400 mt-1">
             Selected work — click a card for details.
           </p>
-          <ProjectsGrid projects={PORTFOLIO_INFO.projects} onOpen={setSelected} />
+          <ProjectsGrid
+            projects={PORTFOLIO_INFO.projects}
+            onOpen={setSelected}
+          />
         </section>
 
         <section id="skills" className="py-8">
