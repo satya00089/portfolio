@@ -6,6 +6,7 @@ import type { Project } from "../types/portfolio";
 import * as SiIcons from "react-icons/si";
 import * as FaIcons from "react-icons/fa";
 import { BsArrowUpRightCircleFill } from "react-icons/bs";
+import {CardContainer} from "./CardContainer";
 
 export const ProjectCard: React.FC<{
   project: Project;
@@ -24,18 +25,26 @@ export const ProjectCard: React.FC<{
   const hiddenCount = (project?.tags?.length ?? 0) - VISIBLE_COUNT;
 
   return (
-    <motion.article
-      layout
-      whileHover={{ y: -6 }}
-      className="p-4 group rounded-2xl bg-[var(--surface)] border border-[var(--border)] shadow-sm hover:shadow-md transition-shadow"
+    <CardContainer
+      href={project.href}
+      onActivate={() => onOpen?.(project)}
+      containerClassName="w-full h-full"
     >
-      <div className="flex items-start justify-between gap-4">
-        <div>
+      <motion.article
+        layout
+        whileHover={{ y: -6 }}
+        className="p-4 group rounded-2xl bg-[var(--surface)] border border-[var(--border)] shadow-sm hover:shadow-md transition-shadow h-full"
+      >
+        <div className="flex items-start justify-between gap-4">
+          <div>
           {/* Arrow overlay */}
           <button
             title="Open project"
             type="button"
-            onClick={() => onOpen?.(project)}
+            onClick={(e) => {
+              e.stopPropagation();
+              onOpen?.(project);
+            }}
             className="absolute top-2 right-2 
                     bg-[var(--surface)]/80 backdrop-blur-sm 
                     rounded-full shadow-md cursor-pointer
@@ -59,7 +68,10 @@ export const ProjectCard: React.FC<{
           <button
             title="Open project"
             type="button"
-            onClick={() => onOpen?.(project)}
+            onClick={(e) => {
+              e.stopPropagation();
+              onOpen?.(project);
+            }}
             className="font-bold text-xl text-[var(--brand)] cursor-pointer"
           >
             {project.title}
@@ -130,6 +142,7 @@ export const ProjectCard: React.FC<{
           </div>
         </div>
       </div>
-    </motion.article>
+      </motion.article>
+  </CardContainer>
   );
 };

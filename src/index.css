@@ -43,41 +43,12 @@ html, body {
 
 /* Professional Geometric Background Pattern */
 body {
+  /* Keep only subtle accent gradients; remove grid/dot patterns */
   background-image: 
-    /* Large accent gradient top-right */
     radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.03) 0%, transparent 50%),
-    /* Large accent gradient bottom-left */
-    radial-gradient(circle at 20% 80%, rgba(236, 72, 153, 0.03) 0%, transparent 50%),
-    /* Dot grid pattern */
-    radial-gradient(circle at center, var(--border) 1px, transparent 1px),
-    /* Grid lines - vertical */
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 59px,
-      var(--border) 59px,
-      var(--border) 60px
-    ),
-    /* Grid lines - horizontal */
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 59px,
-      var(--border) 59px,
-      var(--border) 60px
-    );
-  background-size: 
-    100% 100%,
-    100% 100%,
-    20px 20px,
-    60px 60px,
-    60px 60px;
-  background-position:
-    0 0,
-    0 0,
-    0 0,
-    0 0,
-    0 0;
+    radial-gradient(circle at 20% 80%, rgba(236, 72, 153, 0.03) 0%, transparent 50%);
+  background-size: 100% 100%, 100% 100%;
+  background-position: 0 0, 0 0;
 }
 
 /* small utilities you can reuse (optional) */

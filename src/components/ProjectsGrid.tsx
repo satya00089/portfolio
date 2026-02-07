@@ -42,10 +42,12 @@ export const ProjectsGrid: React.FC<{
       <div
         className={`${
           showFilters ? "mt-6" : ""
-        } grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6`}
+        } grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr`}
       >
         {visible.map((p) => (
-          <ProjectCard key={p.id} project={p} onOpen={onOpen} />
+          <div key={p.id} className="h-full">
+            <ProjectCard project={p} onOpen={onOpen} />
+          </div>
         ))}
       </div>
     </section>
