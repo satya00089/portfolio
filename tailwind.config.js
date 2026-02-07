@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   // Use class strategy so you can toggle dark mode programmatically (e.g. ThemeProvider).
-  darkMode: 'class',
+  darkMode: "class",
 
   // include TS/TSX files and other templates so Tailwind picks up all utilities
   content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
@@ -31,5 +31,8 @@ module.exports = {
       },
     },
   },
-  plugins: [require("@tailwindcss/line-clamp"), require('@tailwindcss/typography')],
+  plugins: [
+    require("@tailwindcss/line-clamp"),
+    require("@tailwindcss/typography"),
+  ],
 };

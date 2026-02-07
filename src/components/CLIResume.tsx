@@ -100,13 +100,13 @@ export default function CLIResume({ open = false, onClose }: Props) {
         i++;
         setHistory((h) =>
           h.map((it) =>
-            it.meta?.id === id ? { ...it, text: text.slice(0, i) } : it
-          )
+            it.meta?.id === id ? { ...it, text: text.slice(0, i) } : it,
+          ),
         );
         if (i < text.length) setTimeout(step, speed + Math.random() * 8);
         else {
           setHistory((h) =>
-            h.map((it) => (it.meta?.id === id ? { kind: "out", text } : it))
+            h.map((it) => (it.meta?.id === id ? { kind: "out", text } : it)),
           );
           resolve();
         }
@@ -156,7 +156,7 @@ export default function CLIResume({ open = false, onClose }: Props) {
               "contact — Show contact links",
               "clear — Clear terminal",
             ].join("\n") + "\n",
-            6
+            6,
           );
           break;
         case "about": {
@@ -165,14 +165,14 @@ export default function CLIResume({ open = false, onClose }: Props) {
           await typeOut(`${p.name} — ${p.title}\n\n${s}\n`);
           if (resumeData?.highlights?.length) {
             await typeOut(
-              `\nHighlights:\n- ${resumeData.highlights.join("\n- ")}\n`
+              `\nHighlights:\n- ${resumeData.highlights.join("\n- ")}\n`,
             );
           }
           break;
         }
         case "whoami":
           await typeOut(
-            `${resumeData.personal.name} — ${resumeData.personal.title}\n`
+            `${resumeData.personal.name} — ${resumeData.personal.title}\n`,
           );
           break;
         case "skills":
@@ -185,7 +185,7 @@ export default function CLIResume({ open = false, onClose }: Props) {
               `${group.title ?? "Skills"}: ${group.skills
                 .map((s) => s.name)
                 .join(", ")}\n`,
-              8
+              8,
             );
           }
           break;
@@ -199,7 +199,7 @@ export default function CLIResume({ open = false, onClose }: Props) {
               `${p.id ?? "(no-id)"}: ${p.title} — ${
                 p.short ?? p.description ?? ""
               }\n`,
-              10
+              10,
             );
           }
           await typeOut(`\nOpen a project: open <project-id>\n`);
@@ -214,7 +214,7 @@ export default function CLIResume({ open = false, onClose }: Props) {
               `${r.id ?? "(no-id)"}: ${r.title} @ ${
                 r.company ?? ""
               } — ${formatDateRange(r.date)}\n`,
-              6
+              6,
             );
           }
           await typeOut(`\nView role details: role <id>\n`);
@@ -228,15 +228,15 @@ export default function CLIResume({ open = false, onClose }: Props) {
           const found = (resumeData.experience || []).find((x) => x.id === id);
           if (!found) {
             await typeOut(
-              `No role found with id "${id}". Use 'experience' to list ids.\n`
+              `No role found with id "${id}". Use 'experience' to list ids.\n`,
             );
             break;
           }
           await typeOut(
             `${found.title} @ ${found.company ?? ""} — ${formatDateRange(
-              found.date
+              found.date,
             )}\n\n`,
-            6
+            6,
           );
           if (found.summary) await typeOut(`${found.summary}\n\n`);
           if (found.bullets) {
@@ -264,7 +264,7 @@ export default function CLIResume({ open = false, onClose }: Props) {
               window.open(url, "_blank", "noopener");
             } else {
               await typeOut(
-                "No resume URL found in resume.meta or personal.contact.website.\n"
+                "No resume URL found in resume.meta or personal.contact.website.\n",
               );
             }
             break;
@@ -281,7 +281,7 @@ export default function CLIResume({ open = false, onClose }: Props) {
             break;
           }
           const role = (resumeData.experience || []).find(
-            (r) => r.id === target
+            (r) => r.id === target,
           );
           if (role) {
             if (role.link) {
@@ -309,7 +309,7 @@ export default function CLIResume({ open = false, onClose }: Props) {
             await typeOut("Downloading resume JSON.\n");
             downloadJson(
               resumeData,
-              `${resumeData.personal.name.replace(/\s+/g, "_")}_resume.json`
+              `${resumeData.personal.name.replace(/\s+/g, "_")}_resume.json`,
             );
           } else {
             const url =
@@ -475,8 +475,8 @@ export default function CLIResume({ open = false, onClose }: Props) {
               fullscreen
                 ? "h-full mt-0 rounded-none"
                 : minimized
-                ? "h-12"
-                : "h-[420px] rounded-xl"
+                  ? "h-12"
+                  : "h-[420px] rounded-xl"
             } border shadow-2xl overflow-hidden`}
           style={{
             background: "var(--surface)",
@@ -651,7 +651,7 @@ export default function CLIResume({ open = false, onClose }: Props) {
 
 /* ---------------- helper ---------------- */
 function formatDateRange(
-  d?: string | { start?: string; end?: string; present?: boolean } | undefined
+  d?: string | { start?: string; end?: string; present?: boolean } | undefined,
 ) {
   if (!d) return "";
   if (typeof d === "string") return d;

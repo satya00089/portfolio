@@ -42,13 +42,15 @@ To help us assess and fix the vulnerability quickly, please include:
 ```markdown
 **Vulnerability Type:** Cross-Site Scripting (XSS)
 
-**Affected File(s):** 
+**Affected File(s):**
+
 - src/components/ContactForm.tsx
 
 **Description:**
 A detailed description of the vulnerability...
 
 **Steps to Reproduce:**
+
 1. Navigate to the contact form
 2. Enter the following in the message field: `<script>alert('XSS')</script>`
 3. Submit the form
@@ -68,13 +70,13 @@ Any other relevant information...
 
 We take security reports seriously and will respond according to the following timeline:
 
-| Step | Timeline |
-|------|----------|
-| **Initial Response** | Within 48 hours |
+| Step                         | Timeline               |
+| ---------------------------- | ---------------------- |
+| **Initial Response**         | Within 48 hours        |
 | **Vulnerability Assessment** | Within 5 business days |
-| **Fix Development** | Depends on severity |
-| **Patch Release** | As soon as possible |
-| **Public Disclosure** | After fix is deployed |
+| **Fix Development**          | Depends on severity    |
+| **Patch Release**            | As soon as possible    |
+| **Public Disclosure**        | After fix is deployed  |
 
 ### Severity Levels
 
@@ -99,6 +101,7 @@ After you submit a report:
 ### For Developers Using This Template
 
 1. **Keep Dependencies Updated**
+
    ```bash
    npm audit
    npm audit fix

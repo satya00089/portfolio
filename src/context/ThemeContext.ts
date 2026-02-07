@@ -6,7 +6,9 @@ export type ThemeContextType = {
 };
 
 // Only defines context + hook (no component exports) — keeps fast refresh happy.
-export const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+export const ThemeContext = createContext<ThemeContextType | undefined>(
+  undefined,
+);
 
 export function useTheme() {
   const ctx = useContext(ThemeContext);

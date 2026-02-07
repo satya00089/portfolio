@@ -11,12 +11,10 @@ export const SkillsList: React.FC<{
 }> = ({ skills = [], isBar = true }) => {
   const groupTitles = useMemo(
     () => skills.map((g) => g.title ?? "Other"),
-    [skills]
+    [skills],
   );
 
-  const [selectedTitles, setSelectedTitles] = useState<(string)[]>([
-    "all",
-  ]);
+  const [selectedTitles, setSelectedTitles] = useState<string[]>(["all"]);
   const [expanded, setExpanded] = useState(false);
 
   const contentRef = useRef<HTMLDivElement | null>(null);

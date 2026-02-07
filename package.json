@@ -10,6 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "deploy": "gh-pages -d dist",
+    "format": "prettier --write .",
     "tw:init": "tailwindcss init -p"
   },
   "dependencies": {
@@ -42,6 +43,7 @@
     "gh-pages": "^6.3.0",
     "globals": "^16.3.0",
     "postcss": "^8.5.6",
+    "prettier": "^3.8.1",
     "tailwindcss": "^4.1.12",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.39.1",

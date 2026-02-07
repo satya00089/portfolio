@@ -18,7 +18,7 @@ export const ContactForm: React.FC<{
   const DEFAULT_TO = sendTo ?? import.meta.env.VITE_CONTACT_EMAIL ?? "";
 
   function update(
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) {
     const { name, value } = e.target;
     setState((s) => ({ ...s, [name]: value }));
@@ -35,10 +35,10 @@ export const ContactForm: React.FC<{
     // require a recipient address somewhere (either env or passed prop)
     if (!DEFAULT_TO) {
       console.warn(
-        "ContactForm: no recipient configured. Set VITE_CONTACT_EMAIL or pass sendTo prop."
+        "ContactForm: no recipient configured. Set VITE_CONTACT_EMAIL or pass sendTo prop.",
       );
       setErrorMsg(
-        "Recipient address not configured. Contact admin to enable messaging."
+        "Recipient address not configured. Contact admin to enable messaging.",
       );
       setSuccess(false);
       setLoading(false);
@@ -82,7 +82,9 @@ export const ContactForm: React.FC<{
 
   return (
     <form onSubmit={onSubmit} className="grid gap-3" aria-live="polite">
-      <label htmlFor="name" className="text-sm text-[var(--text)]">Name</label>
+      <label htmlFor="name" className="text-sm text-[var(--text)]">
+        Name
+      </label>
       <input
         id="name"
         name="name"
@@ -90,8 +92,11 @@ export const ContactForm: React.FC<{
         placeholder="Your name"
         value={state.name}
         onChange={update}
-        className="w-full px-3 py-2 rounded-md bg-[var(--surface)] border border-[var(--border)] text-[var(--text)]" />
-      <label htmlFor="email" className="text-sm text-[var(--text)]">Email</label>
+        className="w-full px-3 py-2 rounded-md bg-[var(--surface)] border border-[var(--border)] text-[var(--text)]"
+      />
+      <label htmlFor="email" className="text-sm text-[var(--text)]">
+        Email
+      </label>
       <input
         id="email"
         name="email"
@@ -100,8 +105,11 @@ export const ContactForm: React.FC<{
         placeholder="Your email"
         value={state.email}
         onChange={update}
-        className="w-full px-3 py-2 rounded-md bg-[var(--surface)] border border-[var(--border)] text-[var(--text)]" />
-      <label htmlFor="message" className="text-sm text-[var(--text)]">Message</label>
+        className="w-full px-3 py-2 rounded-md bg-[var(--surface)] border border-[var(--border)] text-[var(--text)]"
+      />
+      <label htmlFor="message" className="text-sm text-[var(--text)]">
+        Message
+      </label>
       <textarea
         id="message"
         name="message"

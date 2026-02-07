@@ -5,7 +5,7 @@ A modern, responsive portfolio website built with React, TypeScript, and Tailwin
 🔗 **Live Demo**: [https://satya00089.github.io/portfolio](https://satya00089.github.io/portfolio)
 
 > Free, modern developer portfolio template with:
-> 
+>
 > - CLI-style resume
 > - Animated skill visualizations
 > - Dark/light theme
@@ -70,18 +70,21 @@ All site content (projects, skills, education, experience, and basic profile inf
 ## 🛠️ Tech Stack
 
 ### Core
+
 - **React 19** - UI framework
 - **TypeScript** - Type safety and better developer experience
 - **Vite** - Fast build tool and dev server
 - **React Router DOM** - Client-side routing
 
 ### Styling
+
 - **Tailwind CSS 4** - Utility-first CSS framework
 - **Framer Motion** - Animation library
 - **Lucide React** - Icon library
 - **React Icons** - Additional icon sets
 
 ### Additional Libraries
+
 - **React Markdown** - Markdown rendering
 - **React Circular Progressbar** - Skill visualization
 - **React Scroll** - Smooth scrolling functionality
@@ -107,23 +110,27 @@ src/
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - Node.js (v18 or higher)
 - npm or yarn package manager
 
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/satya00089/portfolio.git
 cd portfolio
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Start the development server:
+
 ```bash
 npm run dev
 ```
@@ -141,7 +148,9 @@ npm run dev
 ## 🎨 Customization
 
 ### Update Portfolio Data
+
 Edit `src/config/portfolioData.ts` to customize:
+
 - Personal information
 - Projects
 - Skills
@@ -149,9 +158,11 @@ Edit `src/config/portfolioData.ts` to customize:
 - Education
 
 ### Modify Theme
+
 Theme configuration is managed through `src/context/ThemeContext.ts` and `src/components/ThemeProvider.tsx`.
 
 ### Styling
+
 Tailwind configuration can be modified in `tailwind.config.js`.
 
 ## 🌐 Deployment
@@ -161,6 +172,7 @@ This project is configured for deployment to GitHub Pages:
 1. Update the `homepage` field in `package.json` with your GitHub Pages URL
 2. Update the `base` field in `vite.config.ts` to match your repository name
 3. Run the deployment command:
+
 ```bash
 npm run deploy
 ```
@@ -172,6 +184,7 @@ This project is open source and available under the [MIT License](LICENSE).
 ## 👤 Author
 
 **Satya Subudhi**
+
 - GitHub: [@satya00089](https://github.com/satya00089)
 - Email: satyasubudhi089@gmail.com
 

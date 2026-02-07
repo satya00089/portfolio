@@ -264,7 +264,9 @@ export const Resume: React.FC<{ className?: string }> = ({
                     ) : null}
                   </div>
                   <div className="text-[var(--muted)]">
-                    {typeof p.date === "string" ? p.date : p.date?.start ?? ""}
+                    {typeof p.date === "string"
+                      ? p.date
+                      : (p.date?.start ?? "")}
                   </div>
                 </div>
                 {p.description && (
@@ -305,7 +307,7 @@ export const Resume: React.FC<{ className?: string }> = ({
                 <div className="text-[var(--muted)]">
                   {typeof ed.date === "string"
                     ? ed.date
-                    : ed.date?.start ?? ed.date?.end ?? ""}
+                    : (ed.date?.start ?? ed.date?.end ?? "")}
                 </div>
               </div>
             ))}
@@ -360,7 +362,7 @@ export const Resume: React.FC<{ className?: string }> = ({
                   <span className="text-xs text-[var(--muted)] ml-3">
                     {typeof c.date === "string"
                       ? c.date
-                      : c.date.start ?? c.date.end}
+                      : (c.date.start ?? c.date.end)}
                   </span>
                 )}
               </li>
