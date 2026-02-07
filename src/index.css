@@ -58,10 +58,15 @@ body {
 
 /* Translucent panel utilities (use instead of ad-hoc bg-white/20 etc.) */
 .panel-translucent {
+  /* translucent panel with robust fallbacks for wide browser support */
   background-color: var(--translucent-surface);
-  border: 1px solid color-mix(in srgb, var(--translucent-surface) 40%, transparent);
-  backdrop-filter: blur(6px);
+  /* fallback border color when color-mix is not supported */
+  border: 1px solid rgba(255,255,255,0.06);
+  /* prefer color-mix if available for better contrast with theme tokens */
+  border-color: color-mix(in srgb, var(--translucent-surface) 40%, transparent);
+  /* apply blur where supported */
   -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
   transition: background-color 180ms ease, box-shadow 180ms ease, border-color 180ms ease, transform 180ms ease;
 }
 
