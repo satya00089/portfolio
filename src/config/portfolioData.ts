@@ -11,9 +11,19 @@ export const PORTFOLIO_INFO: Portfolio = {
     name: "Satya Subudhi",
     title: "Senior Engineer — Full Stack (Python & React)",
     headline: "React · Python · FastAPI · IaC · Cloud",
-    avatar: "./profile.jpg",
+    // avatar can be a string, an object with { url, label }, or an array of those.
+    avatar: [
+      // use public root path so Vite serves the static asset from /public/profile.jpg
+      { url: "./profile.jpg", label: "" },
+      { url: "./profile1.jpg", label: "" },
+    ],
     summary:
       "Senior Engineer with 7+ years of experience delivering enterprise-grade applications. Over the last 3 years I have focused on building production systems using Python (FastAPI) and React — designing APIs, building responsive frontends, and automating deployments with IaC. Experienced across AWS & Azure and comfortable owning full delivery from design to production.",
+    // optional hero summary used in the site hero; keeps a concise, senior-level intro tuned to your data
+    hero: {
+      summary:
+        "Senior Engineer & product-focused Full Stack developer (React, TypeScript, Python/FastAPI). I design resilient component systems, build production-grade APIs, and optimize for performance and accessibility — driving features from design through delivery on cloud platforms.",
+    },
     contact: {
       email: "satyasubudhi089@gmail.com",
       phone: "+91 9937 446 070",
@@ -46,7 +56,7 @@ export const PORTFOLIO_INFO: Portfolio = {
   },
   highlights: [
     "Senior Engineer at Unisys (Jun 2025 – Present)",
-    "3+ years focused on Python (FastAPI) and React",
+    "5+ years focused on Python (FastAPI) and React",
     "Experienced with AWS, Azure, Terraform, and CI/CD pipelines",
   ],
   skills: [
@@ -413,7 +423,8 @@ export const PORTFOLIO_INFO: Portfolio = {
       description:
         "Interactive visualizations that transform abstract concepts into intuitive understanding. Watch sorting, searching, and ML algorithms execute step-by-step.",
       tags: ["Algorithms", "DSA", "ML", "AI", "Visualization", "Next.js"],
-      image: "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExYXpqYWFhbnBraWt3ZXhvajZsdjg5andyMGZzY2VibGg3bXE0MWxwayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/2PuPWxuLV1FGyh03Ja/giphy.gif",
+      image:
+        "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExYXpqYWFhbnBraWt3ZXhvajZsdjg5andyMGZzY2VibGg3bXE0MWxwayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/2PuPWxuLV1FGyh03Ja/giphy.gif",
       href: "https://www.learn-algo.com",
       links: [
         {

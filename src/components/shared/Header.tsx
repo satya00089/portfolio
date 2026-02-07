@@ -10,7 +10,6 @@ import {
 } from "framer-motion";
 import { PiSunDuotone, PiMoonDuotone } from "react-icons/pi";
 import { useTheme } from "../../context/ThemeContext";
-import { PORTFOLIO_INFO } from "../../config/portfolioData";
 
 type NavLink = { href: string; label: string };
 
@@ -21,7 +20,6 @@ export const Header: React.FC<{ links?: NavLink[]; onTryCLI?: () => void }> = ({
   const { dark, toggle } = useTheme();
   const headerRef = useRef<HTMLElement | null>(null);
 
-  const PERSONAL = PORTFOLIO_INFO.personal;
 
   const [active, setActive] = useState<string>(links[0]?.href ?? "#about");
   useEffect(() => {
@@ -70,19 +68,40 @@ export const Header: React.FC<{ links?: NavLink[]; onTryCLI?: () => void }> = ({
   };
 
   const { scrollY } = useScroll();
-  const blurPx = useTransform(scrollY, [0, 200], [8, 16]);
-  const overlayOpacity = useTransform(scrollY, [0, 200], [0.08, 0.14]);
+  const blurPx = useTransform(scrollY, [0, 100], [0, 16]);
+  const bgOpacity = useTransform(scrollY, [0, 100], [0, 0.8]);
+  const borderOpacity = useTransform(scrollY, [0, 100], [0, 1]);
+  const overlayOpacity = useTransform(scrollY, [0, 100], [0, 0.14]);
   const backdrop = useMotionTemplate`blur(${blurPx}px)`;
 
-  const BASE = import.meta.env.BASE_URL || "/";
+  // NOTE: previously read PORTFOLIO_INFO.personal and BASE_URL here; removed unused bindings to satisfy TS checks.
 
   return (
     <motion.header
       ref={headerRef}
-      className="fixed top-0 left-0 z-50 w-full border-b border-theme bg-[var(--surface)]/80 backdrop-blur-sm"
-      style={{ backdropFilter: backdrop, WebkitBackdropFilter: backdrop }}
+      className="fixed top-0 left-0 z-50 w-full"
+      style={{ 
+        backdropFilter: backdrop, 
+        WebkitBackdropFilter: backdrop,
+      }}
     >
-      {/* animated overlay to add subtle tint regardless of theme */}
+      {/* Background layer */}
+      <motion.div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none bg-[var(--surface)]"
+        style={{
+          opacity: bgOpacity,
+        }}
+      />
+      {/* Border layer */}
+      <motion.div
+        aria-hidden
+        className="absolute inset-x-0 bottom-0 h-px pointer-events-none bg-[var(--border)]"
+        style={{
+          opacity: borderOpacity,
+        }}
+      />
+      {/* Dark overlay for depth */}
       <motion.div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
@@ -91,30 +110,7 @@ export const Header: React.FC<{ links?: NavLink[]; onTryCLI?: () => void }> = ({
           opacity: overlayOpacity,
         }}
       />
-      <div className="relative max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Left: brand/home */}
-        <a
-          href={BASE}
-          className="flex items-center gap-3 text-lg font-semibold text-[var(--text)]"
-        >
-          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-400 to-pink-400 flex items-center justify-center text-2xl font-bold text-white overflow-hidden">
-            {PERSONAL.avatar ? (
-              <img
-                className="w-full h-full object-cover rounded-2xl"
-                src={PERSONAL.avatar}
-                alt="profile"
-              />
-            ) : (
-              PERSONAL.name?.split(" ")?.[0]?.[0]
-            )}
-          </div>
-          <span className="sr-only">Home</span>
-          <div className="hidden sm:block leading-tight">
-            <div className="font-bold text-[var(--brand)]">{PERSONAL.name}</div>
-            <div className="text-xs text-[var(--muted)]">{PERSONAL.title}</div>
-          </div>
-        </a>
-
+      <div className="relative max-w-6xl mx-auto px-6 py-4 flex items-center justify-end">
         {/* Right: nav + theme + Try CLI */}
         <nav aria-label="Primary" className="relative flex items-center gap-3">
           <div className="relative hidden sm:flex gap-4">

@@ -13,6 +13,8 @@ import { ProjectModal } from "../components/ProjectModal";
 import { ScrollProgressBar } from "../components/shared/ScrollProgressBar";
 import { ScrollToTop } from "../components/shared/ScrollToTop";
 import CLIResume from "../components/CLIResume";
+import { BackgroundBeams } from "../components/BackgroundBeams";
+import CurvedLoop from "../components/CurvedLoop";
 
 const PortfolioPage: React.FC = () => {
   const [selected, setSelected] = useState<Project | null>(null);
@@ -33,14 +35,28 @@ const PortfolioPage: React.FC = () => {
       {/* CLI panel (docked / overlay) */}
       <CLIResume open={showCLI} onClose={() => setShowCLI(false)} />
 
-      <main className="max-w-6xl 2xl:max-w-9xl mx-auto px-6 py-10">
-        <section
-          id="about"
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start pt-40 pb-8"
-        >
-          <About personal={PORTFOLIO_INFO.personal} />
-        </section>
+      <section id="about" className="relative w-full flex items-center justify-center px-4 sm:px-6 lg:px-8 pb-0" style={{ height: '100vh' }}>
+        <div className="absolute inset-0 z-0" style={{ height: '140vh' }}>
+          <BackgroundBeams />
+        </div>
+        <div className="relative z-10 w-full max-w-6xl 2xl:max-w-7xl mx-auto py-20 sm:py-24 lg:py-32">
+          <div className="grid items-center">
+            <About />
+          </div>
+        </div>
+      </section>
+      <div className="w-full bg-[var(--background)] pt-8 pb-8 relative z-20">
+        <CurvedLoop
+          marqueeText={PORTFOLIO_INFO.personal.headline + ' · '}
+          speed={1}
+          className="text-2xl text-[var(--text)] bg-[var(--surface)]"
+          curveAmount={400}
+          direction="left"
+          interactive={true}
+        />
+      </div>
 
+      <main className="max-w-6xl 2xl:max-w-9xl mx-auto px-6 py-15 sm:py-20 lg:py-32 relative z-20">
         <section id="projects" className="py-8">
           <h2 className="text-2xl font-semibold text-[var(--brand)]">
             Projects
@@ -48,7 +64,10 @@ const PortfolioPage: React.FC = () => {
           <p className="mb-6 text-sm text-gray-500 dark:text-gray-400 mt-1">
             Selected work — click a card for details.
           </p>
-          <ProjectsGrid projects={PORTFOLIO_INFO.projects} onOpen={setSelected} />
+          <ProjectsGrid
+            projects={PORTFOLIO_INFO.projects}
+            onOpen={setSelected}
+          />
         </section>
 
         <section id="skills" className="py-8">
