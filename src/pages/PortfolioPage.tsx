@@ -40,8 +40,8 @@ const PortfolioPage: React.FC = () => {
           <BackgroundBeams />
         </div>
         <div className="relative z-10 w-full max-w-6xl 2xl:max-w-7xl mx-auto py-20 sm:py-24 lg:py-32">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 items-center">
-            <About personal={PORTFOLIO_INFO.personal} />
+          <div className="grid items-center">
+            <About />
           </div>
         </div>
       </section>
@@ -56,7 +56,7 @@ const PortfolioPage: React.FC = () => {
         />
       </div>
 
-      <main className="max-w-6xl 2xl:max-w-9xl mx-auto px-6 py-10">
+      <main className="max-w-6xl 2xl:max-w-9xl mx-auto px-6 py-15 sm:py-20 lg:py-32 relative z-20">
         <section id="projects" className="py-8">
           <h2 className="text-2xl font-semibold text-[var(--brand)]">
             Projects

@@ -11,6 +11,11 @@
   --border: #e6e9ee;       /* subtle borders */
   --brand: #6366f1;        /* primary accent (indigo-500) */
   --accent: #ec4899;       /* secondary accent */
+
+  /* translucent background tokens (used for panels with blur) */
+  --translucent-surface: rgba(255,255,255,0.06);
+  --translucent-surface-strong: rgba(255,255,255,0.12);
+  --translucent-accent: rgba(99,102,241,0.06);
 }
 
 /* dark theme tokens */
@@ -22,6 +27,11 @@
   --border: #19232e;
   --brand: #7c3aed;
   --accent: #f472b6;
+
+  /* dark-mode translucent tokens */
+  --translucent-surface: rgba(15,23,36,0.14);
+  --translucent-surface-strong: rgba(15,23,36,0.22);
+  --translucent-accent: rgba(124,58,237,0.10);
 }
 
 /* apply defaults so non-Tailwind elements inherit colors */
@@ -33,47 +43,137 @@ html, body {
 
 /* Professional Geometric Background Pattern */
 body {
-  background-image: 
+  background-image:
     /* Large accent gradient top-right */
     radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.03) 0%, transparent 50%),
     /* Large accent gradient bottom-left */
-    radial-gradient(circle at 20% 80%, rgba(236, 72, 153, 0.03) 0%, transparent 50%),
-    /* Dot grid pattern */
-    radial-gradient(circle at center, var(--border) 1px, transparent 1px),
-    /* Grid lines - vertical */
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 59px,
-      var(--border) 59px,
-      var(--border) 60px
-    ),
-    /* Grid lines - horizontal */
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 59px,
-      var(--border) 59px,
-      var(--border) 60px
-    );
-  background-size: 
-    100% 100%,
-    100% 100%,
-    20px 20px,
-    60px 60px,
-    60px 60px;
-  background-position:
-    0 0,
-    0 0,
-    0 0,
-    0 0,
-    0 0;
+    radial-gradient(circle at 20% 80%, rgba(236, 72, 153, 0.03) 0%, transparent 50%);
+  background-size: 100% 100%, 100% 100%;
+  background-position: 0 0, 0 0;
 }
 
 /* small utilities you can reuse (optional) */
 .bg-surface { background-color: var(--surface); }
 .text-muted { color: var(--muted); }
 .border-theme { border-color: var(--border); }
+
+/* Translucent panel utilities (use instead of ad-hoc bg-white/20 etc.) */
+.panel-translucent {
+  background-color: var(--translucent-surface);
+  border: 1px solid color-mix(in srgb, var(--translucent-surface) 40%, transparent);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: background-color 180ms ease, box-shadow 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.panel-translucent-strong {
+  background-color: var(--translucent-surface-strong);
+  border: 1px solid color-mix(in srgb, var(--translucent-surface-strong) 40%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.panel-translucent-accent {
+  background-color: var(--translucent-accent);
+  border: 1px solid color-mix(in srgb, var(--translucent-accent) 40%, transparent);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.chip-translucent {
+  background-color: color-mix(in srgb, var(--translucent-surface) 70%, transparent);
+  padding: 4px 8px;
+  border-radius: 9999px;
+}
+
+/* Non-rectangular panel shapes using CSS clip-path */
+.panel-hex {
+  clip-path: polygon(25% 6%, 75% 6%, 100% 50%, 75% 94%, 25% 94%, 0% 50%);
+}
+
+.panel-diagonal {
+  clip-path: polygon(0 6%, 100% 0, 100% 94%, 0 100%);
+}
+
+.panel-pill {
+  border-radius: 999px; /* pill-like */
+}
+
+/* subtle organic blob using an SVG path fallback for modern browsers */
+.panel-blob {
+  -webkit-clip-path: path('M74.8 3.2C87.3 6.1 97.7 13.3 103.4 23.5C109 33.7 109.1 46 104.3 57.2C99.6 68.4 90 78.6 78 84.9C66.1 91.1 51.8 93.3 38.6 91.1C25.4 89 13.2 82.6 6.1 72.8C-0.9 62.9 -3.9 49.7 0.4 38.8C4.8 27.8 14.5 19 25.9 13.2C37.2 7.5 50.8 4.4 64.9 3.4C69.7 3.1 72.6 2.7 74.8 3.2Z');
+  clip-path: path('M74.8 3.2C87.3 6.1 97.7 13.3 103.4 23.5C109 33.7 109.1 46 104.3 57.2C99.6 68.4 90 78.6 78 84.9C66.1 91.1 51.8 93.3 38.6 91.1C25.4 89 13.2 82.6 6.1 72.8C-0.9 62.9 -3.9 49.7 0.4 38.8C4.8 27.8 14.5 19 25.9 13.2C37.2 7.5 50.8 4.4 64.9 3.4C69.7 3.1 72.6 2.7 74.8 3.2Z');
+}
+
+/* Poached-egg decorative background (keeps content unclipped by using ::before) */
+.panel-egg {
+  position: relative;
+  overflow: visible;
+  /* ensure panel-translucent default background does not cover the pseudo-element */
+  background-color: transparent !important;
+  border: none !important;
+}
+
+/* Decorative poached-egg pseudo-element: soft off-center ellipse with subtle yolk */
+
+.panel-egg::before {
+  content: "";
+  position: absolute;
+  inset: -8% -6% -8% -6%;
+  /* base translucent panel look (moved from .panel-translucent) */
+  background-color: var(--translucent-surface);
+  border: 1px solid color-mix(in srgb, var(--translucent-surface) 40%, transparent);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  /* egg-white + subtle yolk layered on top */
+  background-image:
+    radial-gradient(40% 30% at 35% 35%, rgba(250,240,210,0.88) 0%, rgba(250,240,210,0.66) 6%, rgba(255,255,255,0.02) 30%),
+    radial-gradient(80% 60% at 60% 60%, rgba(255,205,80,0.10) 0%, rgba(255,205,80,0.04) 12%, transparent 30%);
+  background-repeat: no-repeat;
+  background-blend-mode: overlay;
+  border-radius: inherit;
+  transform: rotate(-6deg) scale(1.02);
+  filter: blur(6px);
+  z-index: 0;
+  pointer-events: none;
+  mix-blend-mode: normal;
+  opacity: 0.98;
+}
+
+/* ensure content sits above the decorative pseudo-element */
+.panel-egg > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Random asymmetric clip that intentionally hides part of the panel content.
+   Use for decorative effect. On small screens the clip is removed so content remains readable. */
+.panel-random {
+  /* irregular polygon that cuts into the right side */
+  clip-path: polygon(0% 0%, 68% 4%, 92% 28%, 76% 72%, 52% 92%, 0% 100%);
+}
+
+@media (max-width: 768px) {
+  .panel-random {
+    clip-path: none;
+    border-radius: 1rem; /* fall back to rounded rectangle on small screens */
+  }
+}
+
+/* Make translucent panels solid on hover/focus for a stronger affordance */
+.panel-translucent:hover,
+.panel-translucent:focus-within {
+  background-color: var(--surface);
+  border-color: color-mix(in srgb, var(--surface) 80%, transparent);
+  box-shadow: 0 10px 30px -12px rgba(2,6,23,0.12);
+  transform: translateY(-2px);
+}
+
+/* Optional: make the chip solid on hover for interactivity */
+.chip-translucent:hover,
+.chip-translucent:focus {
+  background-color: color-mix(in srgb, var(--translucent-surface-strong) 90%, transparent);
+}
 
 /* Global scrollbar styling */
 ::-webkit-scrollbar {
@@ -142,43 +242,9 @@ body {
   .print-only {
     display: none;
   }
-}
-@media print {
-  .screen-only {
-    display: none !important;
-  }
-  .print-only {
-    display: block !important;
-  }
+
 }
 
-
-
-/* subtle moving light + brand glow for CTA buttons */
-.btn-light-flare {
-  position: relative;
-  overflow: hidden;
-  isolation: isolate; /* keep effect contained */
-}
-
-/* sweep / sheen */
-.btn-light-flare::before {
-  content: "";
-  position: absolute;
-  left: -120%;
-  top: 0;
-  width: 60%;
-  height: 100%;
-  pointer-events: none;
-  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.18) 45%, rgba(255,255,255,0.12) 55%, transparent 100%);
-  transform: skewX(-20deg) translateX(0);
-  transition: transform 0.9s cubic-bezier(.2,.9,.2,1);
-  mix-blend-mode: screen;
-  z-index: 1;
-  border-radius: inherit;
-}
-
-/* soft brand glow */
 .btn-light-flare::after {
   content: "";
   position: absolute;

@@ -10,7 +10,6 @@ import {
 } from "framer-motion";
 import { PiSunDuotone, PiMoonDuotone } from "react-icons/pi";
 import { useTheme } from "../../context/ThemeContext";
-import { PORTFOLIO_INFO } from "../../config/portfolioData";
 
 type NavLink = { href: string; label: string };
 
@@ -21,7 +20,6 @@ export const Header: React.FC<{ links?: NavLink[]; onTryCLI?: () => void }> = ({
   const { dark, toggle } = useTheme();
   const headerRef = useRef<HTMLElement | null>(null);
 
-  const PERSONAL = PORTFOLIO_INFO.personal;
 
   const [active, setActive] = useState<string>(links[0]?.href ?? "#about");
   useEffect(() => {
@@ -76,7 +74,7 @@ export const Header: React.FC<{ links?: NavLink[]; onTryCLI?: () => void }> = ({
   const overlayOpacity = useTransform(scrollY, [0, 100], [0, 0.14]);
   const backdrop = useMotionTemplate`blur(${blurPx}px)`;
 
-  const BASE = import.meta.env.BASE_URL || "/";
+  // NOTE: previously read PORTFOLIO_INFO.personal and BASE_URL here; removed unused bindings to satisfy TS checks.
 
   return (
     <motion.header
@@ -112,30 +110,7 @@ export const Header: React.FC<{ links?: NavLink[]; onTryCLI?: () => void }> = ({
           opacity: overlayOpacity,
         }}
       />
-      <div className="relative max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Left: brand/home */}
-        <a
-          href={BASE}
-          className="flex items-center gap-3 text-lg font-semibold text-[var(--text)]"
-        >
-          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-400 to-pink-400 flex items-center justify-center text-2xl font-bold text-white overflow-hidden">
-            {PERSONAL.avatar ? (
-              <img
-                className="w-full h-full object-cover rounded-2xl"
-                src={PERSONAL.avatar}
-                alt="profile"
-              />
-            ) : (
-              PERSONAL.name?.split(" ")?.[0]?.[0]
-            )}
-          </div>
-          <span className="sr-only">Home</span>
-          <div className="hidden sm:block leading-tight">
-            <div className="font-bold text-[var(--brand)]">{PERSONAL.name}</div>
-            <div className="text-xs text-[var(--muted)]">{PERSONAL.title}</div>
-          </div>
-        </a>
-
+      <div className="relative max-w-6xl mx-auto px-6 py-4 flex items-center justify-end">
         {/* Right: nav + theme + Try CLI */}
         <nav aria-label="Primary" className="relative flex items-center gap-3">
           <div className="relative hidden sm:flex gap-4">

@@ -12,33 +12,29 @@ export type TagColors = {
   [tag: string]: string;
 };
 
-
-export type Year = string; // e.g. "2024" or "2024-06"
-
 export type DateRange = {
   start?: string; // "2022-06", "Jun 2022", etc.
   end?: string; // "2024-03" or "Present"
   present?: boolean; // shorthand flag if end is "Present"
 };
 
-export type Url = string;
-export type Email = string;
-export type Phone = string;
+// Use primitive string types for URLs, emails and phones to avoid redundant aliases
+export type AvatarItem = string | { url: string; label?: string };
 
 /* ---------- Contact & Personal ---------- */
 
 export type SocialLink = {
   label: string; // e.g. "GitHub", "LinkedIn"
-  url: Url;
+  url: string;
   icon?: string; // optional icon key (e.g., "SiGithub")
   size?: number; // optional icon size
 };
 
 export type Contact = {
-  email?: Email;
-  phone?: Phone;
+  email?: string;
+  phone?: string;
   location?: string; // e.g. "Remote / New York, USA"
-  website?: Url;
+  website?: string;
   socials?: SocialLink[];
 };
 
@@ -46,8 +42,18 @@ export type Personal = {
   name: string;
   title?: string; // e.g. "Full Stack Developer"
   headline?: string; // short tagline
-  avatar?: Url; // profile image
+  // profile image: single URL or object with optional label, or an array of these
+  // Supports either:
+  // - a single string URL: "https://.../avatar.jpg"
+  // - an object with url and optional label: { url: "...", label: "Portrait" }
+  // - an array of the above to render a carousel
+  avatar?: AvatarItem | AvatarItem[];
   summary?: string; // 1-3 line summary
+  // Optional hero configuration for site hero text
+  hero?: {
+    summary?: string; // concise hero paragraph
+    subtitle?: string; // short subtitle under name
+  };
   contact?: Contact;
 };
 
@@ -72,7 +78,7 @@ export type SkillGroup = {
 
 export type ProjectLink = {
   label: string; // "Live Demo", "GitHub"
-  url: Url;
+  url: string;
   icon?: string; // optional icon name
 };
 
@@ -82,8 +88,8 @@ export type Project = {
   short?: string; // one-line description
   description?: string; // longer description, markdown ok
   tags?: string[]; // technologies / categories
-  image?: Url; // preview image path
-  href?: Url; // live url (for playground)
+  image?: string; // preview image path
+  href?: string; // live url (for playground)
   links?: ProjectLink[]; // alternate links
   date?: DateRange | string;
   featured?: boolean;
@@ -99,7 +105,7 @@ export type Role = {
   summary?: string;
   bullets?: string[]; // responsibilities & achievements
   tech?: string[]; // tech used for this role
-  link?: Url; // company site
+  link?: string; // company site
 };
 
 export type Education = {
@@ -118,7 +124,7 @@ export type Certification = {
   name: string; // "AWS Certified Developer"
   issuer?: string; // "Amazon"
   date?: DateRange | string;
-  url?: Url;
+  url?: string;
   description?: string;
 };
 
@@ -130,8 +136,8 @@ export type Portfolio = {
     createdAt?: string;
     updatedAt?: string;
     locale?: string;
-    url?: Url; // canonical url to portfolio/resume
-    pdf?: Url; // pre-rendered PDF link if available
+    url?: string; // canonical url to portfolio/resume
+      pdf?: string; // pre-rendered PDF link if available
   };
   personal: Personal;
   summary?: string; // a single summary paragraph (optional)
