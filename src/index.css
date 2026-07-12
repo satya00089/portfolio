@@ -38,6 +38,9 @@
       transparent 30px
     );
   --hero-panel-stripe-opacity: 0.34;
+  --scrollbar-thumb: rgba(15, 23, 42, 0.28);
+  --scrollbar-thumb-hover: rgba(15, 23, 42, 0.42);
+  --scrollbar-track: rgba(148, 163, 184, 0.14);
 }
 
 /* dark theme tokens */
@@ -71,6 +74,9 @@
       transparent 30px
     );
   --hero-panel-stripe-opacity: 0.24;
+  --scrollbar-thumb: rgba(255, 255, 255, 0.28);
+  --scrollbar-thumb-hover: rgba(255, 255, 255, 0.44);
+  --scrollbar-track: rgba(255, 255, 255, 0.08);
 }
 
 /* apply defaults so non-Tailwind elements inherit colors */
@@ -79,6 +85,8 @@ body {
   background-color: var(--bg);
   color: var(--text);
   position: relative;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  scrollbar-width: thin;
 }
 
 /* Professional Geometric Background Pattern */
@@ -347,16 +355,16 @@ html[data-theme='light'] .hero-panel a {
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: var(--scrollbar-track);
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.2); /* light in dark mode */
+  background-color: var(--scrollbar-thumb);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: var(--scrollbar-thumb-hover);
 }
 
 /* print overrides */
