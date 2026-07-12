@@ -13,7 +13,7 @@ A modern, responsive portfolio website built with React, TypeScript, and Tailwin
 
 ## 📸 Preview
 
-![Home Preview](public/preview-home.png)
+![Home Preview](public/preview-home.gif)
 
 ![CLI Resume Preview](public/preview-cli.png)
 
