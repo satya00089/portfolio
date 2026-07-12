@@ -1,5 +1,5 @@
 import { animate, motion } from "framer-motion";
-import { useMemo, useRef, useState, useLayoutEffect } from "react";
+import { useMemo, useState } from "react";
 import { PORTFOLIO_INFO } from "../config/portfolioData";
 import type { AvatarItem } from "../types/portfolio";
 
@@ -9,6 +9,7 @@ export const About: React.FC = () => {
   const personal = PORTFOLIO_INFO.personal;
   const name = personal.name ?? "Your Name";
   const avatar = personal.avatar;
+  const resumeHref = `${import.meta.env.BASE_URL}resume.pdf`;
 
   const features = useMemo(() => PORTFOLIO_INFO.highlights ?? [], []);
   const heroSummary =
@@ -30,36 +31,6 @@ export const About: React.FC = () => {
     show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
   };
 
-  // helper to create a rounded-rect path. we inset by strokeWidth/2 (1 unit) so the stroke outer edge sits flush with the SVG edge
-  const roundedRectPath = (
-    x: number,
-    y: number,
-    w: number,
-    h: number,
-    r: number,
-  ) => {
-    // Clamp radius
-    const radius = Math.min(r, w / 2, h / 2);
-    const x0 = x + radius;
-    const x1 = x + w - radius;
-    const y0 = y + radius;
-    const y1 = y + h - radius;
-    return [
-      `M ${x0} ${y}`,
-      `H ${x1}`,
-      `A ${radius} ${radius} 0 0 1 ${x + w} ${y0}`,
-      `V ${y1}`,
-      `A ${radius} ${radius} 0 0 1 ${x1} ${y + h}`,
-      `H ${x0}`,
-      `A ${radius} ${radius} 0 0 1 ${x} ${y1}`,
-      `V ${y0}`,
-      `A ${radius} ${radius} 0 0 1 ${x0} ${y}`,
-      `Z`,
-    ].join(" ");
-  };
-  // panel ref + dynamic corner matching
-  const panelRef = useRef<HTMLDivElement | null>(null);
-  const [cornerR, setCornerR] = useState<number>(3); // in viewBox units (0..100)
   const [activeIndex, setActiveIndex] = useState(0);
 
   // Coverflow carousel items
@@ -86,44 +57,6 @@ export const About: React.FC = () => {
           label: it.label ?? `Image ${idx + 1}`,
         }))
       : [{ id: 1, image: "/placeholder-1.jpg", label: "Profile" }];
-
-  // compute corner radius in viewBox units to match the panel's computed border-radius
-  useLayoutEffect(() => {
-    const el = panelRef.current;
-    if (!el) return;
-
-    const computeRadius = () => {
-      const rect = el.getBoundingClientRect();
-      const style = getComputedStyle(el);
-      // borderRadius may be like '16px' or '1rem' but getComputedStyle returns px
-      const brPx = Number.parseFloat(style.borderRadius || "0") || 0;
-      const scale = rect.width > 0 ? 100 / rect.width : 1;
-      const rView = Math.max(0, Math.min(50, brPx * scale));
-      setCornerR(rView);
-    };
-
-    // compute initially
-    computeRadius();
-
-    // Observe size changes so the SVG corner radius stays in sync responsively
-    let ro: ResizeObserver | null = null;
-    if (typeof ResizeObserver === "function") {
-      ro = new ResizeObserver(() => computeRadius());
-      ro.observe(el);
-    } else {
-      // fallback to window resize handler if ResizeObserver is unavailable
-      const onResize = () => computeRadius();
-      window.addEventListener("resize", onResize);
-      return () => window.removeEventListener("resize", onResize);
-    }
-
-    return () => {
-      if (ro) ro.disconnect();
-    };
-  }, []);
-
-  // use inset 1 (half of strokeWidth=2) so outer edge aligns with 0..100 viewBox bounds
-  const borderD = roundedRectPath(1, 1, 98, 98, cornerR);
 
   const springScrollTo = (y: number) => {
     const controls = animate(window.scrollY, y, {
@@ -177,85 +110,16 @@ export const About: React.FC = () => {
   };
 
   return (
-    <section className="md:col-span-2">
-      <div className="max-w-7xl mx-auto px-6 py-20">
+    <section className="w-full">
+      <div className="w-full">
         <motion.div
           variants={container}
           initial="hidden"
           animate="show"
-          className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center"
+          className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center max-w-7xl mx-auto"
         >
           {/* Left: Headline + features + CTAs */}
           <motion.div variants={item} className="md:col-span-7">
-            <div className="panel-translucent relative overflow-hidden p-6 md:p-8 rounded-2xl">
-              {/* Animated border beam (multiple motion.paths following the rounded rect) */}
-              <motion.svg
-                className="absolute inset-0 w-full h-full pointer-events-none z-0"
-                viewBox="0 0 100 100"
-                preserveAspectRatio="none"
-                aria-hidden
-              >
-                <defs>
-                  {["a", "b", "c"].map((id) => (
-                    <linearGradient
-                      key={id}
-                      id={`panel-grad-${id}`}
-                      x1="0%"
-                      y1="0%"
-                      x2="100%"
-                      y2="0%"
-                    >
-                      <stop offset="0%" stopColor="#18CCFC" />
-                      <stop offset="50%" stopColor="#6344F5" />
-                      <stop offset="100%" stopColor="#AE48FF" />
-                    </linearGradient>
-                  ))}
-
-                  {/* clip the animated beams to match the rounded corners */}
-                  <clipPath id="panel-clip">
-                    {/* match the rounded corners (rx/ry bound to computed cornerR in viewBox units) */}
-                    <rect
-                      x="0"
-                      y="0"
-                      width="100"
-                      height="100"
-                      rx={cornerR}
-                      ry={cornerR}
-                    />
-                  </clipPath>
-                </defs>
-
-                <g clipPath="url(#panel-clip)">
-                  {["a", "b", "c"].map((id, i) => {
-                    const duration = 3; // same duration so beams overlap smoothly
-                    const delay = i * 1; // stagger by 1s so there's continuous coverage
-                    return (
-                      <motion.path
-                        key={`border-${id}`}
-                        d={borderD}
-                        stroke={`url(#panel-grad-${id})`}
-                        strokeWidth={2}
-                        vectorEffect="non-scaling-stroke"
-                        strokeLinecap="butt"
-                        strokeLinejoin="miter"
-                        fill="none"
-                        initial={{ pathLength: 0, opacity: 0 }}
-                        animate={{
-                          pathLength: [0, 1],
-                          opacity: [0, 0.6, 0.6, 0],
-                        }}
-                        transition={{
-                          duration,
-                          delay,
-                          repeat: Number.POSITIVE_INFINITY,
-                          ease: "easeInOut",
-                        }}
-                      />
-                    );
-                  })}
-                </g>
-              </motion.svg>
-
               <div className="relative z-10">
                 <h1 className="text-4xl md:text-6xl font-extrabold leading-tight flex items-center gap-3">
                   {name}
@@ -313,15 +177,14 @@ export const About: React.FC = () => {
                   </a>
 
                   <a
-                    href="/resume.pdf"
+                    href={resumeHref}
                     className="inline-flex items-center gap-2 rounded-md border border-border px-4 py-3 text-sm font-semibold text-foreground hover:bg-muted"
-                    onKeyDown={(e) => handleKeyActivation(e, "/resume.pdf")}
+                    onKeyDown={(e) => handleKeyActivation(e, resumeHref)}
                   >
                     Download resume
                   </a>
                 </motion.div>
               </div>
-            </div>
           </motion.div>
 
           {/* Right: Coverflow carousel */}

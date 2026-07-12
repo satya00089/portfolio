@@ -38,6 +38,10 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
 
     if (typeof document !== "undefined") {
       document.documentElement.classList.toggle("dark", dark);
+      document.documentElement.setAttribute(
+        "data-theme",
+        dark ? "dark" : "light",
+      );
     }
   }, [dark]);
 

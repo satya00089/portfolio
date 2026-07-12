@@ -15,8 +15,6 @@ import { ProjectModal } from "../components/ProjectModal";
 import { ScrollProgressBar } from "../components/shared/ScrollProgressBar";
 import { ScrollToTop } from "../components/shared/ScrollToTop";
 import CLIResume from "../components/CLIResume";
-import { BackgroundBeams } from "../components/BackgroundBeams";
-import CurvedLoop from "../components/CurvedLoop";
 
 const PortfolioPage: React.FC = () => {
   const [selected, setSelected] = useState<Project | null>(null);
@@ -58,31 +56,17 @@ const PortfolioPage: React.FC = () => {
 
       <motion.section
         id="about"
-        className="relative w-full flex items-center justify-center px-4 sm:px-6 lg:px-8 pb-0"
-        style={{ height: "100vh" }}
+        className="hero-panel relative h-screen min-h-screen w-full overflow-hidden"
         initial={{ opacity: 0, y: 8 }}
         animate={showHello ? { opacity: 0, y: 8 } : { opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        <div className="absolute inset-0 z-0" style={{ height: "140vh" }}>
-          <BackgroundBeams />
-        </div>
-        <div className="relative z-10 w-full max-w-6xl 2xl:max-w-7xl mx-auto py-20 sm:py-24 lg:py-32">
-          <div className="grid items-center">
+        <div className="relative z-10 flex min-h-screen w-full items-center justify-center px-4 sm:px-6 lg:px-8">
+          <div className="w-full max-w-6xl 2xl:max-w-7xl mx-auto">
             <About />
           </div>
         </div>
       </motion.section>
-      <div className="w-full bg-[var(--background)] pt-8 pb-8 relative z-20">
-        <CurvedLoop
-          marqueeText={PORTFOLIO_INFO.personal.headline + " · "}
-          speed={1}
-          className="text-2xl text-[var(--text)] bg-[var(--surface)]"
-          curveAmount={400}
-          direction="left"
-          interactive={true}
-        />
-      </div>
 
       <main className="max-w-6xl 2xl:max-w-9xl mx-auto px-6 py-15 sm:py-20 lg:py-32 relative z-20">
         <section id="projects" className="py-8">
