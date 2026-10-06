@@ -60,7 +60,7 @@ export const ProjectCard: React.FC<{
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="rounded-lg border border-[var(--border)] w-full object-cover h-45"
+                  className={`rounded-lg border border-[var(--border)] w-full h-45 ${project.imageFit === "contain" ? "object-contain" : "object-cover"}`}
                 />
               </div>
             )}

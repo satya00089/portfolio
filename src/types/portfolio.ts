@@ -96,6 +96,7 @@ export type Project = {
   description?: string; // longer description, markdown ok
   tags?: string[]; // technologies / categories
   image?: string; // preview image path
+  imageFit?: "cover" | "contain";
   href?: string; // live url (for playground)
   links?: ProjectLink[]; // alternate links
   date?: DateRange | string;
