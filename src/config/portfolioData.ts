@@ -463,18 +463,18 @@ export const PORTFOLIO_INFO: Portfolio = {
       isUnderDevelopment: true,
     },
     {
-      id: "diagrammatic",
-      title: "Diagrammatic",
+      id: "diagramwise",
+      title: "Diagramwise",
       description:
-        "Diagrammatic (System Design Playground): A component library and living documentation for a design system.",
-      tags: ["System Design", "AI & ML", "React"],
-      image:
-        "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExeTFnOGF3d3BodjFvY3NhanY5cnl5bmd4Z243aXB5M3hrOHg3d2tmeiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/WvzQektcJxs0oDFkHq/giphy.gif",
-      href: "https://diagrammatic.next-zen.dev",
+        "Diagramwise is a browser-based system design workspace for practicing architecture interviews and communicating real systems. Build interactive architecture diagrams, document design decisions, get structured feedback, and share designs with collaborators. Supports ER diagrams, Mermaid and SQL imports, and image exports.",
+      tags: ["System Design", "React", "TypeScript", "React Flow"],
+      image: `${import.meta.env.BASE_URL}diagramwise.png`,
+      imageFit: "contain",
+      href: "https://diagramwise.com",
       links: [
         {
           label: "GitHub",
-          url: "https://github.com/satya00089/diagrammatic",
+          url: "https://github.com/satya00089/diagramwise",
           icon: "SiGithub",
         },
       ],

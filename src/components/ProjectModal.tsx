@@ -187,7 +187,7 @@ export const ProjectModal: React.FC<{
                         <img
                           src={project.image}
                           alt={project.title}
-                          className="rounded-lg border border-[var(--border)] mb-4 w-full h-auto object-cover max-h-60"
+                          className={`rounded-lg border border-[var(--border)] mb-4 w-full h-auto max-h-60 ${project.imageFit === "contain" ? "object-contain" : "object-cover"}`}
                         />
                       )}
                       {/* Description */}
