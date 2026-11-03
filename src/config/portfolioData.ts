@@ -468,7 +468,7 @@ export const PORTFOLIO_INFO: Portfolio = {
       description:
         "Diagramwise is a browser-based system design workspace for practicing architecture interviews and communicating real systems. Build interactive architecture diagrams, document design decisions, get structured feedback, and share designs with collaborators. Supports ER diagrams, Mermaid and SQL imports, and image exports.",
       tags: ["System Design", "React", "TypeScript", "React Flow"],
-      image: `${import.meta.env.BASE_URL}diagramwise.png`,
+      image: `${import.meta.env.BASE_URL}diagramwise.gif`,
       imageFit: "contain",
       href: "https://diagramwise.com",
       links: [
