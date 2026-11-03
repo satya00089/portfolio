@@ -1,1 +1,34 @@
-aW1wb3J0IHsgZXhlY0ZpbGVTeW5jIH0gZnJvbSAibm9kZTpjaGlsZF9wcm9jZXNzIjsKaW1wb3J0IHsgbWtkaXIsIHdyaXRlRmlsZSB9IGZyb20gIm5vZGU6ZnMvcHJvbWlzZXMiOwoKY29uc3QgdXNlcm5hbWUgPSBwcm9jZXNzLmVudi5HSVRIVUJfVVNFUk5BTUUgfHwgInNhdHlhMDAwODkiOwpjb25zdCBxdWVyeSA9IGBxdWVyeSB7IHVzZXIobG9naW46ICIke3VzZXJuYW1lfSIpIHsgY29udHJpYnV0aW9uc0NvbGxlY3Rpb24geyBjb250cmlidXRpb25DYWxlbmRhcihpbmNsdWRlUHJpdmF0ZUNvbnRyaWJ1dGlvbnM6IHRydWUpIHsgdG90YWxDb250cmlidXRpb25zIHdlZWtzIHsgY29udHJpYnV0aW9uRGF5cyB7IGRhdGUgY29udHJpYnV0aW9uQ291bnQgY29udHJpYnV0aW9uTGV2ZWwgfSB9IH0gfSB9IH1gOwpjb25zdCBwYXlsb2FkID0gSlNPTi5wYXJzZShleGVjRmlsZVN5bmMoImdoIiwgWyJhcGkiLCAiZ3JhcGhxbCIsICItZiIsIGBxdWVyeT0ke3F1ZXJ5fWBdLCB7IGVuY29kaW5nOiAidXRmOCIgfSkpOwppZiAocGF5bG9hZC5lcnJvcnM/Lmxlbmd0aCkgdGhyb3cgbmV3IEVycm9yKHBheWxvYWQuZXJyb3JzLm1hcCgoZXJyb3IpID0+IGVycm9yLm1lc3NhZ2UpLmpvaW4oIjsgIikpOwoKY29uc3QgY2FsZW5kYXIgPSBwYXlsb2FkLmRhdGE/LnVzZXI/LmNvbnRyaWJ1dGlvbnNDb2xsZWN0aW9uPy5jb250cmlidXRpb25DYWxlbmRhcjsKaWYgKCFjYWxlbmRhcj8ud2Vla3M/Lmxlbmd0aCkgdGhyb3cgbmV3IEVycm9yKGBObyBjb250cmlidXRpb24gY2FsZW5kYXIgZm91bmQgZm9yICR7dXNlcm5hbWV9YCk7Cgpjb25zdCBsZXZlbE1hcCA9IHsKICBOT05FOiAwLAogIEZJUlNUX1FVQVJUSUxFOiAxLAogIFNFQ09ORF9RVUFSVElMRTogMiwKICBUSElSRF9RVUFSVElMRTogMywKICBGT1VSVEhfUVVBUlRJTEU6IDQsCn07CmNvbnN0IGRheXMgPSBjYWxlbmRhci53ZWVrcy5mbGF0TWFwKCh3ZWVrKSA9PiB3ZWVrLmNvbnRyaWJ1dGlvbkRheXMpOwpjb25zdCBzbmFwc2hvdCA9IHsKICB1c2VybmFtZSwKICB0b3RhbDogY2FsZW5kYXIudG90YWxDb250cmlidXRpb25zLAogIHN0YXJ0OiBkYXlzWzBdLmRhdGUsCiAgY291bnRzOiBkYXlzLm1hcCgoZGF5KSA9PiBkYXkuY29udHJpYnV0aW9uQ291bnQpLAogIGxldmVsczogZGF5cy5tYXAoKGRheSkgPT4gewogICAgY29uc3QgbGV2ZWwgPSBsZXZlbE1hcFtkYXkuY29udHJpYnV0aW9uTGV2ZWxdOwogICAgaWYgKGxldmVsID09PSB1bmRlZmluZWQpIHRocm93IG5ldyBFcnJvcihgVW5rbm93biBjb250cmlidXRpb24gbGV2ZWw6ICR7ZGF5LmNvbnRyaWJ1dGlvbkxldmVsfWApOwogICAgcmV0dXJuIGxldmVsOwogIH0pLmpvaW4oIiIpLAp9OwoKYXdhaXQgbWtkaXIobmV3IFVSTCgiLi4vZGF0YS8iLCBpbXBvcnQubWV0YS51cmwpLCB7IHJlY3Vyc2l2ZTogdHJ1ZSB9KTsKYXdhaXQgd3JpdGVGaWxlKG5ldyBVUkwoIi4uL2RhdGEvZ2l0aHViLmpzb24iLCBpbXBvcnQubWV0YS51cmwpLCBgJHtKU09OLnN0cmluZ2lmeShzbmFwc2hvdCl9XG5gKTsKY29uc29sZS5sb2coYFNhdmVkICR7ZGF5cy5sZW5ndGh9IGNvbnRyaWJ1dGlvbiBkYXlzIGZvciAke3VzZXJuYW1lfSAoJHtjYWxlbmRhci50b3RhbENvbnRyaWJ1dGlvbnN9IHRvdGFsKS5gKTsK
+import { execFileSync } from "node:child_process";
+import { mkdir, writeFile } from "node:fs/promises";
+
+const username = process.env.GITHUB_USERNAME || "satya00089";
+const query = `query { user(login: "${username}") { contributionsCollection { contributionCalendar(includePrivateContributions: true) { totalContributions weeks { contributionDays { date contributionCount contributionLevel } } } } } }`;
+const payload = JSON.parse(execFileSync("gh", ["api", "graphql", "-f", `query=${query}`], { encoding: "utf8" }));
+if (payload.errors?.length) throw new Error(payload.errors.map((error) => error.message).join("; "));
+
+const calendar = payload.data?.user?.contributionsCollection?.contributionCalendar;
+if (!calendar?.weeks?.length) throw new Error(`No contribution calendar found for ${username}`);
+
+const levelMap = {
+  NONE: 0,
+  FIRST_QUARTILE: 1,
+  SECOND_QUARTILE: 2,
+  THIRD_QUARTILE: 3,
+  FOURTH_QUARTILE: 4,
+};
+const days = calendar.weeks.flatMap((week) => week.contributionDays);
+const snapshot = {
+  username,
+  total: calendar.totalContributions,
+  start: days[0].date,
+  counts: days.map((day) => day.contributionCount),
+  levels: days.map((day) => {
+    const level = levelMap[day.contributionLevel];
+    if (level === undefined) throw new Error(`Unknown contribution level: ${day.contributionLevel}`);
+    return level;
+  }).join(""),
+};
+
+await mkdir(new URL("../data/", import.meta.url), { recursive: true });
+await writeFile(new URL("../data/github.json", import.meta.url), `${JSON.stringify(snapshot)}\n`);
+console.log(`Saved ${days.length} contribution days for ${username} (${calendar.totalContributions} total).`);

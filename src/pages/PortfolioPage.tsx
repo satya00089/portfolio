@@ -1,1 +1,147 @@
-Ly8gUG9ydGZvbGlvUGFnZS50c3gKaW1wb3J0IFJlYWN0LCB7IHVzZVN0YXRlIH0gZnJvbSAicmVhY3QiOwppbXBvcnQgeyBBbmltYXRlUHJlc2VuY2UsIG1vdGlvbiB9IGZyb20gImZyYW1lci1tb3Rpb24iOwppbXBvcnQgeyBUaGVtZVByb3ZpZGVyIH0gZnJvbSAiLi4vY29tcG9uZW50cy9UaGVtZVByb3ZpZGVyIjsKaW1wb3J0IHsgSGVhZGVyIH0gZnJvbSAiLi4vY29tcG9uZW50cy9zaGFyZWQvSGVhZGVyIjsKaW1wb3J0IHsgUHJvamVjdHNHcmlkIH0gZnJvbSAiLi4vY29tcG9uZW50cy9Qcm9qZWN0c0dyaWQiOwppbXBvcnQgeyBTa2lsbHNMaXN0IH0gZnJvbSAiLi4vY29tcG9uZW50cy9Ta2lsbHNMaXN0IjsKaW1wb3J0IHsgQ29udGFjdEZvcm0gfSBmcm9tICIuLi9jb21wb25lbnRzL0NvbnRhY3RGb3JtIjsKaW1wb3J0IHsgRm9vdGVyIH0gZnJvbSAiLi4vY29tcG9uZW50cy9zaGFyZWQvRm9vdGVyIjsKaW1wb3J0IHsgUE9SVEZPTElPX0lORk8gfSBmcm9tICIuLi9jb25maWcvcG9ydGZvbGlvRGF0YSI7CmltcG9ydCB7IEFib3V0IH0gZnJvbSAiLi4vY29tcG9uZW50cy9BYm91dCI7CmltcG9ydCB7IEFwcGxlSGVsbG9FbmdsaXNoRWZmZWN0IH0gZnJvbSAiLi4vY29tcG9uZW50cy9IZWxsb0VmZmVjdHMiOwppbXBvcnQgdHlwZSB7IFByb2plY3QgfSBmcm9tICIuLi90eXBlcy9wb3J0Zm9saW8iOwppbXBvcnQgeyBQcm9qZWN0TW9kYWwgfSBmcm9tICIuLi9jb21wb25lbnRzL1Byb2plY3RNb2RhbCI7CmltcG9ydCB7IFNjcm9sbFByb2dyZXNzQmFyIH0gZnJvbSAiLi4vY29tcG9uZW50cy9zaGFyZWQvU2Nyb2xsUHJvZ3Jlc3NCYXIiOwppbXBvcnQgeyBTY3JvbGxUb1RvcCB9IGZyb20gIi4uL2NvbXBvbmVudHMvc2hhcmVkL1Njcm9sbFRvVG9wIjsKaW1wb3J0IENMSVJlc3VtZSBmcm9tICIuLi9jb21wb25lbnRzL0NMSVJlc3VtZSI7CmltcG9ydCB7IEdpdEh1YkNpdHkgfSBmcm9tICIuLi9jb21wb25lbnRzL0dpdEh1YkNpdHkiOwoKY29uc3QgUG9ydGZvbGlvUGFnZTogUmVhY3QuRkMgPSAoKSA9PiB7CiAgY29uc3QgW3NlbGVjdGVkLCBzZXRTZWxlY3RlZF0gPSB1c2VTdGF0ZTxQcm9qZWN0IHwgbnVsbD4obnVsbCk7CiAgY29uc3QgW3Nob3dDTEksIHNldFNob3dDTEldID0gdXNlU3RhdGUoZmFsc2UpOwogIGNvbnN0IFtzaG93SGVsbG8sIHNldFNob3dIZWxsb10gPSB1c2VTdGF0ZSh0cnVlKTsKCiAgcmV0dXJuICgKICAgIDxUaGVtZVByb3ZpZGVyPgogICAgICA8U2Nyb2xsUHJvZ3Jlc3NCYXIgLz4KICAgICAgPEhlYWRlcgogICAgICAgIGxpbmtzPXtbCiAgICAgICAgICB7IGhyZWY6ICIjYWJvdXQiLCBsYWJlbDogIkFib3V0IiB9LAogICAgICAgICAgeyBocmVmOiAiI3Byb2plY3RzIiwgbGFiZWw6ICJQcm9qZWN0cyIgfSwKICAgICAgICAgIHsgaHJlZjogIiNza2lsbHMiLCBsYWJlbDogIlNraWxscyIgfSwKICAgICAgICAgIHsgaHJlZjogIiNjb250YWN0IiwgbGFiZWw6ICJDb250YWN0IiB9LAogICAgICAgIF19CiAgICAgICAgb25UcnlDTEk9eygpID0+IHNldFNob3dDTEkodHJ1ZSl9CiAgICAgIC8+CiAgICAgIHsvKiBDTEkgcGFuZWwgKGRvY2tlZCAvIG92ZXJsYXkpICovfQogICAgICA8Q0xJUmVzdW1lIG9wZW49e3Nob3dDTEl9IG9uQ2xvc2U9eygpID0+IHNldFNob3dDTEkoZmFsc2UpfSAvPgoKICAgICAgey8qIEFib3V0IC8gaGVybzogaGlkZGVuIHdoaWxlIGhlbGxvIGFuaW1hdGlvbiBwbGF5cyAqL30KICAgICAgPEFuaW1hdGVQcmVzZW5jZT4KICAgICAgICB7c2hvd0hlbGxvICYmICgKICAgICAgICAgIDxtb3Rpb24uZGl2CiAgICAgICAgICAgIGtleT0iaGVsbG8tb3ZlcmxheSIKICAgICAgICAgICAgY2xhc3NOYW1lPSJmaXhlZCBpbnNldC0wIHotNTAgZmxleCBpdGVtcy1jZW50ZXIganVzdGlmeS1jZW50ZXIgYmctYmxhY2svOTAiCiAgICAgICAgICAgIGluaXRpYWw9e3sgb3BhY2l0eTogMCB9fQogICAgICAgICAgICBhbmltYXRlPXt7IG9wYWNpdHk6IDEgfX0KICAgICAgICAgICAgZXhpdD17eyBvcGFjaXR5OiAwIH19CiAgICAgICAgICA+CiAgICAgICAgICAgIDxBcHBsZUhlbGxvRW5nbGlzaEVmZmVjdAogICAgICAgICAgICAgIGNsYXNzTmFtZT0idGV4dC13aGl0ZSIKICAgICAgICAgICAgICBvbkFuaW1hdGlvbkNvbXBsZXRlPXsoKSA9PiBzZXRTaG93SGVsbG8oZmFsc2UpfQogICAgICAgICAgICAvPgogICAgICAgICAgPC9tb3Rpb24uZGl2PgogICAgICAgICl9CiAgICAgIDwvQW5pbWF0ZVByZXNlbmNlPgoKICAgICAgPG1vdGlvbi5zZWN0aW9uCiAgICAgICAgaWQ9ImFib3V0IgogICAgICAgIGNsYXNzTmFtZT0iaGVyby1wYW5lbCByZWxhdGl2ZSBoLXNjcmVlbiBtaW4taC1zY3JlZW4gdy1mdWxsIG92ZXJmbG93LWhpZGRlbiIKICAgICAgICBpbml0aWFsPXt7IG9wYWNpdHk6IDAsIHk6IDggfX0KICAgICAgICBhbmltYXRlPXtzaG93SGVsbG8gPyB7IG9wYWNpdHk6IDAsIHk6IDggfSA6IHsgb3BhY2l0eTogMSwgeTogMCB9fQogICAgICAgIHRyYW5zaXRpb249e3sgZHVyYXRpb246IDAuNiwgZWFzZTogImVhc2VPdXQiIH19CiAgICAgID4KICAgICAgICA8ZGl2IGNsYXNzTmFtZT0icmVsYXRpdmUgei0xMCBmbGV4IG1pbi1oLXNjcmVlbiB3LWZ1bGwgaXRlbXMtY2VudGVyIGp1c3RpZnktY2VudGVyIHB4LTQgc206cHgtNiBsZzpweC04Ij4KICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJ3LWZ1bGwgbWF4LXctNnhsIDJ4bDptYXgtdy03eGwgbXgtYXV0byI+CiAgICAgICAgICAgIDxBYm91dCAvPgogICAgICAgICAgPC9kaXY+CiAgICAgICAgPC9kaXY+CiAgICAgIDwvbW90aW9uLnNlY3Rpb24+CgogICAgICA8bWFpbiBjbGFzc05hbWU9Im1heC13LTZ4bCAyeGw6bWF4LXctOXhsIG14LWF1dG8gcHgtNiBweS0xNSBzbTpweS0yMCBsZzpweS0zMiByZWxhdGl2ZSB6LTIwIj4KICAgICAgICA8c2VjdGlvbiBpZD0icHJvamVjdHMiIGNsYXNzTmFtZT0icHktOCI+CiAgICAgICAgICA8aDIgY2xhc3NOYW1lPSJ0ZXh0LTJ4bCBmb250LXNlbWlib2xkIHRleHQtW3ZhcigtLWJyYW5kKV0iPlByb2plY3RzPC9oMj4KICAgICAgICAgIDxwIGNsYXNzTmFtZT0ibWItNiB0ZXh0LXNtIHRleHQtZ3JheS01MDAgZGFyazp0ZXh0LWdyYXktNDAwIG10LTEiPgogICAgICAgICAgICBTZWxlY3RlZCB3b3JrIOKAlCBjbGljayBhIGNhcmQgZm9yIGRldGFpbHMuCiAgICAgICAgICA8L3A+CiAgICAgICAgICA8UHJvamVjdHNHcmlkCiAgICAgICAgICAgIHByb2plY3RzPXtQT1JURk9MSU9fSU5GTy5wcm9qZWN0c30KICAgICAgICAgICAgb25PcGVuPXtzZXRTZWxlY3RlZH0KICAgICAgICAgIC8+CiAgICAgICAgPC9zZWN0aW9uPgoKICAgICAgICA8c2VjdGlvbiBpZD0ic2tpbGxzIiBjbGFzc05hbWU9InB5LTgiPgogICAgICAgICAgPGgyIGNsYXNzTmFtZT0idGV4dC0yeGwgZm9udC1zZW1pYm9sZCB0ZXh0LVt2YXIoLS1icmFuZCldIj5Ta2lsbHM8L2gyPgogICAgICAgICAgPHAgY2xhc3NOYW1lPSJtYi02IHRleHQtc20gdGV4dC1ncmF5LTUwMCBkYXJrOnRleHQtZ3JheS00MDAgbXQtMSI+CiAgICAgICAgICAgIFRvb2xzIGFuZCB0ZWNobm9sb2dpZXMgSSB1c2UgcmVndWxhcmx5LgogICAgICAgICAgPC9wPgogICAgICAgICAgPFNraWxsc0xpc3Qgc2tpbGxzPXtQT1JURk9MSU9fSU5GTy5za2lsbHN9IGlzQmFyPXt0cnVlfSAvPgogICAgICAgIDwvc2VjdGlvbj4KCiAgICAgICAgPHNlY3Rpb24gaWQ9ImNvbnRhY3QiIGNsYXNzTmFtZT0icHktOCI+CiAgICAgICAgICA8aDIgY2xhc3NOYW1lPSJ0ZXh0LTJ4bCBmb250LXNlbWlib2xkIHRleHQtW3ZhcigtLWJyYW5kKV0iPkNvbnRhY3Q8L2gyPgogICAgICAgICAgPHAgY2xhc3NOYW1lPSJ0ZXh0LXNtIHRleHQtZ3JheS01MDAgZGFyazp0ZXh0LWdyYXktNDAwIG10LTEiPgogICAgICAgICAgICBUZWxsIG1lIGFib3V0IHlvdXIgcHJvamVjdCwgb3IganVzdCBzYXkgaGkuCiAgICAgICAgICA8L3A+CiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0ibXQtNiBncmlkIGdyaWQtY29scy0xIG1kOmdyaWQtY29scy0yIGdhcC02Ij4KICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9InAtNiByb3VuZGVkLTJ4bCBiZy1bdmFyKC0tc3VyZmFjZSldIGJvcmRlciBib3JkZXItW3ZhcigtLWJvcmRlcildIj4KICAgICAgICAgICAgICA8Q29udGFjdEZvcm0gLz4KICAgICAgICAgICAgPC9kaXY+CgogICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0icC02IHJvdW5kZWQtMnhsIGJnLVt2YXIoLS1zdXJmYWNlKV0gYm9yZGVyIGJvcmRlci1bdmFyKC0tYm9yZGVyKV0gZmxleCBmbGV4LWNvbCBnYXAtNCI+CiAgICAgICAgICAgICAgPGRpdj4KICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJmb250LXNlbWlib2xkIj5MZXQncyBjb2xsYWJvcmF0ZTwvZGl2PgogICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9InRleHQtc20gdGV4dC1ncmF5LTUwMCBkYXJrOnRleHQtZ3JheS00MDAiPgogICAgICAgICAgICAgICAgICBJJ20gYXZhaWxhYmxlIGZvciBmcmVlbGFuY2UgYW5kIGNvbnRyYWN0IHdvcmsuIE15IGluYm94IGlzCiAgICAgICAgICAgICAgICAgIG9wZW4uCiAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0ibXQtMiI+CiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iZm9udC1zZW1pYm9sZCI+UXVpY2sgY29udGFjdDwvZGl2PgogICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9Im10LTIgdGV4dC1zbSB0ZXh0LWdyYXktNTAwIGRhcms6dGV4dC1ncmF5LTQwMCI+CiAgICAgICAgICAgICAgICAgIEVtYWlsOiBzYXR5YXN1YnVkaGkwODlAZ21haWwuY29tCiAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJ0ZXh0LXNtIHRleHQtZ3JheS01MDAgZGFyazp0ZXh0LWdyYXktNDAwIj4KICAgICAgICAgICAgICAgICAgTG9jYXRpb246IFJlbW90ZQogICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9Im10LWF1dG8iPgogICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9InRleHQtc20gZm9udC1tZWRpdW0iPlJlc3VtZTwvZGl2PgogICAgICAgICAgICAgICAgPGEKICAgICAgICAgICAgICAgICAgaHJlZj0iLyIKICAgICAgICAgICAgICAgICAgY2xhc3NOYW1lPSJibG9jayBtdC0yIHB4LTQgcHktMiByb3VuZGVkLWxnIGJvcmRlciBib3JkZXItZ3JheS0yMDAgZGFyazpib3JkZXItZ3JheS03MDAiCiAgICAgICAgICAgICAgICA+CiAgICAgICAgICAgICAgICAgIERvd25sb2FkIFBERgogICAgICAgICAgICAgICAgPC9hPgogICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgIDwvZGl2PgogICAgICAgIDwvc2VjdGlvbj4KICAgICAgPC9tYWluPgogICAgICA8ZGl2IGNsYXNzTmFtZT0ibWF4LXctNnhsIDJ4bDptYXgtdy05eGwgbXgtYXV0byBweC02IHJlbGF0aXZlIHotMjAiPgogICAgICAgIDxHaXRIdWJDaXR5IC8+CiAgICAgIDwvZGl2PgogICAgICA8U2Nyb2xsVG9Ub3AgLz4KICAgICAgPEZvb3RlciAvPgoKICAgICAgPFByb2plY3RNb2RhbAogICAgICAgIHByb2plY3Q9e3NlbGVjdGVkfQogICAgICAgIG9wZW49eyEhc2VsZWN0ZWR9CiAgICAgICAgb25DbG9zZT17KCkgPT4gc2V0U2VsZWN0ZWQobnVsbCl9CiAgICAgIC8+CiAgICA8L1RoZW1lUHJvdmlkZXI+CiAgKTsKfTsKCmV4cG9ydCBkZWZhdWx0IFBvcnRmb2xpb1BhZ2U7Cg==
+// PortfolioPage.tsx
+import React, { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ThemeProvider } from "../components/ThemeProvider";
+import { Header } from "../components/shared/Header";
+import { ProjectsGrid } from "../components/ProjectsGrid";
+import { SkillsList } from "../components/SkillsList";
+import { ContactForm } from "../components/ContactForm";
+import { Footer } from "../components/shared/Footer";
+import { PORTFOLIO_INFO } from "../config/portfolioData";
+import { About } from "../components/About";
+import { AppleHelloEnglishEffect } from "../components/HelloEffects";
+import type { Project } from "../types/portfolio";
+import { ProjectModal } from "../components/ProjectModal";
+import { ScrollProgressBar } from "../components/shared/ScrollProgressBar";
+import { ScrollToTop } from "../components/shared/ScrollToTop";
+import CLIResume from "../components/CLIResume";
+import { GitHubCity } from "../components/GitHubCity";
+
+const PortfolioPage: React.FC = () => {
+  const [selected, setSelected] = useState<Project | null>(null);
+  const [showCLI, setShowCLI] = useState(false);
+  const [showHello, setShowHello] = useState(true);
+
+  return (
+    <ThemeProvider>
+      <ScrollProgressBar />
+      <Header
+        links={[
+          { href: "#about", label: "About" },
+          { href: "#projects", label: "Projects" },
+          { href: "#skills", label: "Skills" },
+          { href: "#contact", label: "Contact" },
+        ]}
+        onTryCLI={() => setShowCLI(true)}
+      />
+      {/* CLI panel (docked / overlay) */}
+      <CLIResume open={showCLI} onClose={() => setShowCLI(false)} />
+
+      {/* About / hero: hidden while hello animation plays */}
+      <AnimatePresence>
+        {showHello && (
+          <motion.div
+            key="hello-overlay"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <AppleHelloEnglishEffect
+              className="text-white"
+              onAnimationComplete={() => setShowHello(false)}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <motion.section
+        id="about"
+        className="hero-panel relative h-screen min-h-screen w-full overflow-hidden"
+        initial={{ opacity: 0, y: 8 }}
+        animate={showHello ? { opacity: 0, y: 8 } : { opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <div className="relative z-10 flex min-h-screen w-full items-center justify-center px-4 sm:px-6 lg:px-8">
+          <div className="w-full max-w-6xl 2xl:max-w-7xl mx-auto">
+            <About />
+          </div>
+        </div>
+      </motion.section>
+
+      <main className="max-w-6xl 2xl:max-w-9xl mx-auto px-6 py-15 sm:py-20 lg:py-32 relative z-20">
+        <section id="projects" className="py-8">
+          <h2 className="text-2xl font-semibold text-[var(--brand)]">Projects</h2>
+          <p className="mb-6 text-sm text-gray-500 dark:text-gray-400 mt-1">
+            Selected work — click a card for details.
+          </p>
+          <ProjectsGrid
+            projects={PORTFOLIO_INFO.projects}
+            onOpen={setSelected}
+          />
+        </section>
+
+        <section id="skills" className="py-8">
+          <h2 className="text-2xl font-semibold text-[var(--brand)]">Skills</h2>
+          <p className="mb-6 text-sm text-gray-500 dark:text-gray-400 mt-1">
+            Tools and technologies I use regularly.
+          </p>
+          <SkillsList skills={PORTFOLIO_INFO.skills} isBar={true} />
+        </section>
+
+        <section id="contact" className="py-8">
+          <h2 className="text-2xl font-semibold text-[var(--brand)]">Contact</h2>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+            Tell me about your project, or just say hi.
+          </p>
+          <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--border)]">
+              <ContactForm />
+            </div>
+
+            <div className="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--border)] flex flex-col gap-4">
+              <div>
+                <div className="font-semibold">Let's collaborate</div>
+                <div className="text-sm text-gray-500 dark:text-gray-400">
+                  I'm available for freelance and contract work. My inbox is
+                  open.
+                </div>
+              </div>
+              <div className="mt-2">
+                <div className="font-semibold">Quick contact</div>
+                <div className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                  Email: satyasubudhi089@gmail.com
+                </div>
+                <div className="text-sm text-gray-500 dark:text-gray-400">
+                  Location: Remote
+                </div>
+              </div>
+              <div className="mt-auto">
+                <div className="text-sm font-medium">Resume</div>
+                <a
+                  href="/"
+                  className="block mt-2 px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700"
+                >
+                  Download PDF
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <div className="max-w-6xl 2xl:max-w-9xl mx-auto px-6 relative z-20">
+        <GitHubCity />
+      </div>
+      <ScrollToTop />
+      <Footer />
+
+      <ProjectModal
+        project={selected}
+        open={!!selected}
+        onClose={() => setSelected(null)}
+      />
+    </ThemeProvider>
+  );
+};
+
+export default PortfolioPage;

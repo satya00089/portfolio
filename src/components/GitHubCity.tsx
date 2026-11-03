@@ -1,1 +1,227 @@
-aW1wb3J0IHsgdXNlQ2FsbGJhY2ssIHVzZUVmZmVjdCwgdXNlUmVmLCB1c2VTdGF0ZSB9IGZyb20gInJlYWN0IjsKaW1wb3J0IHR5cGUgeyBQb2ludGVyRXZlbnQgfSBmcm9tICJyZWFjdCI7CmltcG9ydCBjYWxlbmRhciBmcm9tICIuLi8uLi9kYXRhL2dpdGh1Yi5qc29uIjsKCmNvbnN0IExFVkVMX0NPTE9SUyA9IFsiIzI1MzA0NCIsICIjOWJlOWE4IiwgIiM0MGM0NjMiLCAiIzMwYTE0ZSIsICIjMjE2ZTM5Il07Cgp0eXBlIEJ1aWxkaW5nID0gewogIHg6IG51bWJlcjsKICB5OiBudW1iZXI7CiAgZGF0ZTogc3RyaW5nOwogIGNvdW50OiBudW1iZXI7CiAgaW5kZXg6IG51bWJlcjsKICBwb2ludHM6IFtudW1iZXIsIG51bWJlcl1bXTsKfTsKCmNvbnN0IGZvcm1hdERhdGUgPSAoZGF0ZTogc3RyaW5nKSA9PgogIG5ldyBEYXRlKGAke2RhdGV9VDAwOjAwOjAwWmApLnRvTG9jYWxlRGF0ZVN0cmluZygiZW4tVVMiLCB7CiAgICBtb250aDogInNob3J0IiwKICAgIGRheTogIm51bWVyaWMiLAogICAgeWVhcjogIm51bWVyaWMiLAogICAgdGltZVpvbmU6ICJVVEMiLAogIH0pOwoKZXhwb3J0IGZ1bmN0aW9uIEdpdEh1YkNpdHkoKSB7CiAgY29uc3QgY2FudmFzUmVmID0gdXNlUmVmPEhUTUxDYW52YXNFbGVtZW50PihudWxsKTsKICBjb25zdCBidWlsZGluZ3NSZWYgPSB1c2VSZWY8QnVpbGRpbmdbXT4oW10pOwogIGNvbnN0IHN0YXJ0VGltZVJlZiA9IHVzZVJlZjxudW1iZXIgfCBudWxsPihudWxsKTsKICBjb25zdCBmcmFtZVJlZiA9IHVzZVJlZjxudW1iZXIgfCBudWxsPihudWxsKTsKICBjb25zdCB2aXNpYmxlUmVmID0gdXNlUmVmKGZhbHNlKTsKICBjb25zdCBbcmVwbGF5LCBzZXRSZXBsYXldID0gdXNlU3RhdGUoMCk7CiAgY29uc3QgW3Rvb2x0aXAsIHNldFRvb2x0aXBdID0gdXNlU3RhdGU8eyB4OiBudW1iZXI7IHk6IG51bWJlcjsgZGF0ZTogc3RyaW5nOyBjb3VudDogbnVtYmVyIH0gfCBudWxsPihudWxsKTsKCiAgY29uc3QgZHJhd0ZyYW1lID0gdXNlQ2FsbGJhY2soKHRpbWU6IG51bWJlciwgcmVkdWNlZE1vdGlvbjogYm9vbGVhbikgPT4gewogICAgY29uc3QgY2FudmFzID0gY2FudmFzUmVmLmN1cnJlbnQ7CiAgICBjb25zdCBjdHggPSBjYW52YXM/LmdldENvbnRleHQoIjJkIik7CiAgICBpZiAoIWNhbnZhcyB8fCAhY3R4KSByZXR1cm47CgogICAgY29uc3QgcmVjdCA9IGNhbnZhcy5nZXRCb3VuZGluZ0NsaWVudFJlY3QoKTsKICAgIGlmICghcmVjdC53aWR0aCB8fCAhcmVjdC5oZWlnaHQpIHJldHVybjsKICAgIGNvbnN0IGRwciA9IE1hdGgubWluKHdpbmRvdy5kZXZpY2VQaXhlbFJhdGlvIHx8IDEsIDIpOwogICAgY29uc3Qgd2lkdGggPSByZWN0LndpZHRoOwogICAgY29uc3QgaGVpZ2h0ID0gcmVjdC5oZWlnaHQ7CiAgICBpZiAoY2FudmFzLndpZHRoICE9PSBNYXRoLnJvdW5kKHdpZHRoICogZHByKSB8fCBjYW52YXMuaGVpZ2h0ICE9PSBNYXRoLnJvdW5kKGhlaWdodCAqIGRwcikpIHsKICAgICAgY2FudmFzLndpZHRoID0gTWF0aC5yb3VuZCh3aWR0aCAqIGRwcik7CiAgICAgIGNhbnZhcy5oZWlnaHQgPSBNYXRoLnJvdW5kKGhlaWdodCAqIGRwcik7CiAgICB9CiAgICBjdHguc2V0VHJhbnNmb3JtKGRwciwgMCwgMCwgZHByLCAwLCAwKTsKICAgIGN0eC5jbGVhclJlY3QoMCwgMCwgd2lkdGgsIGhlaWdodCk7CgogICAgY29uc3Qgd2Vla3MgPSBNYXRoLmNlaWwoY2FsZW5kYXIuY291bnRzLmxlbmd0aCAvIDcpOwogICAgY29uc3QgY2VsbCA9IE1hdGgubWluKDE0LCAod2lkdGggLSA1MikgLyAod2Vla3MgKyAzLjUpKTsKICAgIGNvbnN0IGRlcHRoID0gY2VsbCAqIDAuMzg7CiAgICBjb25zdCBtYXhDb3VudCA9IE1hdGgubWF4KC4uLmNhbGVuZGFyLmNvdW50cywgMSk7CiAgICBjb25zdCBlbGFwc2VkID0gcmVkdWNlZE1vdGlvbiA/IE51bWJlci5QT1NJVElWRV9JTkZJTklUWSA6IHRpbWUgLSAoc3RhcnRUaW1lUmVmLmN1cnJlbnQgPz8gdGltZSk7CiAgICBjb25zdCByaXNlRHVyYXRpb24gPSAxMDUwOwogICAgY29uc3QgbGlmdCA9IE1hdGgubWF4KDAsIE1hdGgubWluKDEsIGVsYXBzZWQgLyByaXNlRHVyYXRpb24pKTsKICAgIGNvbnN0IGVhc2VkTGlmdCA9IDEgLSBNYXRoLnBvdygxIC0gbGlmdCwgMyk7CiAgICBjb25zdCBncm91bmRXaWR0aCA9IHdlZWtzICogY2VsbCArIDYgKiBkZXB0aDsKICAgIGNvbnN0IGdyb3VuZEhlaWdodCA9IDYgKiBjZWxsICogMC43MiArIHdlZWtzICogY2VsbCAqIDAuMjg7CiAgICBjb25zdCBvcmlnaW5YID0gKHdpZHRoIC0gZ3JvdW5kV2lkdGgpIC8gMiArIDIgKiBkZXB0aDsKICAgIGNvbnN0IG9yaWdpblkgPSBNYXRoLm1heCg0MiwgKGhlaWdodCAtIGdyb3VuZEhlaWdodCAtIDkyKSAvIDIpICsgNiAqIGNlbGwgKiAwLjcyICsgMjQ7CgogICAgLy8gQSBmaW5lIHN0cmVldCBncmlkIGdpdmVzIHRoZSBpc29tZXRyaWMgYmxvY2tzIGEgc2hhcmVkIGNpdHkgZ3JvdW5kIHBsYW5lLgogICAgY3R4LnN0cm9rZVN0eWxlID0gInJnYmEoMTQ4LCAxNjMsIDE4NCwgMC4xMCkiOwogICAgY3R4LmxpbmVXaWR0aCA9IDE7CiAgICBmb3IgKGxldCBjb2wgPSAwOyBjb2wgPD0gd2Vla3M7IGNvbCArPSA0KSB7CiAgICAgIGNvbnN0IHggPSBvcmlnaW5YICsgY29sICogY2VsbDsKICAgICAgY3R4LmJlZ2luUGF0aCgpOwogICAgICBjdHgubW92ZVRvKHgsIG9yaWdpblkgKyA0KTsKICAgICAgY3R4LmxpbmVUbyh4IC0gNiAqIGRlcHRoLCBvcmlnaW5ZICsgNiAqIGNlbGwgKiAwLjcyICsgNCk7CiAgICAgIGN0eC5zdHJva2UoKTsKICAgIH0KICAgIGZvciAobGV0IHJvdyA9IDA7IHJvdyA8PSA2OyByb3cgKz0gMikgewogICAgICBjb25zdCB4ID0gb3JpZ2luWCAtIHJvdyAqIGRlcHRoOwogICAgICBjb25zdCB5ID0gb3JpZ2luWSArIHJvdyAqIGNlbGwgKiAwLjcyOwogICAgICBjdHguYmVnaW5QYXRoKCk7CiAgICAgIGN0eC5tb3ZlVG8oeCwgeSk7CiAgICAgIGN0eC5saW5lVG8oeCArIHdlZWtzICogY2VsbCwgeSArIHdlZWtzICogY2VsbCAqIDAuMjgpOwogICAgICBjdHguc3Ryb2tlKCk7CiAgICB9CgogICAgY29uc3QgaGl0czogQnVpbGRpbmdbXSA9IFtdOwogICAgY29uc3Qgb3JkZXIgPSBjYWxlbmRhci5jb3VudHMubWFwKChfLCBpbmRleCkgPT4gaW5kZXgpLnNvcnQoKGEsIGIpID0+IHsKICAgICAgY29uc3QgcmEgPSBhICUgNzsKICAgICAgY29uc3QgcmIgPSBiICUgNzsKICAgICAgcmV0dXJuIChNYXRoLmZsb29yKGEgLyA3KSArIHJhKSAtIChNYXRoLmZsb29yKGIgLyA3KSArIHJiKTsKICAgIH0pOwoKICAgIGZvciAoY29uc3QgaW5kZXggb2Ygb3JkZXIpIHsKICAgICAgY29uc3QgY291bnQgPSBjYWxlbmRhci5jb3VudHNbaW5kZXhdOwogICAgICBjb25zdCBsZXZlbCA9IE51bWJlcihjYWxlbmRhci5sZXZlbHNbaW5kZXhdIHx8IDApOwogICAgICBjb25zdCBjb2wgPSBNYXRoLmZsb29yKGluZGV4IC8gNyk7CiAgICAgIGNvbnN0IHJvdyA9IGluZGV4ICUgNzsKICAgICAgY29uc3QgZGVsYXkgPSAoY29sICogOCArIHJvdyAqIDE1KSAqIDIuMTsKICAgICAgY29uc3QgcHJvZ3Jlc3MgPSByZWR1Y2VkTW90aW9uID8gMSA6IE1hdGgubWF4KDAsIE1hdGgubWluKDEsIChlbGFwc2VkIC0gZGVsYXkpIC8gNDQwKSk7CiAgICAgIGlmIChwcm9ncmVzcyA8PSAwKSBjb250aW51ZTsKCiAgICAgIGNvbnN0IGJ4ID0gb3JpZ2luWCArIGNvbCAqIGNlbGwgLSByb3cgKiBkZXB0aDsKICAgICAgY29uc3QgYnkgPSBvcmlnaW5ZICsgY29sICogY2VsbCAqIDAuMjggKyByb3cgKiBjZWxsICogMC43MjsKICAgICAgY29uc3QgZnVsbEhlaWdodCA9IGNvdW50ID09PSAwID8gMiA6IDcgKyBNYXRoLnNxcnQoY291bnQgLyBtYXhDb3VudCkgKiA5NDsKICAgICAgY29uc3QgYnVpbGRpbmdIZWlnaHQgPSBNYXRoLm1heCgxLCBmdWxsSGVpZ2h0ICogZWFzZWRMaWZ0ICogKDEgLSBNYXRoLnBvdygxIC0gcHJvZ3Jlc3MsIDMpKSk7CiAgICAgIGNvbnN0IHgwID0gYng7CiAgICAgIGNvbnN0IHgxID0gYnggKyBjZWxsICogMC44MjsKICAgICAgY29uc3QgeTAgPSBieSAtIGJ1aWxkaW5nSGVpZ2h0OwogICAgICBjb25zdCB5MSA9IGJ5OwogICAgICBjb25zdCBmcm9udDogW251bWJlciwgbnVtYmVyXVtdID0gW1t4MCwgeTBdLCBbeDEsIHkwXSwgW3gxLCB5MV0sIFt4MCwgeTFdXTsKICAgICAgY29uc3Qgc2lkZTogW251bWJlciwgbnVtYmVyXVtdID0gW1t4MSwgeTBdLCBbeDEgKyBkZXB0aCwgeTAgLSBkZXB0aCAqIDAuNDhdLCBbeDEgKyBkZXB0aCwgeTEgLSBkZXB0aCAqIDAuNDhdLCBbeDEsIHkxXV07CiAgICAgIGNvbnN0IHRvcDogW251bWJlciwgbnVtYmVyXVtdID0gW1t4MCwgeTBdLCBbeDAgKyBkZXB0aCwgeTAgLSBkZXB0aCAqIDAuNDhdLCBbeDEgKyBkZXB0aCwgeTAgLSBkZXB0aCAqIDAuNDhdLCBbeDEsIHkwXV07CiAgICAgIGNvbnN0IGJhc2UgPSBMRVZFTF9DT0xPUlNbbGV2ZWxdOwogICAgICBjb25zdCBzaGFkZSA9IGxldmVsID09PSAwID8gIiMxYjIzMzMiIDogTEVWRUxfQ09MT1JTW01hdGgubWF4KDEsIGxldmVsIC0gMSldOwoKICAgICAgY3R4LmJlZ2luUGF0aCgpOwogICAgICBjdHgubW92ZVRvKC4uLnNpZGVbMF0pOwogICAgICBzaWRlLnNsaWNlKDEpLmZvckVhY2goKHBvaW50KSA9PiBjdHgubGluZVRvKC4uLnBvaW50KSk7CiAgICAgIGN0eC5jbG9zZVBhdGgoKTsKICAgICAgY3R4LmZpbGxTdHlsZSA9IHNoYWRlOwogICAgICBjdHguZmlsbCgpOwoKICAgICAgY3R4LmJlZ2luUGF0aCgpOwogICAgICBjdHgubW92ZVRvKC4uLmZyb250WzBdKTsKICAgICAgZnJvbnQuc2xpY2UoMSkuZm9yRWFjaCgocG9pbnQpID0+IGN0eC5saW5lVG8oLi4ucG9pbnQpKTsKICAgICAgY3R4LmNsb3NlUGF0aCgpOwogICAgICBjdHguZmlsbFN0eWxlID0gYmFzZTsKICAgICAgY3R4LmZpbGwoKTsKCiAgICAgIGN0eC5iZWdpblBhdGgoKTsKICAgICAgY3R4Lm1vdmVUbyguLi50b3BbMF0pOwogICAgICB0b3Auc2xpY2UoMSkuZm9yRWFjaCgocG9pbnQpID0+IGN0eC5saW5lVG8oLi4ucG9pbnQpKTsKICAgICAgY3R4LmNsb3NlUGF0aCgpOwogICAgICBjdHguZmlsbFN0eWxlID0gbGV2ZWwgPT09IDAgPyAiIzM4NDI1NCIgOiAiI2E3ZjNiZCI7CiAgICAgIGN0eC5maWxsKCk7CgogICAgICBjdHguc3Ryb2tlU3R5bGUgPSBsZXZlbCA9PT0gMCA/ICJyZ2JhKDE0OCwxNjMsMTg0LC4xNSkiIDogInJnYmEoMjU1LDI1NSwyNTUsLjEzKSI7CiAgICAgIGN0eC5saW5lV2lkdGggPSAwLjc7CiAgICAgIGN0eC5zdHJva2UoKTsKICAgICAgaGl0cy5wdXNoKHsgeDogYngsIHk6IGJ5IC0gYnVpbGRpbmdIZWlnaHQgLSBkZXB0aCwgZGF0ZTogbmV3IERhdGUoRGF0ZS5wYXJzZShgJHtjYWxlbmRhci5zdGFydH1UMDA6MDA6MDBaYCkgKyBpbmRleCAqIDg2NDAwMDAwKS50b0lTT1N0cmluZygpLnNsaWNlKDAsIDEwKSwgY291bnQsIGluZGV4LCBwb2ludHM6IGZyb250IH0pOwogICAgfQogICAgYnVpbGRpbmdzUmVmLmN1cnJlbnQgPSBoaXRzOwoKICAgIGlmICghcmVkdWNlZE1vdGlvbiAmJiBsaWZ0IDwgMSkgewogICAgICBmcmFtZVJlZi5jdXJyZW50ID0gcmVxdWVzdEFuaW1hdGlvbkZyYW1lKChuZXh0VGltZSkgPT4gZHJhd0ZyYW1lKG5leHRUaW1lLCByZWR1Y2VkTW90aW9uKSk7CiAgICB9CiAgfSwgW10pOwoKICB1c2VFZmZlY3QoKCkgPT4gewogICAgY29uc3QgY2FudmFzID0gY2FudmFzUmVmLmN1cnJlbnQ7CiAgICBpZiAoIWNhbnZhcykgcmV0dXJuOwogICAgY29uc3QgbW90aW9uUXVlcnkgPSB3aW5kb3cubWF0Y2hNZWRpYSgiKHByZWZlcnMtcmVkdWNlZC1tb3Rpb246IHJlZHVjZSkiKTsKICAgIGNvbnN0IGRyYXcgPSAodGltZTogbnVtYmVyKSA9PiBkcmF3RnJhbWUodGltZSwgbW90aW9uUXVlcnkubWF0Y2hlcyk7CiAgICBjb25zdCBvYnNlcnZlciA9IG5ldyBJbnRlcnNlY3Rpb25PYnNlcnZlcigoW2VudHJ5XSkgPT4gewogICAgICB2aXNpYmxlUmVmLmN1cnJlbnQgPSBlbnRyeS5pc0ludGVyc2VjdGluZzsKICAgICAgaWYgKGVudHJ5LmlzSW50ZXJzZWN0aW5nKSB7CiAgICAgICAgaWYgKHN0YXJ0VGltZVJlZi5jdXJyZW50ID09PSBudWxsKSBzdGFydFRpbWVSZWYuY3VycmVudCA9IHBlcmZvcm1hbmNlLm5vdygpOwogICAgICAgIGlmIChmcmFtZVJlZi5jdXJyZW50ICE9PSBudWxsKSBjYW5jZWxBbmltYXRpb25GcmFtZShmcmFtZVJlZi5jdXJyZW50KTsKICAgICAgICBmcmFtZVJlZi5jdXJyZW50ID0gcmVxdWVzdEFuaW1hdGlvbkZyYW1lKGRyYXcpOwogICAgICB9IGVsc2UgaWYgKGZyYW1lUmVmLmN1cnJlbnQgIT09IG51bGwpIHsKICAgICAgICBjYW5jZWxBbmltYXRpb25GcmFtZShmcmFtZVJlZi5jdXJyZW50KTsKICAgICAgICBmcmFtZVJlZi5jdXJyZW50ID0gbnVsbDsKICAgICAgfQogICAgfSwgeyB0aHJlc2hvbGQ6IDAuNCB9KTsKICAgIG9ic2VydmVyLm9ic2VydmUoY2FudmFzKTsKICAgIGNvbnN0IHJlc2l6ZSA9IG5ldyBSZXNpemVPYnNlcnZlcigoKSA9PiB7CiAgICAgIGlmICh2aXNpYmxlUmVmLmN1cnJlbnQpIHsKICAgICAgICBpZiAoZnJhbWVSZWYuY3VycmVudCAhPT0gbnVsbCkgY2FuY2VsQW5pbWF0aW9uRnJhbWUoZnJhbWVSZWYuY3VycmVudCk7CiAgICAgICAgZnJhbWVSZWYuY3VycmVudCA9IHJlcXVlc3RBbmltYXRpb25GcmFtZShkcmF3KTsKICAgICAgfQogICAgfSk7CiAgICByZXNpemUub2JzZXJ2ZShjYW52YXMpOwogICAgcmV0dXJuICgpID0+IHsKICAgICAgb2JzZXJ2ZXIuZGlzY29ubmVjdCgpOwogICAgICByZXNpemUuZGlzY29ubmVjdCgpOwogICAgICBpZiAoZnJhbWVSZWYuY3VycmVudCAhPT0gbnVsbCkgY2FuY2VsQW5pbWF0aW9uRnJhbWUoZnJhbWVSZWYuY3VycmVudCk7CiAgICB9OwogIH0sIFtkcmF3RnJhbWUsIHJlcGxheV0pOwoKICBjb25zdCBoYW5kbGVQb2ludGVyTW92ZSA9IChldmVudDogUG9pbnRlckV2ZW50PEhUTUxDYW52YXNFbGVtZW50PikgPT4gewogICAgY29uc3QgcmVjdCA9IGV2ZW50LmN1cnJlbnRUYXJnZXQuZ2V0Qm91bmRpbmdDbGllbnRSZWN0KCk7CiAgICBjb25zdCB4ID0gZXZlbnQuY2xpZW50WCAtIHJlY3QubGVmdDsKICAgIGNvbnN0IHkgPSBldmVudC5jbGllbnRZIC0gcmVjdC50b3A7CiAgICBjb25zdCBoaXQgPSBbLi4uYnVpbGRpbmdzUmVmLmN1cnJlbnRdLnJldmVyc2UoKS5maW5kKCh7IHBvaW50cyB9KSA9PiB7CiAgICAgIGNvbnN0IHhzID0gcG9pbnRzLm1hcCgocG9pbnQpID0+IHBvaW50WzBdKTsKICAgICAgY29uc3QgeXMgPSBwb2ludHMubWFwKChwb2ludCkgPT4gcG9pbnRbMV0pOwogICAgICByZXR1cm4geCA+PSBNYXRoLm1pbiguLi54cykgJiYgeCA8PSBNYXRoLm1heCguLi54cykgJiYgeSA+PSBNYXRoLm1pbiguLi55cykgJiYgeSA8PSBNYXRoLm1heCguLi55cyk7CiAgICB9KTsKICAgIHNldFRvb2x0aXAoaGl0ID8geyB4OiBNYXRoLm1pbih4ICsgMTQsIHJlY3Qud2lkdGggLSAxNTApLCB5OiBNYXRoLm1heCg4LCB5IC0gNDQpLCBkYXRlOiBoaXQuZGF0ZSwgY291bnQ6IGhpdC5jb3VudCB9IDogbnVsbCk7CiAgfTsKCiAgY29uc3QgdG90YWwgPSBjYWxlbmRhci50b3RhbC50b0xvY2FsZVN0cmluZygpOwoKICByZXR1cm4gKAogICAgPHNlY3Rpb24gYXJpYS1sYWJlbGxlZGJ5PSJnaXRodWItY2l0eS10aXRsZSIgY2xhc3NOYW1lPSJnaXRodWItY2l0eS1zZWN0aW9uIHB5LTEyIHNtOnB5LTE2Ij4KICAgICAgPGRpdiBjbGFzc05hbWU9Im1iLTYgZmxleCBmbGV4LXdyYXAgaXRlbXMtZW5kIGp1c3RpZnktYmV0d2VlbiBnYXAtNCI+CiAgICAgICAgPGRpdj4KICAgICAgICAgIDxwIGNsYXNzTmFtZT0ibWItMiB0ZXh0LXhzIGZvbnQtc2VtaWJvbGQgdXBwZXJjYXNlIHRyYWNraW5nLVswLjJlbV0gdGV4dC1bdmFyKC0tbXV0ZWQpXSI+QSB5ZWFyIG9mIGJ1aWxkaW5nPC9wPgogICAgICAgICAgPGgyIGlkPSJnaXRodWItY2l0eS10aXRsZSIgY2xhc3NOYW1lPSJ0ZXh0LTJ4bCBmb250LXNlbWlib2xkIHRleHQtW3ZhcigtLWJyYW5kKV0gc206dGV4dC0zeGwiPk15IEdpdEh1YiBjaXR5PC9oMj4KICAgICAgICAgIDxwIGNsYXNzTmFtZT0ibXQtMiBtYXgtdy14bCB0ZXh0LXNtIHRleHQtW3ZhcigtLW11dGVkKV0iPkVhY2ggYnVpbGRpbmcgaXMgYSBkYXkgb2YgY29kZS4gVGFsbGVyLCBncmVlbmVyIHRvd2VycyBtYXJrIGJ1c2llciBkYXlzLjwvcD4KICAgICAgICA8L2Rpdj4KICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iZmxleCBpdGVtcy1iYXNlbGluZSBnYXAtMiByb3VuZGVkLXhsIGJvcmRlciBib3JkZXItW3ZhcigtLWJvcmRlcildIGJnLVt2YXIoLS1zdXJmYWNlKV0gcHgtNCBweS0zIj4KICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT0idGV4dC0yeGwgZm9udC1ib2xkIHRleHQtW3ZhcigtLXRleHQpXSI+e3RvdGFsfTwvc3Bhbj4KICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT0idGV4dC14cyB0ZXh0LVt2YXIoLS1tdXRlZCldIj5jb250cmlidXRpb25zIHRoaXMgeWVhcjwvc3Bhbj4KICAgICAgICA8L2Rpdj4KICAgICAgPC9kaXY+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJyZWxhdGl2ZSBvdmVyZmxvdy1oaWRkZW4gcm91bmRlZC0yeGwgYm9yZGVyIGJvcmRlci1bdmFyKC0tYm9yZGVyKV0gYmctWyMwYjEwMjBdIHB4LTIgcHktNCBzbTpweC01IHNtOnB5LTYiPgogICAgICAgIDxjYW52YXMKICAgICAgICAgIHJlZj17Y2FudmFzUmVmfQogICAgICAgICAgYXJpYS1sYWJlbD17YEFuaW1hdGVkIDNEIGNpdHkgb2YgJHtjYWxlbmRhci5jb3VudHMubGVuZ3RofSBkYWlseSBHaXRIdWIgY29udHJpYnV0aW9uIGNvdW50cyBmb3IgJHtjYWxlbmRhci51c2VybmFtZX0uIEhvdmVyIG92ZXIgYSBidWlsZGluZyB0byBzZWUgaXRzIGRhdGUgYW5kIGNvbnRyaWJ1dGlvbiBjb3VudC5gfQogICAgICAgICAgcm9sZT0iaW1nIgogICAgICAgICAgY2xhc3NOYW1lPSJibG9jayBoLVszMzBweF0gdy1mdWxsIHRvdWNoLXBhbi15IHNtOmgtWzM5MHB4XSIKICAgICAgICAgIG9uUG9pbnRlck1vdmU9e2hhbmRsZVBvaW50ZXJNb3ZlfQogICAgICAgICAgb25Qb2ludGVyTGVhdmU9eygpID0+IHNldFRvb2x0aXAobnVsbCl9CiAgICAgICAgLz4KICAgICAgICB7dG9vbHRpcCAmJiAoCiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0icG9pbnRlci1ldmVudHMtbm9uZSBhYnNvbHV0ZSB6LTEwIHJvdW5kZWQtbGcgYm9yZGVyIGJvcmRlci13aGl0ZS8xMCBiZy1bIzE3MWQyZF0gcHgtMyBweS0yIHRleHQteHMgdGV4dC13aGl0ZSBzaGFkb3cteGwiIHN0eWxlPXt7IGxlZnQ6IHRvb2x0aXAueCwgdG9wOiB0b29sdGlwLnkgfX0+CiAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT0iYmxvY2sgZm9udC1tZWRpdW0iPntmb3JtYXREYXRlKHRvb2x0aXAuZGF0ZSl9PC9zcGFuPgogICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9InRleHQtc2xhdGUtMzAwIj57dG9vbHRpcC5jb3VudH0ge3Rvb2x0aXAuY291bnQgPT09IDEgPyAiY29udHJpYnV0aW9uIiA6ICJjb250cmlidXRpb25zIn08L3NwYW4+CiAgICAgICAgICA8L2Rpdj4KICAgICAgICApfQogICAgICA8L2Rpdj4KICAgICAgPGRpdiBjbGFzc05hbWU9Im10LTMgZmxleCBpdGVtcy1jZW50ZXIganVzdGlmeS1iZXR3ZWVuIGdhcC00IHRleHQteHMgdGV4dC1bdmFyKC0tbXV0ZWQpXSI+CiAgICAgICAgPHNwYW4+RGFpbHkgYWN0aXZpdHkgwrcgR2l0SHViIGNvbnRyaWJ1dGlvbiBjYWxlbmRhcjwvc3Bhbj4KICAgICAgICA8YnV0dG9uIHR5cGU9ImJ1dHRvbiIgY2xhc3NOYW1lPSJyb3VuZGVkLW1kIHB4LTIgcHktMSB0cmFuc2l0aW9uIGhvdmVyOmJnLVt2YXIoLS1zdXJmYWNlKV0gaG92ZXI6dGV4dC1bdmFyKC0tdGV4dCldIGZvY3VzLXZpc2libGU6b3V0bGluZS0yIGZvY3VzLXZpc2libGU6b3V0bGluZS1vZmZzZXQtMiBmb2N1cy12aXNpYmxlOm91dGxpbmUtW3ZhcigtLWJyYW5kKV0iIG9uQ2xpY2s9eygpID0+IHsgc3RhcnRUaW1lUmVmLmN1cnJlbnQgPSBudWxsOyBzZXRSZXBsYXkoKHZhbHVlKSA9PiB2YWx1ZSArIDEpOyB9fT4KICAgICAgICAgIFJlcGxheSBjaXR5CiAgICAgICAgPC9idXR0b24+CiAgICAgIDwvZGl2PgogICAgPC9zZWN0aW9uPgogICk7Cn0K
+import { useCallback, useEffect, useRef, useState } from "react";
+import type { PointerEvent } from "react";
+import calendar from "../../data/github.json";
+
+const LEVEL_COLORS = ["#253044", "#9be9a8", "#40c463", "#30a14e", "#216e39"];
+
+type Building = {
+  x: number;
+  y: number;
+  date: string;
+  count: number;
+  index: number;
+  points: [number, number][];
+};
+
+const formatDate = (date: string) =>
+  new Date(`${date}T00:00:00Z`).toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+
+export function GitHubCity() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const buildingsRef = useRef<Building[]>([]);
+  const startTimeRef = useRef<number | null>(null);
+  const frameRef = useRef<number | null>(null);
+  const visibleRef = useRef(false);
+  const [replay, setReplay] = useState(0);
+  const [tooltip, setTooltip] = useState<{ x: number; y: number; date: string; count: number } | null>(null);
+
+  const drawFrame = useCallback((time: number, reducedMotion: boolean) => {
+    const canvas = canvasRef.current;
+    const ctx = canvas?.getContext("2d");
+    if (!canvas || !ctx) return;
+
+    const rect = canvas.getBoundingClientRect();
+    if (!rect.width || !rect.height) return;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const width = rect.width;
+    const height = rect.height;
+    if (canvas.width !== Math.round(width * dpr) || canvas.height !== Math.round(height * dpr)) {
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+    }
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, width, height);
+
+    const weeks = Math.ceil(calendar.counts.length / 7);
+    const cell = Math.min(14, (width - 52) / (weeks + 3.5));
+    const depth = cell * 0.38;
+    const maxCount = Math.max(...calendar.counts, 1);
+    const elapsed = reducedMotion ? Number.POSITIVE_INFINITY : time - (startTimeRef.current ?? time);
+    const riseDuration = 1050;
+    const lift = Math.max(0, Math.min(1, elapsed / riseDuration));
+    const easedLift = 1 - Math.pow(1 - lift, 3);
+    const groundWidth = weeks * cell + 6 * depth;
+    const groundHeight = 6 * cell * 0.72 + weeks * cell * 0.28;
+    const originX = (width - groundWidth) / 2 + 2 * depth;
+    const originY = Math.max(42, (height - groundHeight - 92) / 2) + 6 * cell * 0.72 + 24;
+
+    // A fine street grid gives the isometric blocks a shared city ground plane.
+    ctx.strokeStyle = "rgba(148, 163, 184, 0.10)";
+    ctx.lineWidth = 1;
+    for (let col = 0; col <= weeks; col += 4) {
+      const x = originX + col * cell;
+      ctx.beginPath();
+      ctx.moveTo(x, originY + 4);
+      ctx.lineTo(x - 6 * depth, originY + 6 * cell * 0.72 + 4);
+      ctx.stroke();
+    }
+    for (let row = 0; row <= 6; row += 2) {
+      const x = originX - row * depth;
+      const y = originY + row * cell * 0.72;
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      ctx.lineTo(x + weeks * cell, y + weeks * cell * 0.28);
+      ctx.stroke();
+    }
+
+    const hits: Building[] = [];
+    const order = calendar.counts.map((_, index) => index).sort((a, b) => {
+      const ra = a % 7;
+      const rb = b % 7;
+      return (Math.floor(a / 7) + ra) - (Math.floor(b / 7) + rb);
+    });
+
+    for (const index of order) {
+      const count = calendar.counts[index];
+      const level = Number(calendar.levels[index] || 0);
+      const col = Math.floor(index / 7);
+      const row = index % 7;
+      const delay = (col * 8 + row * 15) * 2.1;
+      const progress = reducedMotion ? 1 : Math.max(0, Math.min(1, (elapsed - delay) / 440));
+      if (progress <= 0) continue;
+
+      const bx = originX + col * cell - row * depth;
+      const by = originY + col * cell * 0.28 + row * cell * 0.72;
+      const fullHeight = count === 0 ? 2 : 7 + Math.sqrt(count / maxCount) * 94;
+      const buildingHeight = Math.max(1, fullHeight * easedLift * (1 - Math.pow(1 - progress, 3)));
+      const x0 = bx;
+      const x1 = bx + cell * 0.82;
+      const y0 = by - buildingHeight;
+      const y1 = by;
+      const front: [number, number][] = [[x0, y0], [x1, y0], [x1, y1], [x0, y1]];
+      const side: [number, number][] = [[x1, y0], [x1 + depth, y0 - depth * 0.48], [x1 + depth, y1 - depth * 0.48], [x1, y1]];
+      const top: [number, number][] = [[x0, y0], [x0 + depth, y0 - depth * 0.48], [x1 + depth, y0 - depth * 0.48], [x1, y0]];
+      const base = LEVEL_COLORS[level];
+      const shade = level === 0 ? "#1b2333" : LEVEL_COLORS[Math.max(1, level - 1)];
+
+      ctx.beginPath();
+      ctx.moveTo(...side[0]);
+      side.slice(1).forEach((point) => ctx.lineTo(...point));
+      ctx.closePath();
+      ctx.fillStyle = shade;
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.moveTo(...front[0]);
+      front.slice(1).forEach((point) => ctx.lineTo(...point));
+      ctx.closePath();
+      ctx.fillStyle = base;
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.moveTo(...top[0]);
+      top.slice(1).forEach((point) => ctx.lineTo(...point));
+      ctx.closePath();
+      ctx.fillStyle = level === 0 ? "#384254" : "#a7f3bd";
+      ctx.fill();
+
+      ctx.strokeStyle = level === 0 ? "rgba(148,163,184,.15)" : "rgba(255,255,255,.13)";
+      ctx.lineWidth = 0.7;
+      ctx.stroke();
+      hits.push({ x: bx, y: by - buildingHeight - depth, date: new Date(Date.parse(`${calendar.start}T00:00:00Z`) + index * 86400000).toISOString().slice(0, 10), count, index, points: front });
+    }
+    buildingsRef.current = hits;
+
+    if (!reducedMotion && lift < 1) {
+      frameRef.current = requestAnimationFrame((nextTime) => drawFrame(nextTime, reducedMotion));
+    }
+  }, []);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const draw = (time: number) => drawFrame(time, motionQuery.matches);
+    const observer = new IntersectionObserver(([entry]) => {
+      visibleRef.current = entry.isIntersecting;
+      if (entry.isIntersecting) {
+        if (startTimeRef.current === null) startTimeRef.current = performance.now();
+        if (frameRef.current !== null) cancelAnimationFrame(frameRef.current);
+        frameRef.current = requestAnimationFrame(draw);
+      } else if (frameRef.current !== null) {
+        cancelAnimationFrame(frameRef.current);
+        frameRef.current = null;
+      }
+    }, { threshold: 0.4 });
+    observer.observe(canvas);
+    const resize = new ResizeObserver(() => {
+      if (visibleRef.current) {
+        if (frameRef.current !== null) cancelAnimationFrame(frameRef.current);
+        frameRef.current = requestAnimationFrame(draw);
+      }
+    });
+    resize.observe(canvas);
+    return () => {
+      observer.disconnect();
+      resize.disconnect();
+      if (frameRef.current !== null) cancelAnimationFrame(frameRef.current);
+    };
+  }, [drawFrame, replay]);
+
+  const handlePointerMove = (event: PointerEvent<HTMLCanvasElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    const hit = [...buildingsRef.current].reverse().find(({ points }) => {
+      const xs = points.map((point) => point[0]);
+      const ys = points.map((point) => point[1]);
+      return x >= Math.min(...xs) && x <= Math.max(...xs) && y >= Math.min(...ys) && y <= Math.max(...ys);
+    });
+    setTooltip(hit ? { x: Math.min(x + 14, rect.width - 150), y: Math.max(8, y - 44), date: hit.date, count: hit.count } : null);
+  };
+
+  const total = calendar.total.toLocaleString();
+
+  return (
+    <section aria-labelledby="github-city-title" className="github-city-section py-12 sm:py-16">
+      <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--muted)]">A year of building</p>
+          <h2 id="github-city-title" className="text-2xl font-semibold text-[var(--brand)] sm:text-3xl">My GitHub city</h2>
+          <p className="mt-2 max-w-xl text-sm text-[var(--muted)]">Each building is a day of code. Taller, greener towers mark busier days.</p>
+        </div>
+        <div className="flex items-baseline gap-2 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3">
+          <span className="text-2xl font-bold text-[var(--text)]">{total}</span>
+          <span className="text-xs text-[var(--muted)]">contributions this year</span>
+        </div>
+      </div>
+      <div className="relative overflow-hidden rounded-2xl border border-[var(--border)] bg-[#0b1020] px-2 py-4 sm:px-5 sm:py-6">
+        <canvas
+          ref={canvasRef}
+          aria-label={`Animated 3D city of ${calendar.counts.length} daily GitHub contribution counts for ${calendar.username}. Hover over a building to see its date and contribution count.`}
+          role="img"
+          className="block h-[330px] w-full touch-pan-y sm:h-[390px]"
+          onPointerMove={handlePointerMove}
+          onPointerLeave={() => setTooltip(null)}
+        />
+        {tooltip && (
+          <div className="pointer-events-none absolute z-10 rounded-lg border border-white/10 bg-[#171d2d] px-3 py-2 text-xs text-white shadow-xl" style={{ left: tooltip.x, top: tooltip.y }}>
+            <span className="block font-medium">{formatDate(tooltip.date)}</span>
+            <span className="text-slate-300">{tooltip.count} {tooltip.count === 1 ? "contribution" : "contributions"}</span>
+          </div>
+        )}
+      </div>
+      <div className="mt-3 flex items-center justify-between gap-4 text-xs text-[var(--muted)]">
+        <span>Daily activity · GitHub contribution calendar</span>
+        <button type="button" className="rounded-md px-2 py-1 transition hover:bg-[var(--surface)] hover:text-[var(--text)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--brand)]" onClick={() => { startTimeRef.current = null; setReplay((value) => value + 1); }}>
+          Replay city
+        </button>
+      </div>
+    </section>
+  );
+}
