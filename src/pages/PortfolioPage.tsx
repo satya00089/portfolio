@@ -1,6 +1,5 @@
 // PortfolioPage.tsx
 import React, { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { ThemeProvider } from "../components/ThemeProvider";
 import { Header } from "../components/shared/Header";
 import { ProjectsGrid } from "../components/ProjectsGrid";
@@ -9,7 +8,6 @@ import { ContactForm } from "../components/ContactForm";
 import { Footer } from "../components/shared/Footer";
 import { PORTFOLIO_INFO } from "../config/portfolioData";
 import { About } from "../components/About";
-import { AppleHelloEnglishEffect } from "../components/HelloEffects";
 import type { Project } from "../types/portfolio";
 import { ProjectModal } from "../components/ProjectModal";
 import { ScrollProgressBar } from "../components/shared/ScrollProgressBar";
@@ -20,7 +18,6 @@ import { GitHubCity } from "../components/GitHubCity";
 const PortfolioPage: React.FC = () => {
   const [selected, setSelected] = useState<Project | null>(null);
   const [showCLI, setShowCLI] = useState(false);
-  const [showHello, setShowHello] = useState(true);
 
   return (
     <ThemeProvider>
@@ -37,69 +34,60 @@ const PortfolioPage: React.FC = () => {
       {/* CLI panel (docked / overlay) */}
       <CLIResume open={showCLI} onClose={() => setShowCLI(false)} />
 
-      {/* About / hero: hidden while hello animation plays */}
-      <AnimatePresence>
-        {showHello && (
-          <motion.div
-            key="hello-overlay"
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <AppleHelloEnglishEffect
-              className="text-white"
-              onAnimationComplete={() => setShowHello(false)}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <motion.section
+      <section
         id="about"
-        className="hero-panel relative h-screen min-h-screen w-full overflow-hidden"
-        initial={{ opacity: 0, y: 8 }}
-        animate={showHello ? { opacity: 0, y: 8 } : { opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="hero-panel relative w-full overflow-hidden"
       >
-        <div className="relative z-10 flex min-h-screen w-full items-center justify-center px-4 sm:px-6 lg:px-8">
-          <div className="w-full max-w-6xl 2xl:max-w-7xl mx-auto">
+        <div className="relative z-10 flex min-h-[min(760px,100svh)] w-full items-center justify-center px-4 pb-16 pt-28 sm:px-6 lg:px-8">
+          <div className="w-full max-w-6xl mx-auto">
             <About />
           </div>
         </div>
-      </motion.section>
+      </section>
 
-      <main className="max-w-6xl 2xl:max-w-9xl mx-auto px-6 py-15 sm:py-20 lg:py-32 relative z-20">
-        <section id="projects" className="py-8">
-          <h2 className="text-2xl font-semibold text-[var(--brand)]">Projects</h2>
-          <p className="mb-6 text-sm text-gray-500 dark:text-gray-400 mt-1">
-            Selected work — click a card for details.
-          </p>
+      <main className="portfolio-main max-w-6xl mx-auto px-4 sm:px-6 relative z-20">
+        <section id="projects" className="portfolio-section py-12 sm:py-16">
+          <div className="section-heading">
+            <span className="section-index">01 / SELECTED WORK</span>
+            <h2>Built to be used.</h2>
+            <p>
+              Products and systems I’ve taken from the first sketch to
+              production.
+            </p>
+          </div>
           <ProjectsGrid
             projects={PORTFOLIO_INFO.projects}
             onOpen={setSelected}
           />
         </section>
 
-        <section id="skills" className="py-8">
-          <h2 className="text-2xl font-semibold text-[var(--brand)]">Skills</h2>
-          <p className="mb-6 text-sm text-gray-500 dark:text-gray-400 mt-1">
-            Tools and technologies I use regularly.
-          </p>
+        <section id="skills" className="portfolio-section py-12 sm:py-16">
+          <div className="section-heading">
+            <span className="section-index">02 / TOOLKIT</span>
+            <h2>One team of one.</h2>
+            <p>
+              From interface details to infrastructure, I can own the full
+              delivery loop.
+            </p>
+          </div>
           <SkillsList skills={PORTFOLIO_INFO.skills} isBar={true} />
         </section>
 
-        <section id="contact" className="py-8">
-          <h2 className="text-2xl font-semibold text-[var(--brand)]">Contact</h2>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-            Tell me about your project, or just say hi.
-          </p>
-          <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--border)]">
+        <section id="contact" className="portfolio-section py-12 sm:py-16">
+          <div className="section-heading">
+            <span className="section-index">03 / CONTACT</span>
+            <h2>Have a good one in mind?</h2>
+            <p>
+              Tell me what you’re building. I’m available for freelance and
+              contract work.
+            </p>
+          </div>
+          <div className="contact-grid mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="contact-panel p-6">
               <ContactForm />
             </div>
 
-            <div className="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--border)] flex flex-col gap-4">
+            <div className="contact-panel p-6 flex flex-col gap-4">
               <div>
                 <div className="font-semibold">Let's collaborate</div>
                 <div className="text-sm text-gray-500 dark:text-gray-400">
@@ -110,7 +98,14 @@ const PortfolioPage: React.FC = () => {
               <div className="mt-2">
                 <div className="font-semibold">Quick contact</div>
                 <div className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                  Email: satyasubudhi089@gmail.com
+                  Email:{" "}
+                  <a
+                    className="contact-email"
+                    href={`mailto:${PORTFOLIO_INFO.personal.contact?.email ?? "satyasubudhi089@gmail.com"}`}
+                  >
+                    {PORTFOLIO_INFO.personal.contact?.email ??
+                      "satyasubudhi089@gmail.com"}
+                  </a>
                 </div>
                 <div className="text-sm text-gray-500 dark:text-gray-400">
                   Location: Remote
@@ -119,8 +114,8 @@ const PortfolioPage: React.FC = () => {
               <div className="mt-auto">
                 <div className="text-sm font-medium">Resume</div>
                 <a
-                  href="/"
-                  className="block mt-2 px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700"
+                  href={`${import.meta.env.BASE_URL}resume.pdf`}
+                  className="brutal-button block mt-2 px-4 py-2"
                 >
                   Download PDF
                 </a>
@@ -129,7 +124,7 @@ const PortfolioPage: React.FC = () => {
           </div>
         </section>
       </main>
-      <div className="max-w-6xl 2xl:max-w-9xl mx-auto px-6 relative z-20">
+      <div className="city-wrap max-w-6xl mx-auto px-4 sm:px-6 relative z-20">
         <GitHubCity />
       </div>
       <ScrollToTop />

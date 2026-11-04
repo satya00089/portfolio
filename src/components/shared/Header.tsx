@@ -1,15 +1,5 @@
-// Header.tsx
-import React, { useEffect, useRef, useState } from "react";
-import {
-  motion,
-  AnimatePresence,
-  useScroll,
-  useTransform,
-  animate,
-  useMotionTemplate,
-} from "framer-motion";
-import { PiSunDuotone, PiMoonDuotone } from "react-icons/pi";
-import { useTheme } from "../../context/ThemeContext";
+import React, { useEffect, useState } from "react";
+import { Menu, X } from "lucide-react";
 
 type NavLink = { href: string; label: string };
 
@@ -17,147 +7,89 @@ export const Header: React.FC<{ links?: NavLink[]; onTryCLI?: () => void }> = ({
   links = [],
   onTryCLI,
 }) => {
-  const { dark, toggle } = useTheme();
-  const headerRef = useRef<HTMLElement | null>(null);
-
   const [active, setActive] = useState<string>(links[0]?.href ?? "#about");
+  const [menuOpen, setMenuOpen] = useState(false);
+
   useEffect(() => {
     const sections = links
-      .map((l) =>
-        l.href.startsWith("#") ? document.querySelector(l.href) : null,
-      )
+      .map((link) => document.querySelector(link.href))
       .filter(Boolean) as HTMLElement[];
-
-    const obs = new IntersectionObserver(
+    const observer = new IntersectionObserver(
       (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
+        const current = entries
+          .filter((entry) => entry.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible?.target?.id) setActive(`#${visible.target.id}`);
+        if (current?.target instanceof HTMLElement) {
+          setActive(`#${current.target.id}`);
+        }
       },
-      { rootMargin: "-30% 0px -60% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] },
+      { rootMargin: "-25% 0px -65% 0px", threshold: [0, 0.2, 0.5] },
     );
-
-    sections.forEach((s) => obs.observe(s));
-    return () => obs.disconnect();
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
   }, [links]);
 
-  const springScrollTo = (y: number) => {
-    const controls = animate(window.scrollY, y, {
-      type: "spring",
-      stiffness: 200,
-      damping: 30,
-      onUpdate: (latest) => window.scrollTo(0, latest),
-    });
-    return () => controls.stop();
-  };
-
-  const onNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    // normal navigation for external links
-    if (!href.startsWith("#")) return;
-
-    e.preventDefault();
-    const target = document.querySelector(href);
-    if (!target) return;
-
-    const headerEl = headerRef.current ?? document.querySelector("header");
-    const headerH = headerEl?.offsetHeight ?? 0;
-    const y = target.getBoundingClientRect().top + window.scrollY - headerH;
-    springScrollTo(y);
-  };
-
-  const { scrollY } = useScroll();
-  const blurPx = useTransform(scrollY, [0, 100], [0, 16]);
-  const bgOpacity = useTransform(scrollY, [0, 100], [0, 0.8]);
-  const borderOpacity = useTransform(scrollY, [0, 100], [0, 1]);
-  const overlayOpacity = useTransform(scrollY, [0, 100], [0, 0.14]);
-  const backdrop = useMotionTemplate`blur(${blurPx}px)`;
-
-  // NOTE: previously read PORTFOLIO_INFO.personal and BASE_URL here; removed unused bindings to satisfy TS checks.
-
   return (
-    <motion.header
-      ref={headerRef}
-      className="fixed top-0 left-0 z-50 w-full"
-      style={{
-        backdropFilter: backdrop,
-        WebkitBackdropFilter: backdrop,
-      }}
-    >
-      {/* Background layer */}
-      <motion.div
-        aria-hidden
-        className="absolute inset-0 pointer-events-none bg-[var(--surface)]"
-        style={{
-          opacity: bgOpacity,
-        }}
-      />
-      {/* Border layer */}
-      <motion.div
-        aria-hidden
-        className="absolute inset-x-0 bottom-0 h-px pointer-events-none bg-[var(--border)]"
-        style={{
-          opacity: borderOpacity,
-        }}
-      />
-      {/* Dark overlay for depth */}
-      <motion.div
-        aria-hidden
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundColor: `rgba(0,0,0,1)`,
-          opacity: overlayOpacity,
-        }}
-      />
-      <div className="relative max-w-6xl mx-auto px-6 py-4 flex items-center justify-end">
-        {/* Right: nav + theme + Try CLI */}
-        <nav aria-label="Primary" className="relative flex items-center gap-3">
-          <div className="relative hidden sm:flex gap-4">
-            {links.map((l) => {
-              const isActive = active === l.href;
-              return (
-                <a
-                  key={l.href}
-                  href={l.href}
-                  onClick={(e) => onNavClick(e, l.href)}
-                  className="relative px-1 py-0.5 text-sm text-[var(--text)]"
-                >
-                  {l.label}
-                  <AnimatePresence initial={false}>
-                    {isActive && (
-                      <motion.span
-                        layoutId="nav-underline"
-                        className="absolute left-0 right-0 -bottom-1 h-[2px] rounded-full bg-[var(--brand)]"
-                        transition={{
-                          type: "spring",
-                          stiffness: 500,
-                          damping: 40,
-                        }}
-                      />
-                    )}
-                  </AnimatePresence>
-                </a>
-              );
-            })}
-          </div>
+    <header className="site-header">
+      <div className="header-inner">
+        <a
+          href="#about"
+          className="site-wordmark"
+          onClick={() => setMenuOpen(false)}
+        >
+          SATYA<span>®</span>
+        </a>
 
-          <button
-            onClick={onTryCLI}
-            className="sm:inline-flex items-center gap-2 px-3 py-1.5 rounded text-sm border border-[var(--border)] hover:bg-[var(--border)]/30 transition cursor-pointer"
-            aria-label="Try CLI"
-          >
-            Try CLI
-          </button>
+        <button
+          type="button"
+          className="mobile-menu-toggle"
+          aria-label={menuOpen ? "Close navigation" : "Open navigation"}
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          {menuOpen ? <X size={21} /> : <Menu size={21} />}
+        </button>
 
+        <nav
+          aria-label="Primary"
+          className={`header-nav ${menuOpen ? "is-open" : ""}`}
+        >
+          {links.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              aria-current={active === link.href ? "location" : undefined}
+              className={active === link.href ? "is-active" : ""}
+              onClick={(event) => {
+                if (link.href.startsWith("#")) {
+                  event.preventDefault();
+                  document.querySelector(link.href)?.scrollIntoView({
+                    behavior: window.matchMedia(
+                      "(prefers-reduced-motion: reduce)",
+                    ).matches
+                      ? "auto"
+                      : "smooth",
+                    block: "start",
+                  });
+                }
+                setMenuOpen(false);
+              }}
+            >
+              {link.label}
+            </a>
+          ))}
           <button
-            onClick={toggle}
-            aria-label="Toggle color theme"
-            className="p-2 rounded-full border border-[var(--border)] bg-[var(--surface)] hover:bg-[var(--border)]/30 transition cursor-pointer"
+            type="button"
+            className="header-cli"
+            onClick={() => {
+              setMenuOpen(false);
+              onTryCLI?.();
+            }}
           >
-            {dark ? <PiSunDuotone size={22} /> : <PiMoonDuotone size={22} />}
+            Try CLI <span aria-hidden="true">↗</span>
           </button>
         </nav>
       </div>
-    </motion.header>
+    </header>
   );
 };
