@@ -73,8 +73,8 @@ button:focus-visible,
   z-index: 100;
   inset: 0 0 auto;
   border-bottom: 1px solid rgb(110 105 88 / 18%);
-  background: rgb(243 239 230 / 88%);
-  backdrop-filter: blur(12px);
+  background: transparent;
+  backdrop-filter: blur(20px);
 }
 
 .header-inner {
@@ -1311,7 +1311,7 @@ footer svg {
 
 /* Sky-led story hero */
 .story-hero-section {
-  padding: 88px 0 30px;
+  padding: 0 0 30px;
   background: transparent;
 }
 
@@ -1320,7 +1320,7 @@ footer svg {
 }
 
 .story-hero-section > .story-page-width {
-  width: min(1500px, calc(100% - 40px));
+  width: calc(100% - 16px);
 }
 
 .story-hero {
@@ -1341,8 +1341,24 @@ footer svg {
     linear-gradient(90deg, rgb(250 242 229 / 20%) 0%, rgb(250 242 229 / 7%) 54%, rgb(36 29 27 / 5%) 100%),
     linear-gradient(0deg, rgb(32 28 25 / 42%) 0%, rgb(32 28 25 / 8%) 26%, transparent 54%),
     url("./assets/wabi-dusk-hills.webp");
-  background-position: center, center, center 56%;
+  background-position: center, center, center bottom;
   background-size: cover;
+}
+
+/* The hero image drifts slightly up and grows as the hero scrolls past.
+   The layer copies the hero background, so the image and its overlay move together.
+   --drift is set by useScrollDrift (0 = entering, 1 = leaving). */
+@media (prefers-reduced-motion: no-preference) {
+  .story-hero::before {
+    position: absolute;
+    inset: -10% 0 0 0;
+    z-index: 0;
+    background: inherit;
+    content: "";
+    pointer-events: none;
+    transform-origin: 50% 100%;
+    scale: calc(1 + var(--drift, 0.5) * 0.2);
+  }
 }
 
 .story-hero-copy {
@@ -1470,7 +1486,7 @@ footer svg {
     align-content: center;
     gap: 30px;
     padding: clamp(34px, 6vw, 60px);
-    background-position: center, center, 56% center;
+    background-position: center, center, 56% bottom;
   }
 
   .story-hero-copy,
@@ -1497,7 +1513,7 @@ footer svg {
 
 @media (max-width: 760px) {
   .story-hero-section {
-    padding: 80px 0 22px;
+    padding: 0 0 22px;
   }
 
   .story-hero-section > .story-page-width {
@@ -1512,7 +1528,7 @@ footer svg {
     background-image:
       linear-gradient(180deg, rgb(250 242 229 / 35%) 0%, rgb(250 242 229 / 19%) 42%, rgb(32 28 25 / 38%) 100%),
       url("./assets/wabi-dusk-hills.webp");
-    background-position: center, 57% center;
+    background-position: center, 57% bottom;
   }
 
   .story-hero-copy .story-eyebrow {
@@ -1563,6 +1579,18 @@ footer svg {
     min-height: 720px;
     padding-inline: 18px;
   }
+}
+
+/* The hero fills the whole screen on every device: edge to edge, full height, no rounded frame. */
+.story-hero-section > .story-page-width {
+  width: 100%;
+}
+
+.story-hero {
+  min-height: 100vh;
+  min-height: 100svh;
+  border: 0;
+  border-radius: 0;
 }
 
 /* Selected work: an ordered, flexible set of project chapters. */
@@ -2304,7 +2332,7 @@ footer svg {
   .project-dialog__description { font-size: .93rem; }
 }
 
-/* The brush ring grows with the introduction rather than crossing its text. */
+/* The brush ring stays circular behind the introduction rather than crossing its text. */
 .story-work-section::before { content: none; }
 .story-work-layout > .story-section-heading {
   position: relative;
@@ -2314,7 +2342,11 @@ footer svg {
 .story-work-layout > .story-section-heading::before {
   position: absolute;
   z-index: -1;
-  inset: 0;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
   background: url("./assets/enso-brush.webp") center / 100% 100% no-repeat;
   content: "";
   pointer-events: none;
@@ -2368,6 +2400,16 @@ footer svg {
   box-shadow: 0 8px 24px rgb(54 45 32 / 12%);
 }
 .story-client-preview img { display: block; width: 100%; height: auto; aspect-ratio: 8 / 5; object-fit: contain; }
+
+/* Preview images drift upward and grow as they scroll past (--drift set by useScrollDrift).
+   translate/scale are separate from transform, so hover effects still apply. */
+@media (prefers-reduced-motion: no-preference) {
+  #featured-projects .project-image,
+  .story-client-preview img {
+    translate: 0 calc((0.5 - var(--drift, 0.5)) * 46px);
+    scale: calc(0.92 + var(--drift, 0.5) * 0.23);
+  }
+}
 .story-client-label { margin: 0 0 15px; color: #6b7657; font-size: .64rem; font-weight: 700; letter-spacing: .14em; }
 .story-client-label span { padding-inline: 5px; color: #ac8c70; }
 .story-client-logo { display: block; width: 42px; height: 42px; margin-bottom: 12px; object-fit: contain; }

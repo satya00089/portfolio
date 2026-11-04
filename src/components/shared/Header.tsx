@@ -9,7 +9,6 @@ export const Header: React.FC<{ links?: NavLink[]; onTryCLI?: () => void }> = ({
 }) => {
   const [active, setActive] = useState<string>(links[0]?.href ?? "#about");
   const [menuOpen, setMenuOpen] = useState(false);
-
   useEffect(() => {
     const sections = links
       .map((link) => document.querySelector(link.href))

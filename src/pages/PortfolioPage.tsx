@@ -12,6 +12,7 @@ import { ScrollProgressBar } from "../components/shared/ScrollProgressBar";
 import { ScrollToTop } from "../components/shared/ScrollToTop";
 import CLIResume from "../components/CLIResume";
 import { GitHubCity } from "../components/GitHubCity";
+import { useScrollDrift } from "../hooks/useScrollDrift";
 
 const CORE_SKILL_GROUPS = ["Frontend", "Backend", "Infrastructure & DevOps"];
 
@@ -32,6 +33,7 @@ const getFeaturedGridLayout = (count: number) => {
 const PortfolioPage: React.FC = () => {
   const [selected, setSelected] = useState<Project | null>(null);
   const [showCLI, setShowCLI] = useState(false);
+  useScrollDrift();
   const projects = PORTFOLIO_INFO.projects ?? [];
   const clientWork = PORTFOLIO_INFO.clientWork;
   const clientProjects = clientWork?.projects ?? [];
@@ -92,12 +94,9 @@ const PortfolioPage: React.FC = () => {
                   {projectDisplay?.intro ??
                     "A few product builds where complex ideas became useful, reliable, and a little more human."}
                 </p>
-                <a className="story-work-explore" href="#featured-projects">
-                  Explore the work <span aria-hidden="true">↓</span>
-                </a>
               </div>
 
-              {featuredProjects.length > 0 && (
+              {featuredProjects?.length > 0 && (
                 <div
                   id="featured-projects"
                   className={`story-work-grid story-work-grid--${featuredGridLayout}`}
