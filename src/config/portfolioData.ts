@@ -430,6 +430,7 @@ export const PORTFOLIO_INFO: Portfolio = {
         "Diagramwise is a browser-based system design workspace for practicing architecture interviews and communicating real systems. Build interactive architecture diagrams, document design decisions, get structured feedback, and share designs with collaborators. Supports ER diagrams, Mermaid and SQL imports, and image exports.",
       tags: ["System Design", "React", "TypeScript", "React Flow"],
       image: `${import.meta.env.BASE_URL}diagramwise.gif`,
+      artwork: `${import.meta.env.BASE_URL}artwork/diagramwise-watercolor.webp`,
       imageAlt: "Diagramwise workspace preview with an architecture diagram",
       imageFit: "contain",
       href: "https://diagramwise.com",
@@ -460,6 +461,7 @@ export const PORTFOLIO_INFO: Portfolio = {
       image:
         "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGtuYjY1emtsZmNjMXp1czdrdXR5bXE5ZDJheHVvZjY1azZxYnJieiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qzImRjQVb2OUI84mTt/giphy.gif",
       imageAlt: "Landing Zone Orchestrator setup workflow preview",
+      artwork: `${import.meta.env.BASE_URL}artwork/landing-zone-watercolor.webp`,
       href: "https://orchestrator.next-zen.dev",
       links: [
         {
@@ -480,6 +482,7 @@ export const PORTFOLIO_INFO: Portfolio = {
       image:
         "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExYXpqYWFhbnBraWt3ZXhvajZsdjg5andyMGZzY2VibGg3bXE0MWxwayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/2PuPWxuLV1FGyh03Ja/giphy.gif",
       imageAlt: "Learn Algo visualizing an algorithm step by step",
+      artwork: `${import.meta.env.BASE_URL}artwork/learn-algo-watercolor.webp`,
       href: "https://www.learn-algo.com",
       links: [
         {

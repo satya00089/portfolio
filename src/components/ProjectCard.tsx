@@ -58,19 +58,12 @@ export const ProjectCard: React.FC<{
             {(project.image || project.artwork) && (
               <div
                 className={`project-media-wrap${project.artwork ? " has-artwork" : ""}`}
-                style={
-                  project.artwork
-                    ? {
-                        backgroundImage: `linear-gradient(135deg, rgb(250 248 241 / 12%), rgb(88 104 74 / 8%)), url("${project.artwork}")`,
-                      }
-                    : undefined
-                }
               >
-                {project.image ? (
+                {project.artwork || project.image ? (
                   <img
-                    src={project.image}
-                    alt={project.imageAlt ?? `${project.title} preview`}
-                    className={`project-image${project.imageFit === "contain" ? " project-image--contain" : ""}`}
+                    src={project.artwork || project.image}
+                    alt={project.artwork ? `Illustration for ${project.title}` : (project.imageAlt ?? `${project.title} preview`)}
+                    className={`project-image${project.artwork ? " project-image--artwork" : project.imageFit === "contain" ? " project-image--contain" : ""}`}
                   />
                 ) : (
                   <div
@@ -107,7 +100,10 @@ export const ProjectCard: React.FC<{
               <p className="text-sm text-[var(--muted)] mt-1 line-clamp-2">
                 {project.short ?? project.description}
               </p>
-              <div className="mt-4 flex gap-3 flex-wrap text-[var(--muted)]">
+              <button type="button" className="story-project-view" onClick={(e) => { e.stopPropagation(); onOpen?.(project); }}>
+                View project <span aria-hidden="true">→</span>
+              </button>
+              <div className="story-project-links mt-4 flex gap-3 flex-wrap text-[var(--muted)]">
               {project.href && (
                 <a
                   href={project.href}
@@ -143,7 +139,7 @@ export const ProjectCard: React.FC<{
               </div>
 
               {/* Tags */}
-              <div className="mt-3 flex gap-2 flex-wrap">
+              <div className="story-project-tags mt-3 flex gap-2 flex-wrap">
               {visibleTags?.map((t) => (
                 <span
                   key={t}
