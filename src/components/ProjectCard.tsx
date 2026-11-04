@@ -33,7 +33,7 @@ export const ProjectCard: React.FC<{
       <motion.article
         layout
         whileHover={{ y: -6 }}
-        className="p-4 group rounded-2xl bg-[var(--surface)] border border-[var(--border)] shadow-sm hover:shadow-md transition-shadow h-full"
+        className="story-project-card p-4 group rounded-2xl bg-[var(--surface)] border border-[var(--border)] shadow-sm hover:shadow-md transition-shadow h-full"
       >
         <div className="flex items-start justify-between gap-4">
           <div>
@@ -81,8 +81,9 @@ export const ProjectCard: React.FC<{
                 )}
               </div>
             )}
-            {/* Title + Description */}
-            <div className="story-project-title-row">
+            <div className="story-project-copy">
+              {/* Title + Description */}
+              <div className="story-project-title-row">
               {project.logo && (
                 <img className="story-project-logo" src={project.logo} alt="" />
               )}
@@ -97,16 +98,16 @@ export const ProjectCard: React.FC<{
               >
                 {project.title}
               </button>
-            </div>
-            {project.isUnderDevelopment && (
-              <span className="text-xs text-[var(--muted)] pl-2">
-                Under Development
-              </span>
-            )}
-            <p className="text-sm text-[var(--muted)] mt-1 line-clamp-2">
-              {project.short ?? project.description}
-            </p>
-            <div className="mt-4 flex gap-3 flex-wrap text-[var(--muted)]">
+              </div>
+              {project.isUnderDevelopment && (
+                <span className="text-xs text-[var(--muted)] pl-2">
+                  Under Development
+                </span>
+              )}
+              <p className="text-sm text-[var(--muted)] mt-1 line-clamp-2">
+                {project.short ?? project.description}
+              </p>
+              <div className="mt-4 flex gap-3 flex-wrap text-[var(--muted)]">
               {project.href && (
                 <a
                   href={project.href}
@@ -139,10 +140,10 @@ export const ProjectCard: React.FC<{
                     </a>
                   );
                 })}
-            </div>
+              </div>
 
-            {/* Tags */}
-            <div className="mt-3 flex gap-2 flex-wrap">
+              {/* Tags */}
+              <div className="mt-3 flex gap-2 flex-wrap">
               {visibleTags?.map((t) => (
                 <span
                   key={t}
@@ -165,6 +166,7 @@ export const ProjectCard: React.FC<{
                   +{hiddenCount}
                 </button>
               )}
+              </div>
             </div>
           </div>
         </div>
