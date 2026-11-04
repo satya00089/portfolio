@@ -2037,3 +2037,87 @@ footer svg {
   #featured-projects > section > div > div:nth-child(1) article.story-project-card { min-height: 0; }
   #featured-projects article.story-project-card::before { top: 15px; left: 19px; }
 }
+
+/* Illustrations are the cover; the project modal keeps the original preview. */
+.story-project-view { display: none; }
+#featured-projects article.story-project-card > div > div,
+#featured-projects > section > div > div:nth-child(1) article.story-project-card > div > div {
+  display: grid;
+  grid-template-columns: minmax(145px, .82fr) minmax(0, 1.18fr);
+  grid-template-rows: minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+}
+#featured-projects article.story-project-card .story-project-copy,
+#featured-projects > section > div > div:nth-child(1) .story-project-copy {
+  grid-column: 1;
+  grid-row: 1;
+  padding-top: 25px;
+  align-self: center;
+}
+#featured-projects article.story-project-card .project-media-wrap,
+#featured-projects > section > div > div:nth-child(1) .project-media-wrap {
+  grid-column: 2;
+  grid-row: 1;
+  height: 100%;
+  min-height: 210px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+#featured-projects article.story-project-card .project-image--artwork {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  background: transparent;
+  object-fit: contain;
+  filter: none;
+}
+#featured-projects article.story-project-card button.font-bold {
+  position: static;
+  display: inline;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  opacity: 1;
+}
+#featured-projects article.story-project-card button[title="Open project"]:not(.font-bold) { display: none; }
+#featured-projects .story-project-links,
+#featured-projects .story-project-tags { display: none; }
+#featured-projects .story-project-view {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 18px;
+  padding: 0 0 3px;
+  border: 0;
+  border-bottom: 1px solid #7d8657;
+  color: #58613e;
+  background: transparent;
+  font-family: Georgia, "Iowan Old Style", serif;
+  font-size: 1rem;
+  cursor: pointer;
+}
+#featured-projects .story-project-view:hover span { transform: translateX(4px); }
+#featured-projects .story-project-view span { transition: transform 160ms ease; }
+@media (max-width: 760px) {
+  #featured-projects article.story-project-card > div > div,
+  #featured-projects > section > div > div:nth-child(1) article.story-project-card > div > div {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  #featured-projects article.story-project-card .project-media-wrap,
+  #featured-projects > section > div > div:nth-child(1) .project-media-wrap {
+    order: 1;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 1.6 / 1;
+    margin: 10px 0 0;
+  }
+}

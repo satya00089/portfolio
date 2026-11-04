@@ -23,9 +23,10 @@ seven works when each project adds a distinct kind of evidence.
 
 Use a real screenshot, recording, or animated preview for the `image` field.
 This is the proof of what the product actually looks like. Use the project's
-real logo in `logo`; the template will not invent one. An optional `artwork`
-image sits behind the screenshot as a quiet Wabi-Sabi accent. It can be made
-with an image model, while the screenshot and logo remain authentic.
+real logo in `logo`; the template will not invent one. When `artwork` is set,
+it appears as the illustrated cover of the project card. The `image` remains
+the product preview in the project details. Without artwork, the card uses
+the preview image. Artwork can be made with an image model.
 
 For local files, add images under `public/projects/` and use the Vite base URL:
 
@@ -54,18 +55,18 @@ the model to help compose a background around it; keep the screenshot and logo
 unchanged in the finished portfolio.
 
 ```text
-Create a wide, quiet Wabi-Sabi editorial background artwork for a software
+Create a wide Wabi-Sabi watercolor illustration for a software
 portfolio project about [WHAT THE PROJECT HELPS PEOPLE DO]. Use [A SIMPLE
 NATURAL OR MATERIAL METAPHOR, SUCH AS LAYERED PAPER, A BRUSHED INK PATH, OR
 SOFTLY STACKED FORMS]. Keep the composition thoughtful and a little playful,
 with asymmetry and one imperfect hand-drawn accent. Use this restrained palette:
 warm paper #f3efe6, soft paper #faf8f1, ink #33352e, moss #58684a, terracotta
 #a7765a, and muted ochre #c2a36a. Let the metaphor hint at the project's idea
-without drawing a literal technical diagram. Keep the center calm so a real
-product screenshot can sit in front of the artwork. No words, letters, logos,
+without depicting a product interface. Use a transparent background and let
+the illustrated shapes occupy the center. No words, letters, logos,
 brand marks, interface mockups, code, charts, fake data, or watermarks. Avoid
 heavy distress, busy patterns, strong gradients, and overly cute illustration.
-Create a polished 16:10 landscape image suitable for a project preview backdrop.
+Create a polished landscape image suitable for a project card cover.
 ```
 
 Ideas for the metaphor can reflect the project's subject: connected ink strokes
@@ -76,8 +77,8 @@ of small tiles for a learning product. Keep it suggestive rather than literal.
 
 1. Export the real preview as WebP or PNG, ideally around 1600 × 1000 pixels.
    Crop out browser tabs and unrelated desktop content.
-2. Export the optional artwork at the same aspect ratio, with a quiet center and
-   visual detail near the edges. Keep the file reasonably small for mobile.
+2. Export the optional artwork as a landscape image, ideally with a transparent
+   background. Keep the file reasonably small for mobile.
 3. Upload the images to `public/projects/` or a public image host that gives you
    direct file URLs.
 4. Paste the URLs into `image`, `logo`, and `artwork` for the matching project.
