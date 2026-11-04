@@ -2303,3 +2303,33 @@ footer svg {
   .project-dialog__preview img { max-height: 230px; }
   .project-dialog__description { font-size: .93rem; }
 }
+
+/* The brush ring grows with the introduction rather than crossing its text. */
+.story-work-section::before { content: none; }
+.story-work-layout > .story-section-heading {
+  position: relative;
+  isolation: isolate;
+  padding: clamp(74px, 7vw, 96px) clamp(48px, 4.5vw, 64px);
+}
+.story-work-layout > .story-section-heading::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: url("./assets/enso-brush.webp") center / 100% 100% no-repeat;
+  content: "";
+  pointer-events: none;
+  opacity: .86;
+}
+.story-work-layout > .story-section-heading .story-eyebrow { display: none; }
+.story-work-layout > .story-section-heading h2 {
+  max-width: 11.3ch;
+  font-size: clamp(2.2rem, 3.4vw, 3rem);
+  overflow-wrap: break-word;
+}
+@media (max-width: 760px) {
+  .story-work-layout > .story-section-heading { width: 100%; padding: 82px 16%; }
+  .story-work-layout > .story-section-heading h2 {
+    max-width: 11.3ch;
+    font-size: clamp(1.9rem, 7.5vw, 2.5rem);
+  }
+}
