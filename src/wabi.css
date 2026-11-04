@@ -2187,3 +2187,39 @@ footer svg {
   .story-scroll-top__traveler { transition: none; }
   .story-scroll-top:hover .story-scroll-top__traveler { transform: none; }
 }
+
+/* A light paper medallion lets the flying figure remain the focus. */
+.story-scroll-top {
+  isolation: isolate;
+  width: 68px;
+  min-height: 72px;
+  padding: 0 2px 3px;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.story-scroll-top::before {
+  position: absolute;
+  z-index: -1;
+  top: 5px;
+  left: 9px;
+  width: 50px;
+  height: 50px;
+  border: 1px solid rgb(99 104 79 / 28%);
+  border-radius: 48% 52% 47% 53%;
+  background: rgb(248 243 231 / 94%);
+  box-shadow: 0 4px 12px rgb(69 56 40 / 10%);
+  content: "";
+}
+.story-scroll-top__traveler {
+  width: 62px;
+  height: 57px;
+  object-fit: contain;
+}
+.story-scroll-top__label {
+  color: #465339;
+  font-size: .71rem;
+  font-weight: 600;
+  letter-spacing: .01em;
+  text-shadow: 0 1px 3px #f8f3e7, 0 -1px 3px #f8f3e7;
+}
