@@ -1817,3 +1817,10 @@ footer svg {
   }
   .story-work-grid .project-media-wrap.has-artwork { padding: 8px; }
 }
+
+@media (max-width: 760px) {
+  .story-work-grid article.story-project-card > div > div {
+    display: flex;
+    flex-direction: column;
+  }
+}
