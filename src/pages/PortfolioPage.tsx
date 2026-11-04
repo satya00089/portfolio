@@ -13,24 +13,34 @@ import { ScrollToTop } from "../components/shared/ScrollToTop";
 import CLIResume from "../components/CLIResume";
 import { GitHubCity } from "../components/GitHubCity";
 
-const FEATURED_PROJECT_IDS = [
-  "diagramwise",
-  "landing-zone-orchestrator",
-  "learn-algo",
-];
 const CORE_SKILL_GROUPS = ["Frontend", "Backend", "Infrastructure & DevOps"];
+
+const getFeaturedGridLayout = (count: number) => {
+  const layouts: Record<number, string> = {
+    1: "single",
+    2: "pair",
+    3: "trio",
+    4: "four",
+    5: "five",
+    6: "six",
+    7: "seven",
+  };
+
+  return layouts[count] ?? "many";
+};
 
 const PortfolioPage: React.FC = () => {
   const [selected, setSelected] = useState<Project | null>(null);
   const [showCLI, setShowCLI] = useState(false);
   const projects = PORTFOLIO_INFO.projects ?? [];
-  const featuredProjects = FEATURED_PROJECT_IDS.map((id) =>
-    projects.find((project) => project.id === id),
-  ).filter((project): project is Project => Boolean(project));
-  const otherProjects = projects.filter(
-    (project) =>
-      !project.id || !FEATURED_PROJECT_IDS.includes(project.id),
-  );
+  const projectDisplay = PORTFOLIO_INFO.projectDisplay;
+  const configuredFeaturedCount = projectDisplay?.featuredCount ?? 3;
+  const featuredCount = Number.isFinite(configuredFeaturedCount)
+    ? Math.max(0, Math.floor(configuredFeaturedCount))
+    : 3;
+  const featuredProjects = projects.slice(0, featuredCount);
+  const otherProjects = projects.slice(featuredCount);
+  const featuredGridLayout = getFeaturedGridLayout(featuredProjects.length);
   const coreSkills = (PORTFOLIO_INFO.skills ?? []).filter((group) =>
     CORE_SKILL_GROUPS.includes(group.title ?? "Other"),
   );
@@ -72,24 +82,28 @@ const PortfolioPage: React.FC = () => {
           <section id="projects" className="story-section story-work-section">
             <div className="story-section-heading">
               <p className="story-eyebrow">01 / SELECTED WORK</p>
-              <h2>Every build begins with a question.</h2>
+              <h2>
+                {projectDisplay?.heading ?? "Work shaped around a useful question."}
+              </h2>
               <p>
-                These are a few of the answers I’ve made tangible—from clearer
-                ways to think, to better ways to build.
+                {projectDisplay?.intro ??
+                  "A few products where I brought complex ideas into clearer, more useful tools."}
               </p>
             </div>
 
-            <div className="story-work-grid">
-              <ProjectsGrid
-                projects={featuredProjects}
-                onOpen={setSelected}
-              />
-            </div>
+            {featuredProjects.length > 0 && (
+              <div
+                className={`story-work-grid story-work-grid--${featuredGridLayout}`}
+                data-project-count={featuredProjects.length}
+              >
+                <ProjectsGrid projects={featuredProjects} onOpen={setSelected} />
+              </div>
+            )}
 
             {otherProjects.length > 0 && (
               <details className="story-more-work">
                 <summary>
-                  <span>More things made along the way</span>
+                  <span>More projects ({otherProjects.length})</span>
                   <span aria-hidden="true">＋</span>
                 </summary>
                 <div className="story-work-grid story-work-grid--more">

@@ -55,34 +55,56 @@ export const ProjectCard: React.FC<{
                 <BsArrowUpRightCircleFill size={32} />
               </span>
             </button>
-            {project.image && (
-              <div className="w-full flex justify-center mb-4">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className={`rounded-lg border border-[var(--border)] w-full h-45 ${project.imageFit === "contain" ? "object-contain" : "object-cover"}`}
-                />
+            {(project.image || project.artwork) && (
+              <div
+                className={`project-media-wrap${project.artwork ? " has-artwork" : ""}`}
+                style={
+                  project.artwork
+                    ? {
+                        backgroundImage: `linear-gradient(135deg, rgb(250 248 241 / 12%), rgb(88 104 74 / 8%)), url("${project.artwork}")`,
+                      }
+                    : undefined
+                }
+              >
+                {project.image ? (
+                  <img
+                    src={project.image}
+                    alt={project.imageAlt ?? `${project.title} preview`}
+                    className={`project-image${project.imageFit === "contain" ? " project-image--contain" : ""}`}
+                  />
+                ) : (
+                  <div
+                    className="project-artwork-only"
+                    role="img"
+                    aria-label={project.imageAlt ?? `${project.title} artwork`}
+                  />
+                )}
               </div>
             )}
             {/* Title + Description */}
-            <button
-              title="Open project"
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                onOpen?.(project);
-              }}
-              className="font-bold text-xl text-[var(--brand)] cursor-pointer"
-            >
-              {project.title}
-            </button>
+            <div className="story-project-title-row">
+              {project.logo && (
+                <img className="story-project-logo" src={project.logo} alt="" />
+              )}
+              <button
+                title="Open project"
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onOpen?.(project);
+                }}
+                className="font-bold text-xl text-[var(--brand)] cursor-pointer"
+              >
+                {project.title}
+              </button>
+            </div>
             {project.isUnderDevelopment && (
               <span className="text-xs text-[var(--muted)] pl-2">
                 Under Development
               </span>
             )}
             <p className="text-sm text-[var(--muted)] mt-1 line-clamp-2">
-              {project.description}
+              {project.short ?? project.description}
             </p>
             <div className="mt-4 flex gap-3 flex-wrap text-[var(--muted)]">
               {project.href && (

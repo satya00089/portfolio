@@ -416,28 +416,35 @@ export const PORTFOLIO_INFO: Portfolio = {
       ],
     },
   ],
+  projectDisplay: {
+    featuredCount: 3,
+    heading: "Work shaped around a useful question.",
+    intro: "A few products where I brought complex ideas into clearer, more useful tools.",
+  },
   projects: [
     {
-      id: "learn-algo",
-      title: "Learn Algo",
+      id: "diagramwise",
+      title: "Diagramwise",
+      short: "A browser workspace for designing and sharing system architecture.",
       description:
-        "Interactive visualizations that transform abstract concepts into intuitive understanding. Watch sorting, searching, and ML algorithms execute step-by-step.",
-      tags: ["Algorithms", "DSA", "ML", "AI", "Visualization", "Next.js"],
-      image:
-        "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExYXpqYWFhbnBraWt3ZXhvajZsdjg5andyMGZzY2VibGg3bXE0MWxwayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/2PuPWxuLV1FGyh03Ja/giphy.gif",
-      href: "https://www.learn-algo.com",
+        "Diagramwise is a browser-based system design workspace for practicing architecture interviews and communicating real systems. Build interactive architecture diagrams, document design decisions, get structured feedback, and share designs with collaborators. Supports ER diagrams, Mermaid and SQL imports, and image exports.",
+      tags: ["System Design", "React", "TypeScript", "React Flow"],
+      image: `${import.meta.env.BASE_URL}diagramwise.gif`,
+      imageAlt: "Diagramwise workspace preview with an architecture diagram",
+      imageFit: "contain",
+      href: "https://diagramwise.com",
       links: [
         {
           label: "GitHub",
-          url: "https://github.com/satya00089/learn-algo",
+          url: "https://github.com/satya00089/diagramwise",
           icon: "SiGithub",
         },
       ],
-      isUnderDevelopment: false,
     },
     {
       id: "landing-zone-orchestrator",
       title: "Landing Zone Orchestrator",
+      short: "A guided way to configure cloud foundations and generate Terraform.",
       description:
         "A production-ready platform that transforms cloud infrastructure provisioning from manual IaC coding to an intuitive, form-driven workflow. Built with React, FastAPI, and MongoDB to generate validated Terraform templates for AWS, Azure, and GCP. Features include schema-driven form builder for VPC, Subnets, IAM, and networking resources, real-time Terraform code generation and validation, JWT-based authentication, MongoDB storage for projects and templates, and multi-cloud support.",
       tags: [
@@ -452,6 +459,7 @@ export const PORTFOLIO_INFO: Portfolio = {
       ],
       image:
         "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGtuYjY1emtsZmNjMXp1czdrdXR5bXE5ZDJheHVvZjY1azZxYnJieiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qzImRjQVb2OUI84mTt/giphy.gif",
+      imageAlt: "Landing Zone Orchestrator setup workflow preview",
       href: "https://orchestrator.next-zen.dev",
       links: [
         {
@@ -463,22 +471,26 @@ export const PORTFOLIO_INFO: Portfolio = {
       isUnderDevelopment: true,
     },
     {
-      id: "diagramwise",
-      title: "Diagramwise",
+      id: "learn-algo",
+      title: "Learn Algo",
+      short: "Step through algorithms visually, one decision at a time.",
       description:
-        "Diagramwise is a browser-based system design workspace for practicing architecture interviews and communicating real systems. Build interactive architecture diagrams, document design decisions, get structured feedback, and share designs with collaborators. Supports ER diagrams, Mermaid and SQL imports, and image exports.",
-      tags: ["System Design", "React", "TypeScript", "React Flow"],
-      image: `${import.meta.env.BASE_URL}diagramwise.gif`,
-      imageFit: "contain",
-      href: "https://diagramwise.com",
+        "Interactive visualizations that transform abstract concepts into intuitive understanding. Watch sorting, searching, and ML algorithms execute step-by-step.",
+      tags: ["Algorithms", "DSA", "ML", "AI", "Visualization", "Next.js"],
+      image:
+        "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExYXpqYWFhbnBraWt3ZXhvajZsdjg5andyMGZzY2VibGg3bXE0MWxwayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/2PuPWxuLV1FGyh03Ja/giphy.gif",
+      imageAlt: "Learn Algo visualizing an algorithm step by step",
+      href: "https://www.learn-algo.com",
       links: [
         {
           label: "GitHub",
-          url: "https://github.com/satya00089/diagramwise",
+          url: "https://github.com/satya00089/learn-algo",
           icon: "SiGithub",
         },
       ],
+      isUnderDevelopment: false,
     },
+
     {
       id: "tic-tac-toe-ai",
       title: "Tic Tac Toe AI",

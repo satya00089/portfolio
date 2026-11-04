@@ -92,10 +92,13 @@ export type ProjectLink = {
 export type Project = {
   id?: string;
   title: string;
-  short?: string; // one-line description
+  short?: string; // concise card description
   description?: string; // longer description, markdown ok
   tags?: string[]; // technologies / categories
   image?: string; // preview image path
+  imageAlt?: string; // accessible description of the project preview
+  logo?: string; // optional authentic project logo URL/path
+  artwork?: string; // optional Wabi-Sabi background artwork behind the preview
   imageFit?: "cover" | "contain";
   href?: string; // live url (for playground)
   links?: ProjectLink[]; // alternate links
@@ -152,6 +155,11 @@ export type Portfolio = {
   highlights?: string[]; // short bullets like "Open to remote roles" etc.
   skills?: SkillGroup[]; // grouped skills
   experience?: Role[]; // work history
+  projectDisplay?: {
+    featuredCount?: number; // number of ordered projects shown before “More projects”
+    heading?: string;
+    intro?: string;
+  };
   projects?: Project[]; // portfolio projects
   education?: Education[];
   certifications?: Certification[];
