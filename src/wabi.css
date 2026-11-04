@@ -2333,3 +2333,53 @@ footer svg {
     font-size: clamp(1.9rem, 7.5vw, 2.5rem);
   }
 }
+
+/* Client stories use real project previews within the same paper setting. */
+.story-client-heading { max-width: 900px; }
+.story-client-list { display: grid; gap: 32px; }
+.story-client-card {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(240px, .8fr);
+  align-items: center;
+  gap: clamp(26px, 4vw, 54px);
+  padding: clamp(26px, 4vw, 42px);
+}
+.story-client-card::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  box-sizing: border-box;
+  border: 30px solid transparent;
+  border-image-source: url("./assets/torn-paper.svg");
+  border-image-slice: 42 fill;
+  border-image-width: 30px;
+  border-image-outset: 4px;
+  filter: drop-shadow(0 10px 12px rgb(83 63 40 / 12%));
+  content: "";
+  pointer-events: none;
+}
+.story-client-preview {
+  overflow: hidden;
+  border: 1px solid rgb(95 87 67 / 20%);
+  border-radius: 3px 9px 4px 7px;
+  background: #ebe4d8;
+  box-shadow: 0 8px 24px rgb(54 45 32 / 12%);
+}
+.story-client-preview img { display: block; width: 100%; height: auto; aspect-ratio: 8 / 5; object-fit: contain; }
+.story-client-label { margin: 0 0 15px; color: #6b7657; font-size: .64rem; font-weight: 700; letter-spacing: .14em; }
+.story-client-label span { padding-inline: 5px; color: #ac8c70; }
+.story-client-logo { display: block; width: 42px; height: 42px; margin-bottom: 12px; object-fit: contain; }
+.story-client-copy h3 { margin: 0; color: #33352e; font-family: Georgia, "Iowan Old Style", serif; font-size: clamp(1.9rem, 3vw, 2.75rem); font-weight: 400; letter-spacing: -.035em; line-height: 1.08; }
+.story-client-description { max-width: 34ch; margin: 14px 0 0; color: #625e52; font-family: Georgia, serif; font-size: 1rem; line-height: 1.6; }
+.story-client-tags { display: flex; flex-wrap: wrap; gap: 7px; margin: 18px 0 0; padding: 0; list-style: none; }
+.story-client-tags li { padding: 4px 9px; border: 1px solid rgb(109 115 85 / 28%); border-radius: 999px; color: #616b50; font-size: .7rem; line-height: 1.4; }
+.story-client-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; margin-top: 20px; }
+.story-client-actions button, .story-client-actions a { display: inline-flex; min-height: 44px; align-items: center; gap: 7px; padding: 4px 0; border: 0; color: #50613e; background: transparent; font-family: Georgia, serif; font-size: .94rem; text-decoration: underline; text-decoration-color: #9da789; text-underline-offset: 5px; cursor: pointer; }
+.story-client-actions button:hover, .story-client-actions a:hover { color: #303f2a; }
+.story-client-actions button:focus-visible, .story-client-actions a:focus-visible { outline: 2px solid #58684a; outline-offset: 4px; }
+@media (max-width: 760px) {
+  .story-client-card { grid-template-columns: minmax(0, 1fr); gap: 24px; padding: 25px 20px 29px; }
+  .story-client-copy h3 { font-size: clamp(1.8rem, 8vw, 2.25rem); }
+}

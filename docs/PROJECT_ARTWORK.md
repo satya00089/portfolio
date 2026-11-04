@@ -19,6 +19,31 @@ their sequence, so move a project to the top when it becomes your strongest
 example. Three to five featured projects usually make a focused portfolio;
 seven works when each project adds a distinct kind of evidence.
 
+## Client work
+
+Use the optional `clientWork` field for projects made for clients. It accepts
+the same project fields as `projects`, in the order you want to show them:
+
+```ts
+clientWork: {
+  heading: "Made together, for the real world.",
+  intro: "Work created with clients and the people they serve.",
+  projects: [{
+    id: "client-project",
+    title: "Client project",
+    short: "A short description of the work.",
+    description: "A longer description for the details popup.",
+    image: `${import.meta.env.BASE_URL}client-work/client-preview.webp`,
+    imageAlt: "Description of the real project preview",
+    href: "https://example.com/",
+    tags: ["Client work", "Website"],
+  }],
+},
+```
+
+Put real screenshots in `public/client-work/`, or use a public image URL.
+Leave `projects` empty or omit `clientWork` to hide the section.
+
 ## Use real product visuals
 
 Use a real screenshot, recording, or animated preview for the `image` field.

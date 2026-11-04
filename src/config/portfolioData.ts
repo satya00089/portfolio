@@ -494,6 +494,23 @@ export const PORTFOLIO_INFO: Portfolio = {
       isUnderDevelopment: false,
     },
   ],
+  clientWork: {
+    heading: "Made together, for the real world.",
+    intro: "A selection of work created with clients and shaped around the people they serve.",
+    projects: [
+      {
+        id: "vasantha-vijaya-dairy",
+        title: "Vasantha Vijaya Dairy",
+        short: "A welcoming online home for a neighbourhood shop in Karimnagar.",
+        description: "A bilingual website for Vasantha Vijaya Dairy, introducing its pickle-packing service, dairy products, groceries and pooja essentials, with easy ways for customers to call, get directions or ask on WhatsApp.",
+        image: `${import.meta.env.BASE_URL}client-work/vasantha-vijaya.webp`,
+        imageAlt: "The Vasantha Vijaya Dairy website, showing its homepage and storefront",
+        imageFit: "contain",
+        href: "https://vasantha-vijaya-dairy-ui.vercel.app/en/",
+        tags: ["Client work", "Website", "English & Telugu"],
+      },
+    ],
+  },
   education: [
     {
       degree: "B.Tech in Computer Science Engineering",

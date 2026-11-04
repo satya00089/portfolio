@@ -33,6 +33,8 @@ const PortfolioPage: React.FC = () => {
   const [selected, setSelected] = useState<Project | null>(null);
   const [showCLI, setShowCLI] = useState(false);
   const projects = PORTFOLIO_INFO.projects ?? [];
+  const clientWork = PORTFOLIO_INFO.clientWork;
+  const clientProjects = clientWork?.projects ?? [];
   const projectDisplay = PORTFOLIO_INFO.projectDisplay;
   const configuredFeaturedCount = projectDisplay?.featuredCount ?? 3;
   const featuredCount = Number.isFinite(configuredFeaturedCount)
@@ -118,6 +120,38 @@ const PortfolioPage: React.FC = () => {
               </details>
             )}
           </section>
+
+          {clientProjects.length > 0 && (
+            <section id="client-work" className="story-section story-client-section" aria-labelledby="client-work-heading">
+              <div className="story-section-heading story-client-heading">
+                <p className="story-eyebrow">CLIENT WORK</p>
+                <h2 id="client-work-heading">{clientWork?.heading ?? "Made together, for the real world."}</h2>
+                <p>{clientWork?.intro ?? "Work created with clients and the people they serve."}</p>
+              </div>
+              <div className="story-client-list">
+                {clientProjects.map((project, index) => (
+                  <article className="story-client-card" key={project.id ?? `${project.title}-${index}`}>
+                    {project.image && (
+                      <div className="story-client-preview">
+                        <img src={project.image} alt={project.imageAlt ?? `${project.title} website preview`} loading="lazy" />
+                      </div>
+                    )}
+                    <div className="story-client-copy">
+                      <p className="story-client-label">CLIENT PROJECT <span aria-hidden="true">/</span> {String(index + 1).padStart(2, "0")}</p>
+                      {project.logo && <img className="story-client-logo" src={project.logo} alt="" />}
+                      <h3>{project.title}</h3>
+                      {(project.short || project.description) && <p className="story-client-description">{project.short ?? project.description}</p>}
+                      {Boolean(project.tags?.length) && <ul className="story-client-tags" aria-label="Project highlights">{project.tags?.map((tag) => <li key={tag}>{tag}</li>)}</ul>}
+                      <div className="story-client-actions">
+                        <button type="button" onClick={() => setSelected(project)}>View project details <span aria-hidden="true">→</span></button>
+                        {project.href && <a href={project.href} target="_blank" rel="noopener noreferrer">Visit live site <span aria-hidden="true">↗</span></a>}
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </section>
+          )}
 
           <section id="approach" className="story-section story-practice-section">
             <div className="story-section-heading">
