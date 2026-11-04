@@ -621,7 +621,16 @@ a:focus-visible, button:focus-visible, [tabindex="0"]:focus-visible {
 .city-wrap { padding-bottom: 64px; }
 .github-city-section { border-top: 2px solid var(--text); }
 .github-city-section h2 { color: var(--text) !important; font-family: inherit; font-weight: 950; letter-spacing: -.06em; }
-.github-city-section > div:nth-child(2) { border: 2px solid var(--text) !important; border-radius: 0 !important; background: var(--surface) !important; box-shadow: 5px 5px 0 var(--text); }
+.github-city-kicker { color: var(--brand) !important; font-weight: 900 !important; }
+.github-city-description { max-width: 38rem; color: var(--muted) !important; font-size: 1rem !important; line-height: 1.55; }
+.github-city-total { display: flex; align-items: baseline; gap: 12px; padding: 12px 15px; border: 2px solid var(--text); background: #ffe366; box-shadow: 4px 4px 0 var(--text); }
+.github-city-total strong { font-size: 1.8rem; line-height: 1; font-weight: 950; letter-spacing: -.06em; }
+.github-city-total span { font-size: .72rem; font-weight: 850; text-transform: uppercase; letter-spacing: .05em; }
+.github-city-stage { border: 2px solid var(--text) !important; border-radius: 0 !important; background-color: var(--surface) !important; background-image: radial-gradient(#17171718 0.7px, transparent 0.7px); background-size: 16px 16px; box-shadow: 7px 7px 0 var(--text); }
+.github-city-stage canvas { height: 320px; }
+.github-city-tooltip { border: 2px solid var(--text); background: #ffe366; color: var(--text); box-shadow: 3px 3px 0 var(--text); }
+.github-city-tooltip .block { color: var(--text); font-weight: 900; }
+.github-city-caption { margin-top: 14px; color: var(--text) !important; font-size: .72rem !important; font-weight: 800; }
 .github-city-section button { border: 2px solid var(--text); border-radius: 0 !important; background: var(--surface); color: var(--text); font-weight: 800; }
 .github-city-section button:hover { background: #ffe366 !important; }
 .site-header + * { scroll-margin-top: 90px; }
@@ -642,8 +651,15 @@ footer a:hover { color: var(--brand) !important; }
   .hero-kicker { font-size: .58rem; }
   .hero-kicker-note { display: none; }
   .section-heading { grid-template-columns: 1fr; align-items: start; }
+  .github-city-heading { align-items: start; }
+  .github-city-total { width: 100%; justify-content: space-between; }
+  .github-city-stage canvas { height: 320px; }
   .portfolio-main { padding-left: 18px; padding-right: 18px; }
   .portfolio-section .grid { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 761px) {
+  .github-city-stage canvas { height: 420px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

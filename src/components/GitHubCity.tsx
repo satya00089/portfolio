@@ -56,15 +56,15 @@ export function GitHubCity() {
     ctx.clearRect(0, 0, width, height);
 
     const weeks = Math.ceil(calendar.counts.length / 7);
-    const cell = Math.max(4, Math.min(15, (width - 64) / (weeks + 6 * 0.42)));
+    const cell = Math.max(5, Math.min(22, (width - 64) / (weeks + 6 * 0.42)));
     const depth = cell * 0.42;
     const maxCount = Math.max(...calendar.counts, 1);
     const elapsed = reducedMotion
       ? Number.POSITIVE_INFINITY
       : time - (startTimeRef.current ?? time);
     const groundWidth = weeks * cell + 6 * depth;
-    const dayStepY = cell * 0.58;
-    const weekStepY = cell * 0.08;
+    const dayStepY = cell * 0.6;
+    const weekStepY = cell * 0.09;
     const groundHeight = 6 * dayStepY + weeks * weekStepY;
     const maxBuildingHeight = 140;
     const originX = (width - groundWidth) / 2 + 3 * depth;
@@ -285,9 +285,9 @@ export function GitHubCity() {
       aria-labelledby="github-city-title"
       className="github-city-section py-12 sm:py-16"
     >
-      <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+      <div className="github-city-heading mb-6 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="mb-2 text-[11px] font-medium uppercase tracking-[0.18em] text-[#6e7781]">
+          <p className="github-city-kicker mb-2 text-[11px] font-medium uppercase tracking-[0.18em] text-[#6e7781]">
             04 · GitHub activity
           </p>
           <h2
@@ -296,30 +296,27 @@ export function GitHubCity() {
           >
             As a city
           </h2>
-          <p className="mt-2 max-w-xl text-sm text-[#57606a]">
-            Every day becomes a building, as tall as that day’s commits. The
-            city rises from front to back, then points at my biggest day.
+          <p className="github-city-description mt-2 max-w-xl text-sm text-[#57606a]">
+            One building for every day I coded. Taller towers mark busier days.
           </p>
         </div>
-        <div className="flex items-baseline gap-2 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3">
-          <span className="text-2xl font-bold text-[var(--text)]">{total}</span>
-          <span className="text-xs text-[var(--muted)]">
-            contributions this year
-          </span>
+        <div className="github-city-total">
+          <strong>{total}</strong>
+          <span>contributions this year</span>
         </div>
       </div>
-      <div className="relative overflow-hidden rounded-xl border border-[#e1e4e8] bg-[#fafafa] px-2 py-4 sm:px-5 sm:py-6">
+      <div className="github-city-stage relative overflow-hidden px-2 py-4 sm:px-5 sm:py-6">
         <canvas
           ref={canvasRef}
           aria-label={`Animated 3D city of ${calendar.counts.length} daily GitHub contribution counts for ${calendar.username}. Hover over a building to see its date and contribution count.`}
           role="img"
-          className="block h-[290px] w-full touch-pan-y sm:h-[380px]"
+          className="block h-[320px] w-full touch-pan-y sm:h-[420px]"
           onPointerMove={handlePointerMove}
           onPointerLeave={() => setTooltip(null)}
         />
         {tooltip && (
           <div
-            className="pointer-events-none absolute z-10 rounded-lg border border-[#d0d7de] bg-white px-3 py-2 text-xs text-[#24292f] shadow-xl"
+            className="github-city-tooltip pointer-events-none absolute z-10 px-3 py-2 text-xs"
             style={{ left: tooltip.x, top: tooltip.y }}
           >
             <span className="block font-medium">
@@ -332,7 +329,7 @@ export function GitHubCity() {
           </div>
         )}
       </div>
-      <div className="mt-3 flex items-center justify-between gap-4 text-xs text-[var(--muted)]">
+      <div className="github-city-caption mt-3 flex items-center justify-between gap-4 text-xs text-[var(--muted)]">
         <span>Daily activity · GitHub contribution calendar</span>
         <button
           type="button"
