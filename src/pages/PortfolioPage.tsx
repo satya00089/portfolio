@@ -58,7 +58,11 @@ const PortfolioPage: React.FC = () => {
         />
         <CLIResume open={showCLI} onClose={() => setShowCLI(false)} />
 
-        <section id="about" className="story-hero-section">
+        <section
+          id="about"
+          className="story-hero-section"
+          aria-labelledby="story-hero-heading"
+        >
           <div className="story-page-width">
             <About />
           </div>
