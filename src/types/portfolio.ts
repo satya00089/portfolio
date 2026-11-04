@@ -161,6 +161,11 @@ export type Portfolio = {
     intro?: string;
   };
   projects?: Project[]; // portfolio projects
+  clientWork?: {
+    heading?: string;
+    intro?: string;
+    projects?: Project[];
+  };
   education?: Education[];
   certifications?: Certification[];
   extras?: {
