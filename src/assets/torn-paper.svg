@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 220">
+  <defs>
+    <path id="edge" d="M11 14 17 12 21 14 26 10 32 12 38 9 45 11 53 8 60 10 70 8 80 10 90 8 101 10 112 8 124 10 137 8 149 10 161 8 173 10 186 8 198 10 211 8 222 10 234 8 245 10 257 8 267 10 277 8 286 11 293 10 299 13 305 12 309 16 307 22 311 27 308 33 311 40 309 48 311 57 309 66 311 75 309 84 311 94 309 104 311 114 309 124 311 134 309 144 311 154 309 164 311 173 309 182 311 191 307 197 309 203 305 208 299 207 294 211 287 209 280 212 271 210 261 212 250 210 239 212 227 210 215 212 203 210 191 212 178 210 166 212 153 210 141 212 129 210 117 212 105 210 94 212 83 210 72 212 62 210 52 212 43 209 35 211 28 208 22 209 17 205 11 207 9 202 11 196 8 190 10 183 8 175 10 166 8 157 10 148 8 138 10 128 8 118 10 108 8 98 10 88 8 78 10 68 8 59 10 50 8 42 11 35 9 28 12 23 10 18Z"/>
+    <clipPath id="paper"><use href="#edge"/></clipPath>
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".24" numOctaves="3" seed="13"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+    <linearGradient id="wash" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#fffaf0"/>
+      <stop offset=".58" stop-color="#f2e8d6"/>
+      <stop offset="1" stop-color="#e7dcc8"/>
+    </linearGradient>
+  </defs>
+  <use href="#edge" fill="url(#wash)" stroke="#cbbca6" stroke-opacity=".6" stroke-width="1"/>
+  <g clip-path="url(#paper)">
+    <rect width="320" height="220" filter="url(#grain)" opacity=".12" style="mix-blend-mode:multiply"/>
+    <path d="M16 36c30-8 44 6 72-2m99 152c32-7 53 7 97-3M61 179c18 4 30-4 47-1M213 31c24 5 40-4 60-2" fill="none" stroke="#b8a98c" stroke-opacity=".14" stroke-width=".7"/>
+  </g>
+</svg>
