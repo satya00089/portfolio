@@ -3,12 +3,12 @@ import { SiKaggle, SiGithub, SiLinkedin } from "react-icons/si";
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="text-sm text-[var(--muted)] border-t border-[var(--border)] py-6">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 px-6">
+    <footer className="story-portfolio-footer text-sm text-[var(--muted)] border-t border-[var(--border)] py-6">
+      <div className="footer-inner max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 px-6">
         {/* Left: message */}
         <div>
-          Designed &amp; coded with ☕ + ❤️ by{" "}
-          <span className="font-medium text-[var(--text)]">satya</span>
+          Thoughtfully made by{" "}
+          <span className="font-medium text-[var(--text)]">Satya Subudhi</span>
         </div>
 
         {/* Right: social icons */}
@@ -20,7 +20,7 @@ export const Footer: React.FC = () => {
             aria-label="Kaggle"
             className="hover:text-[var(--text)] transition-colors"
           >
-            <SiKaggle size={40} />
+            <SiKaggle size={20} />
           </a>
           <a
             href="https://github.com/satya00089"

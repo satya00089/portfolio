@@ -288,7 +288,7 @@ export function GitHubCity() {
       <div className="github-city-heading mb-6 flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="github-city-kicker mb-2 text-[11px] font-medium uppercase tracking-[0.18em] text-[#6e7781]">
-            04 · GitHub activity
+          05 · A year of showing up
           </p>
           <h2
             id="github-city-title"
@@ -297,7 +297,7 @@ export function GitHubCity() {
             As a city
           </h2>
           <p className="github-city-description mt-2 max-w-xl text-sm text-[#57606a]">
-            One building for every day I coded. Taller towers mark busier days.
+            A quiet record of showing up, one contribution at a time.
           </p>
         </div>
         <div className="github-city-total">

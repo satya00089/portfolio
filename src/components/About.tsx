@@ -12,90 +12,75 @@ export const About: React.FC = () => {
       ? avatar
       : avatar?.url;
 
+  const scrollTo = (event: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    event.preventDefault();
+    document.getElementById(id)?.scrollIntoView({
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : "smooth",
+      block: "start",
+    });
+  };
+
   return (
-    <div className="brutal-hero">
-      <div className="hero-kicker">
-        <span className="status-dot" />
-        <span>FULL-STACK ENGINEER · BANGALORE / REMOTE</span>
-        <span className="hero-kicker-note">AVAILABLE FOR SELECT PROJECTS</span>
-      </div>
-
-      <div className="hero-content-grid">
-        <div className="hero-copy">
-          <p className="hero-eyebrow">DESIGN → BUILD → SHIP</p>
-          <h1>
-            I take products
-            <br />
-            from idea to <span>production.</span>
-          </h1>
-          <p className="hero-summary">
-            I’m {personal.name}, a product-minded full-stack engineer. I design
-            and build useful software across the interface, API, and cloud—then
-            help get it into people’s hands.
-          </p>
-          <div className="hero-actions">
-            <a
-              className="brutal-button brutal-button--blue"
-              href="#projects"
-              onClick={(event) => {
-                event.preventDefault();
-                document.getElementById("projects")?.scrollIntoView({
-                  behavior: window.matchMedia(
-                    "(prefers-reduced-motion: reduce)",
-                  ).matches
-                    ? "auto"
-                    : "smooth",
-                  block: "start",
-                });
-              }}
-            >
-              Explore projects <ArrowDownRight size={18} aria-hidden="true" />
-            </a>
-            <a className="brutal-text-link" href="#contact">
-              Let’s talk <ArrowUpRight size={17} aria-hidden="true" />
-            </a>
-          </div>
-          <div className="hero-stack" aria-label="Primary technologies">
-            <span>React</span>
-            <b>·</b>
-            <span>Python</span>
-            <b>·</b>
-            <span>FastAPI</span>
-            <b>·</b>
-            <span>AWS</span>
-            <b>·</b>
-            <span>Terraform</span>
-          </div>
+    <div className="story-hero">
+      <div className="story-hero-copy">
+        <p className="story-eyebrow">INDEPENDENT SOFTWARE ENGINEER · BENGALURU</p>
+        <h1>
+          A good idea deserves
+          <br />
+          to make it <em>into the world.</em>
+        </h1>
+        <p className="story-hero-lede">
+          I’m {personal.name}, a full-stack engineer who carries thoughtful
+          products from the first sketch through launch—across interface, APIs,
+          and cloud.
+        </p>
+        <div className="story-hero-actions">
+          <a
+            className="story-link story-link--primary"
+            href="#projects"
+            onClick={(event) => scrollTo(event, "projects")}
+          >
+            Follow the work <ArrowDownRight size={17} aria-hidden="true" />
+          </a>
+          <a
+            className="story-link story-link--quiet"
+            href="#contact"
+            onClick={(event) => scrollTo(event, "contact")}
+          >
+            Tell me what you’re making <ArrowUpRight size={16} aria-hidden="true" />
+          </a>
         </div>
-
-        <div className="hero-art" aria-label="Profile portrait">
-          <div className="hero-art-label">THE PERSON BEHIND THE BUILD</div>
-          <div className="hero-photo-frame">
-            {portrait && !portrait.includes("placeholder") ? (
-              <img src={portrait} alt={personal.name} />
-            ) : (
-              <div className="hero-monogram" aria-hidden="true">
-                SS
-              </div>
-            )}
-          </div>
-          <div className="hero-art-sticker" aria-hidden="true">
-            FULL
-            <br />
-            STACK
-            <br />
-            THINKING
-          </div>
-          <div className="hero-art-caption">
-            <strong>Good software is a team sport.</strong>
-            <span>I bring the range to own the whole build.</span>
-          </div>
+        <div className="story-hero-footnote">
+          <span className="story-ink-dot" />
+          <span>7+ years turning complex ideas into working software</span>
         </div>
       </div>
-      <div className="hero-bottom-rule">
-        <span>SCROLL TO SEE WHAT I’VE BUILT</span>
-        <span aria-hidden="true">↓</span>
-        <span>01 — 03</span>
+
+      <figure className="story-portrait">
+        <div className="story-portrait-image">
+          {portrait && !portrait.includes("placeholder") ? (
+            <img src={portrait} alt={personal.name} />
+          ) : (
+            <div className="story-portrait-initials" aria-hidden="true">
+              SS
+            </div>
+          )}
+        </div>
+        <figcaption>
+          <span>{personal.name}</span>
+          <span>Engineer · maker · curious human</span>
+        </figcaption>
+        <span className="story-portrait-note" aria-hidden="true">
+          good things take shape
+        </span>
+      </figure>
+
+      <div className="story-chapter-cue" aria-hidden="true">
+        <span>01</span>
+        <span className="story-cue-line" />
+        <span>THE WORK</span>
       </div>
     </div>
   );

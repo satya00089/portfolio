@@ -37,7 +37,7 @@ export const Header: React.FC<{ links?: NavLink[]; onTryCLI?: () => void }> = ({
           className="site-wordmark"
           onClick={() => setMenuOpen(false)}
         >
-          SATYA<span>®</span>
+          Satya Subudhi
         </a>
 
         <button
@@ -86,7 +86,7 @@ export const Header: React.FC<{ links?: NavLink[]; onTryCLI?: () => void }> = ({
               onTryCLI?.();
             }}
           >
-            Try CLI <span aria-hidden="true">↗</span>
+            CLI résumé <span aria-hidden="true">↗</span>
           </button>
         </nav>
       </div>

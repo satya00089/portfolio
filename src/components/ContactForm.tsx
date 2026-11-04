@@ -101,6 +101,7 @@ export const ContactForm: React.FC<{
         id="email"
         name="email"
         type="email"
+        required
         title="Email"
         placeholder="Your email"
         value={state.email}
