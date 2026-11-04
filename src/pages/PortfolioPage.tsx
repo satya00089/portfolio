@@ -1,9 +1,7 @@
-// PortfolioPage.tsx
 import React, { useState } from "react";
 import { ThemeProvider } from "../components/ThemeProvider";
 import { Header } from "../components/shared/Header";
 import { ProjectsGrid } from "../components/ProjectsGrid";
-import { SkillsList } from "../components/SkillsList";
 import { ContactForm } from "../components/ContactForm";
 import { Footer } from "../components/shared/Footer";
 import { PORTFOLIO_INFO } from "../config/portfolioData";
@@ -15,126 +13,217 @@ import { ScrollToTop } from "../components/shared/ScrollToTop";
 import CLIResume from "../components/CLIResume";
 import { GitHubCity } from "../components/GitHubCity";
 
+const FEATURED_PROJECT_IDS = [
+  "diagramwise",
+  "landing-zone-orchestrator",
+  "learn-algo",
+];
+const CORE_SKILL_GROUPS = ["Frontend", "Backend", "Infrastructure & DevOps"];
+
 const PortfolioPage: React.FC = () => {
   const [selected, setSelected] = useState<Project | null>(null);
   const [showCLI, setShowCLI] = useState(false);
+  const projects = PORTFOLIO_INFO.projects ?? [];
+  const featuredProjects = FEATURED_PROJECT_IDS.map((id) =>
+    projects.find((project) => project.id === id),
+  ).filter((project): project is Project => Boolean(project));
+  const otherProjects = projects.filter(
+    (project) =>
+      !project.id || !FEATURED_PROJECT_IDS.includes(project.id),
+  );
+  const coreSkills = (PORTFOLIO_INFO.skills ?? []).filter((group) =>
+    CORE_SKILL_GROUPS.includes(group.title ?? "Other"),
+  );
+  const otherSkills = (PORTFOLIO_INFO.skills ?? []).filter(
+    (group) => !CORE_SKILL_GROUPS.includes(group.title ?? "Other"),
+  );
+  const currentRole = PORTFOLIO_INFO.experience?.find(
+    (role) => role.id === "unisys-senior-2025",
+  );
+  const contact = PORTFOLIO_INFO.personal.contact;
+  const email = contact?.email ?? "satyasubudhi089@gmail.com";
 
   return (
     <ThemeProvider>
-      <ScrollProgressBar />
-      <Header
-        links={[
-          { href: "#about", label: "About" },
-          { href: "#projects", label: "Projects" },
-          { href: "#skills", label: "Skills" },
-          { href: "#contact", label: "Contact" },
-        ]}
-        onTryCLI={() => setShowCLI(true)}
-      />
-      {/* CLI panel (docked / overlay) */}
-      <CLIResume open={showCLI} onClose={() => setShowCLI(false)} />
+      <div className="wabi-portfolio">
+        <ScrollProgressBar />
+        <Header
+          links={[
+            { href: "#about", label: "The beginning" },
+            { href: "#projects", label: "The work" },
+            { href: "#approach", label: "The practice" },
+            { href: "#contact", label: "Let’s talk" },
+          ]}
+          onTryCLI={() => setShowCLI(true)}
+        />
+        <CLIResume open={showCLI} onClose={() => setShowCLI(false)} />
 
-      <section
-        id="about"
-        className="hero-panel relative w-full overflow-hidden"
-      >
-        <div className="relative z-10 flex min-h-[min(760px,100svh)] w-full items-center justify-center px-4 pb-16 pt-28 sm:px-6 lg:px-8">
-          <div className="w-full max-w-6xl mx-auto">
+        <section id="about" className="story-hero-section">
+          <div className="story-page-width">
             <About />
           </div>
+        </section>
+
+        <main className="story-page-width story-main">
+          <section id="projects" className="story-section story-work-section">
+            <div className="story-section-heading">
+              <p className="story-eyebrow">01 / SELECTED WORK</p>
+              <h2>Every build begins with a question.</h2>
+              <p>
+                These are a few of the answers I’ve made tangible—from clearer
+                ways to think, to better ways to build.
+              </p>
+            </div>
+
+            <div className="story-work-grid">
+              <ProjectsGrid
+                projects={featuredProjects}
+                onOpen={setSelected}
+              />
+            </div>
+
+            {otherProjects.length > 0 && (
+              <details className="story-more-work">
+                <summary>
+                  <span>More things made along the way</span>
+                  <span aria-hidden="true">＋</span>
+                </summary>
+                <div className="story-work-grid story-work-grid--more">
+                  <ProjectsGrid projects={otherProjects} onOpen={setSelected} />
+                </div>
+              </details>
+            )}
+          </section>
+
+          <section id="approach" className="story-section story-practice-section">
+            <div className="story-section-heading">
+              <p className="story-eyebrow">02 / THE PRACTICE</p>
+              <h2>Listen closely. Make with care. See it through.</h2>
+              <p>
+                Good software is shaped in the small decisions: what to leave
+                out, what to make clear, and what will still work when it meets
+                the real world.
+              </p>
+            </div>
+
+            <div className="story-practice-list">
+              <article className="story-practice-step">
+                <span className="story-step-number">01</span>
+                <div>
+                  <h3>Find the real question</h3>
+                  <p>
+                    Start with the people, the friction, and the useful change
+                    the product should make.
+                  </p>
+                </div>
+                <span className="story-step-note">understand</span>
+              </article>
+              <article className="story-practice-step">
+                <span className="story-step-number">02</span>
+                <div>
+                  <h3>Give the idea a shape</h3>
+                  <p>
+                    Bring interface, APIs, and system decisions into one
+                    thoughtful, working whole.
+                  </p>
+                </div>
+                <span className="story-step-note">make</span>
+              </article>
+              <article className="story-practice-step">
+                <span className="story-step-number">03</span>
+                <div>
+                  <h3>Carry it into the world</h3>
+                  <p>
+                    Refine the details, prepare the cloud foundations, and stay
+                    with the work through production.
+                  </p>
+                </div>
+                <span className="story-step-note">ship</span>
+              </article>
+            </div>
+
+            {currentRole && (
+              <aside className="story-current-chapter">
+                <span className="story-eyebrow">A CURRENT CHAPTER</span>
+                <p>
+                  {currentRole.title} at <strong>{currentRole.company}</strong>
+                  <span> · Python services, React products, and cloud delivery</span>
+                </p>
+              </aside>
+            )}
+          </section>
+
+          <section id="skills" className="story-section story-materials-section">
+            <div className="story-section-heading">
+              <p className="story-eyebrow">03 / THE MATERIALS</p>
+              <h2>The tools change. The care stays.</h2>
+              <p>
+                A practical toolkit for moving between the first interaction,
+                the service behind it, and the systems that carry it.
+              </p>
+            </div>
+
+            <div className="story-skill-groups">
+              {coreSkills.map((group) => (
+                <div className="story-skill-group" key={group.title}>
+                  <h3>{group.title}</h3>
+                  <p>{group.skills.map((skill) => skill.name).join(" · ")}</p>
+                </div>
+              ))}
+            </div>
+
+            {otherSkills.length > 0 && (
+              <details className="story-more-skills">
+                <summary>Other tools and materials</summary>
+                <div className="story-supplementary-skills">
+                  {otherSkills.map((group) => (
+                    <p key={group.title}>
+                      <strong>{group.title}:</strong>{" "}
+                      {group.skills.map((skill) => skill.name).join(" · ")}
+                    </p>
+                  ))}
+                </div>
+              </details>
+            )}
+          </section>
+
+          <section id="contact" className="story-section story-contact-section">
+            <div className="story-contact-intro">
+              <p className="story-eyebrow">04 / BEGIN A CONVERSATION</p>
+              <h2>Have something useful in mind?</h2>
+              <p>
+                Tell me what you’re trying to make. I’m open to freelance and
+                contract work, and would be glad to hear where you’re starting.
+              </p>
+              <a className="story-email-link" href={`mailto:${email}`}>
+                {email}
+              </a>
+              <p className="story-location">{contact?.location ?? "Remote"}</p>
+              <a
+                className="story-resume-link"
+                href={`${import.meta.env.BASE_URL}resume.pdf`}
+              >
+                Read my résumé <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+            <div className="story-contact-form">
+              <ContactForm sendTo={email} />
+            </div>
+          </section>
+        </main>
+
+        <div className="story-page-width story-city-wrap">
+          <GitHubCity />
         </div>
-      </section>
+        <ScrollToTop />
+        <Footer />
 
-      <main className="portfolio-main max-w-6xl mx-auto px-4 sm:px-6 relative z-20">
-        <section id="projects" className="portfolio-section py-12 sm:py-16">
-          <div className="section-heading">
-            <span className="section-index">01 / SELECTED WORK</span>
-            <h2>Built to be used.</h2>
-            <p>
-              Products and systems I’ve taken from the first sketch to
-              production.
-            </p>
-          </div>
-          <ProjectsGrid
-            projects={PORTFOLIO_INFO.projects}
-            onOpen={setSelected}
-          />
-        </section>
-
-        <section id="skills" className="portfolio-section py-12 sm:py-16">
-          <div className="section-heading">
-            <span className="section-index">02 / TOOLKIT</span>
-            <h2>One team of one.</h2>
-            <p>
-              From interface details to infrastructure, I can own the full
-              delivery loop.
-            </p>
-          </div>
-          <SkillsList skills={PORTFOLIO_INFO.skills} isBar={true} />
-        </section>
-
-        <section id="contact" className="portfolio-section py-12 sm:py-16">
-          <div className="section-heading">
-            <span className="section-index">03 / CONTACT</span>
-            <h2>Have a good one in mind?</h2>
-            <p>
-              Tell me what you’re building. I’m available for freelance and
-              contract work.
-            </p>
-          </div>
-          <div className="contact-grid mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="contact-panel p-6">
-              <ContactForm />
-            </div>
-
-            <div className="contact-panel p-6 flex flex-col gap-4">
-              <div>
-                <div className="font-semibold">Let's collaborate</div>
-                <div className="text-sm text-gray-500 dark:text-gray-400">
-                  I'm available for freelance and contract work. My inbox is
-                  open.
-                </div>
-              </div>
-              <div className="mt-2">
-                <div className="font-semibold">Quick contact</div>
-                <div className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                  Email:{" "}
-                  <a
-                    className="contact-email"
-                    href={`mailto:${PORTFOLIO_INFO.personal.contact?.email ?? "satyasubudhi089@gmail.com"}`}
-                  >
-                    {PORTFOLIO_INFO.personal.contact?.email ??
-                      "satyasubudhi089@gmail.com"}
-                  </a>
-                </div>
-                <div className="text-sm text-gray-500 dark:text-gray-400">
-                  Location: Remote
-                </div>
-              </div>
-              <div className="mt-auto">
-                <div className="text-sm font-medium">Resume</div>
-                <a
-                  href={`${import.meta.env.BASE_URL}resume.pdf`}
-                  className="brutal-button block mt-2 px-4 py-2"
-                >
-                  Download PDF
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-      <div className="city-wrap max-w-6xl mx-auto px-4 sm:px-6 relative z-20">
-        <GitHubCity />
+        <ProjectModal
+          project={selected}
+          open={!!selected}
+          onClose={() => setSelected(null)}
+        />
       </div>
-      <ScrollToTop />
-      <Footer />
-
-      <ProjectModal
-        project={selected}
-        open={!!selected}
-        onClose={() => setSelected(null)}
-      />
     </ThemeProvider>
   );
 };

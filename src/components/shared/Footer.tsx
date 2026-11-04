@@ -7,8 +7,8 @@ export const Footer: React.FC = () => {
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 px-6">
         {/* Left: message */}
         <div>
-          Designed &amp; coded with ☕ + ❤️ by{" "}
-          <span className="font-medium text-[var(--text)]">satya</span>
+          Thoughtfully made by{" "}
+          <span className="font-medium text-[var(--text)]">Satya Subudhi</span>
         </div>
 
         {/* Right: social icons */}
