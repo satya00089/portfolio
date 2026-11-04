@@ -20,6 +20,7 @@ A modern, responsive portfolio website built with React, TypeScript, and Tailwin
 ## ✨ Features
 
 - **Interactive Portfolio**: Showcase your projects with modal views and detailed descriptions
+- **Configurable Selected Work**: Choose how many projects to feature and arrange them by priority
 - **Dynamic Resume**: Interactive resume page with print functionality
 - **CLI Resume**: Terminal-style resume interface for a unique user experience
 - **Skills Visualization**: Circular progress bars and interactive skill displays
@@ -54,6 +55,8 @@ Quick start (do these first)
 - Open `src/config/portfolioData.ts` and replace the sample data with your name, bio, links, and projects — this is the single most important file to customize.
 - Replace social/profile links and contact details.
 - Update or remove example projects (the `projects` array) and add your screenshots or links.
+- Set `projectDisplay.featuredCount` and order the `projects` array to choose which projects appear in Selected Work.
+- See [Project order and artwork](docs/PROJECT_ARTWORK.md) for image hosting guidance and a copy-ready Wabi-Sabi artwork prompt.
 - (Optional) Add preview images in `public/` named `preview-home.png`, `preview-projects.png`, `preview-cli.png` so the GitHub template page renders them.
 - If you plan to deploy to GitHub Pages, update `package.json` -> `homepage` and `vite.config.ts` -> `base`.
 
@@ -106,6 +109,8 @@ src/
 ├── types/              # TypeScript type definitions
 └── assets/             # Static assets
 ```
+
+Project visual customization guidance lives in `docs/PROJECT_ARTWORK.md`.
 
 ## 🚀 Getting Started
 
