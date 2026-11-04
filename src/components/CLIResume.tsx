@@ -468,7 +468,7 @@ export default function CLIResume({ open = false, onClose }: Props) {
 
       {/* Docked on desktop, full-screen on small screens or when expanded. */}
       <div
-        className={`cli-positioner fixed z-60 bottom-4 left-1/2 w-[calc(100%-2rem)] max-w-4xl -translate-x-1/2 ${fullscreen ? "cli-positioner--fullscreen" : minimized ? "cli-positioner--minimized" : ""}`}
+        className={`cli-positioner ${fullscreen ? "cli-positioner--fullscreen" : minimized ? "cli-positioner--minimized" : ""}`}
         role="dialog"
         aria-modal={!minimized}
         aria-label="Interactive portfolio CLI"
@@ -548,7 +548,7 @@ export default function CLIResume({ open = false, onClose }: Props) {
                 className="cli-output min-h-0 overflow-y-auto font-mono text-sm p-4"
                 aria-live="polite"
                 style={{
-                  maxHeight: fullscreen ? "calc(100vh - 120px)" : "70vh",
+                  maxHeight: fullscreen ? "calc(100dvh - 116px)" : "70vh",
                   background: "transparent",
                   color: "var(--text)",
                 }}

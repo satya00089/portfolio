@@ -635,10 +635,11 @@ a:focus-visible, button:focus-visible, [tabindex="0"]:focus-visible {
 .github-city-section button:hover { background: #ffe366 !important; }
 .cli-backdrop { z-index: 105; background: rgb(23 23 23 / 55%); }
 .cli-backdrop--minimized { background: transparent; pointer-events: none; }
-.cli-positioner { z-index: 110; }
-.cli-positioner--fullscreen { inset: 0; top: 0; bottom: 0; left: 0; width: 100%; max-width: none; padding: 0; transform: none; translate: none; }
+.cli-positioner { position: fixed; z-index: 110; bottom: 1rem; left: 50%; width: calc(100% - 2rem); max-width: 64rem; transform: translateX(-50%); }
+.cli-positioner--fullscreen { inset: 0 !important; top: 0 !important; right: 0 !important; bottom: 0 !important; left: 0 !important; width: 100vw !important; height: 100vh; height: 100dvh; max-width: none !important; margin: 0 !important; padding: 0 !important; transform: none !important; translate: 0 0 !important; }
+.cli-positioner--minimized { bottom: 1rem; }
 .cli-window { height: 420px; border: 2px solid var(--text); background: var(--surface); color: var(--text); box-shadow: 8px 8px 0 var(--text); }
-.cli-window--fullscreen { height: 100dvh; border: 0; box-shadow: none; }
+.cli-window--fullscreen { width: 100%; height: 100%; min-height: 0; border: 0; box-shadow: none; }
 .cli-window--minimized { height: 48px; }
 .cli-titlebar { min-height: 52px; background: #ffe366; border-bottom: 2px solid var(--text); }
 .cli-window--minimized .cli-titlebar, .cli-positioner--minimized .cli-titlebar { height: 48px; min-height: 48px; box-sizing: border-box; }
@@ -681,9 +682,9 @@ footer a:hover { color: var(--brand) !important; }
   .github-city-heading { align-items: start; }
   .github-city-total { width: 100%; justify-content: space-between; }
   .github-city-stage canvas { height: 320px; }
-  .cli-positioner { inset: 0; top: 0; bottom: auto; left: 0; width: 100%; max-width: none; padding: 0; transform: none; translate: none; }
-  .cli-positioner--minimized { top: auto; bottom: 12px; left: 12px; width: calc(100% - 24px); }
-  .cli-window { height: 100dvh; border: 0; box-shadow: none; }
+  .cli-positioner { inset: 0; top: 0; right: 0; bottom: 0; left: 0; width: 100vw; height: 100vh; height: 100dvh; max-width: none; padding: 0; transform: none; translate: 0 0; }
+  .cli-positioner--minimized { top: auto; right: 12px; bottom: 12px; left: 12px; width: auto; height: auto; }
+  .cli-window { height: 100%; border: 0; box-shadow: none; }
   .cli-positioner--minimized .cli-window { height: 48px; border: 2px solid var(--text); box-shadow: 5px 5px 0 var(--text); }
   .cli-titlebar { min-height: 52px; padding-left: 10px; padding-right: 10px; gap: 8px; }
   .cli-window-control { width: 22px; height: 22px; }
