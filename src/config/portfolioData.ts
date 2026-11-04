@@ -418,8 +418,8 @@ export const PORTFOLIO_INFO: Portfolio = {
   ],
   projectDisplay: {
     featuredCount: 3,
-    heading: "Work shaped around a useful question.",
-    intro: "A few products where I brought complex ideas into clearer, more useful tools.",
+    heading: "Selected work, made with intention.",
+    intro: "A few product builds where complex ideas became useful, reliable, and a little more human.",
   },
   projects: [
     {
