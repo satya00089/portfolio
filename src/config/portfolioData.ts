@@ -9,7 +9,7 @@ export const PORTFOLIO_INFO: Portfolio = {
   },
   personal: {
     name: "Satya Subudhi",
-    title: "Senior Engineer — Full Stack (Python & React)",
+    title: "Senior Engineer — Full Stack",
     headline: "React · Python · FastAPI · IaC · Cloud",
     // avatar can be a string, an object with { url, label }, or an array of those.
     avatar: [
@@ -418,8 +418,8 @@ export const PORTFOLIO_INFO: Portfolio = {
   ],
   projectDisplay: {
     featuredCount: 3,
-    heading: "Selected work, made with intention.",
-    intro: "A few product builds where complex ideas became useful, reliable, and a little more human.",
+    heading: "Selected works",
+    intro: "A few product builds where complex ideas became useful",
   },
   projects: [
     {
@@ -444,7 +444,7 @@ export const PORTFOLIO_INFO: Portfolio = {
     },
     {
       id: "landing-zone-orchestrator",
-      title: "Landing Zone Orchestrator",
+      title: "Orchestrator",
       short: "A guided way to configure cloud foundations and generate Terraform.",
       description:
         "A production-ready platform that transforms cloud infrastructure provisioning from manual IaC coding to an intuitive, form-driven workflow. Built with React, FastAPI, and MongoDB to generate validated Terraform templates for AWS, Azure, and GCP. Features include schema-driven form builder for VPC, Subnets, IAM, and networking resources, real-time Terraform code generation and validation, JWT-based authentication, MongoDB storage for projects and templates, and multi-cloud support.",
