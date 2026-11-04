@@ -2148,78 +2148,40 @@ footer svg {
 #featured-projects > section > div > div:nth-child(3n + 2) article.story-project-card::after { transform: scaleX(-1); }
 #featured-projects > section > div > div:nth-child(3n) article.story-project-card::after { transform: scaleY(-1); }
 
-/* A small traveler carries visitors back to the beginning of the story. */
+/* A flying character guides visitors back to the top. */
 .story-scroll-top {
   position: fixed;
   right: max(16px, env(safe-area-inset-right));
   bottom: max(18px, env(safe-area-inset-bottom));
   z-index: 50;
-  display: flex;
-  width: 64px;
-  min-height: 88px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 0 4px 5px;
+  display: grid;
+  width: 68px;
+  height: 68px;
+  place-items: center;
+  padding: 0;
   border: 0;
-  border-radius: 45% 48% 42% 45%;
-  color: #455137;
-  background: rgb(248 243 231 / 92%);
-  box-shadow: 0 3px 16px rgb(69 56 40 / 15%);
+  background: transparent;
+  box-shadow: none;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 .story-scroll-top__traveler {
   display: block;
-  width: 48px;
-  height: 68px;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   pointer-events: none;
+  transform: scaleX(-1);
   transition: transform 180ms ease;
 }
-.story-scroll-top__label {
-  font-family: Georgia, "Iowan Old Style", serif;
-  font-size: .72rem;
-  line-height: 1;
+.story-scroll-top:hover .story-scroll-top__traveler {
+  transform: translateY(-4px) scaleX(-1);
 }
-.story-scroll-top:hover .story-scroll-top__traveler { transform: translateY(-4px); }
-.story-scroll-top:focus-visible { outline: 2px solid #58684a; outline-offset: 4px; }
+.story-scroll-top:focus-visible {
+  outline: 2px solid #58684a;
+  outline-offset: 4px;
+}
 @media (prefers-reduced-motion: reduce) {
   .story-scroll-top__traveler { transition: none; }
-  .story-scroll-top:hover .story-scroll-top__traveler { transform: none; }
-}
-
-/* A light paper medallion lets the flying figure remain the focus. */
-.story-scroll-top {
-  isolation: isolate;
-  width: 68px;
-  min-height: 72px;
-  padding: 0 2px 3px;
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-}
-.story-scroll-top::before {
-  position: absolute;
-  z-index: -1;
-  top: 5px;
-  left: 9px;
-  width: 50px;
-  height: 50px;
-  border: 1px solid rgb(99 104 79 / 28%);
-  border-radius: 48% 52% 47% 53%;
-  background: rgb(248 243 231 / 94%);
-  box-shadow: 0 4px 12px rgb(69 56 40 / 10%);
-  content: "";
-}
-.story-scroll-top__traveler {
-  width: 62px;
-  height: 57px;
-  object-fit: contain;
-}
-.story-scroll-top__label {
-  color: #465339;
-  font-size: .71rem;
-  font-weight: 600;
-  letter-spacing: .01em;
-  text-shadow: 0 1px 3px #f8f3e7, 0 -1px 3px #f8f3e7;
+  .story-scroll-top:hover .story-scroll-top__traveler { transform: scaleX(-1); }
 }
