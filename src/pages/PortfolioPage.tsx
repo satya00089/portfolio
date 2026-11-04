@@ -80,25 +80,31 @@ const PortfolioPage: React.FC = () => {
 
         <main className="story-page-width story-main">
           <section id="projects" className="story-section story-work-section">
-            <div className="story-section-heading">
-              <p className="story-eyebrow">01 / SELECTED WORK</p>
-              <h2>
-                {projectDisplay?.heading ?? "Work shaped around a useful question."}
-              </h2>
-              <p>
-                {projectDisplay?.intro ??
-                  "A few products where I brought complex ideas into clearer, more useful tools."}
-              </p>
-            </div>
-
-            {featuredProjects.length > 0 && (
-              <div
-                className={`story-work-grid story-work-grid--${featuredGridLayout}`}
-                data-project-count={featuredProjects.length}
-              >
-                <ProjectsGrid projects={featuredProjects} onOpen={setSelected} />
+            <div className="story-work-layout">
+              <div className="story-section-heading">
+                <p className="story-eyebrow">01 / SELECTED WORK</p>
+                <h2>
+                  {projectDisplay?.heading ?? "Selected work, made with intention."}
+                </h2>
+                <p>
+                  {projectDisplay?.intro ??
+                    "A few product builds where complex ideas became useful, reliable, and a little more human."}
+                </p>
+                <a className="story-work-explore" href="#featured-projects">
+                  Explore the work <span aria-hidden="true">↓</span>
+                </a>
               </div>
-            )}
+
+              {featuredProjects.length > 0 && (
+                <div
+                  id="featured-projects"
+                  className={`story-work-grid story-work-grid--${featuredGridLayout}`}
+                  data-project-count={featuredProjects.length}
+                >
+                  <ProjectsGrid projects={featuredProjects} onOpen={setSelected} />
+                </div>
+              )}
+            </div>
 
             {otherProjects.length > 0 && (
               <details className="story-more-work">
