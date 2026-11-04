@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import type { Portfolio } from "../types/portfolio";
 import { PORTFOLIO_INFO } from "../config/portfolioData";
 
@@ -7,7 +7,11 @@ const API_URL = import.meta.env.VITE_BACKEND_API_URL;
 type Props = { open?: boolean; onClose?: () => void };
 
 const resumeData: Portfolio = PORTFOLIO_INFO;
-type HistoryItem = { kind: "cmd" | "out"; text: string; meta?: any };
+type HistoryItem = {
+  kind: "cmd" | "out";
+  text: string;
+  meta?: { id?: string };
+};
 
 /* ---------- JumpingDots: small animated loader using Tailwind animate-bounce ---------- */
 function JumpingDots({ className = "" }: { className?: string }) {
@@ -56,6 +60,13 @@ export default function CLIResume({ open = false, onClose }: Props) {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
 
+  const handleClose = useCallback(() => {
+    setVisible(false);
+    setMinimized(false);
+    setFullscreen(false);
+    onClose?.();
+  }, [onClose]);
+
   useEffect(() => setVisible(open), [open]);
 
   useEffect(() => {
@@ -81,14 +92,7 @@ export default function CLIResume({ open = false, onClose }: Props) {
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [visible]);
-
-  function handleClose() {
-    setVisible(false);
-    setMinimized(false);
-    setFullscreen(false);
-    onClose?.();
-  }
+  }, [visible, handleClose]);
 
   /* ---------------- typewriter helper ---------------- */
   async function typeOut(text: string, speed = 18) {
@@ -115,7 +119,7 @@ export default function CLIResume({ open = false, onClose }: Props) {
     });
   }
 
-  function downloadJson(obj: any, filename = "resume.json") {
+  function downloadJson(obj: unknown, filename = "resume.json") {
     const blob = new Blob([JSON.stringify(obj, null, 2)], {
       type: "application/json",
     });
@@ -455,34 +459,22 @@ export default function CLIResume({ open = false, onClose }: Props) {
 
   return (
     <>
-      {/* dim overlay only in fullscreen */}
+      {/* Keep the CLI modal and its background interaction consistent. */}
       <div
-        className={`fixed inset-0 transition-opacity ${
-          fullscreen ? "bg-black/60" : "pointer-events-none"
-        } z-60`}
+        className={`cli-backdrop fixed inset-0 z-60 ${minimized ? "cli-backdrop--minimized" : ""}`}
         aria-hidden
+        onMouseDown={handleClose}
       />
 
-      {/* centered/docked panel */}
+      {/* Docked on desktop, full-screen on small screens or when expanded. */}
       <div
-        className={`fixed z-60 bottom-4 left-1/2 transform -translate-x-1/2 px-4`}
+        className={`cli-positioner fixed z-60 bottom-4 left-1/2 w-[calc(100%-2rem)] max-w-4xl -translate-x-1/2 ${fullscreen ? "cli-positioner--fullscreen" : minimized ? "cli-positioner--minimized" : ""}`}
         role="dialog"
-        aria-modal="true"
+        aria-modal={!minimized}
+        aria-label="Interactive portfolio CLI"
       >
         <div
-          className={`w-full max-w-4xl transition-all transform
-            ${
-              fullscreen
-                ? "h-full mt-0 rounded-none"
-                : minimized
-                  ? "h-12"
-                  : "h-[420px] rounded-xl"
-            } border shadow-2xl overflow-hidden`}
-          style={{
-            background: "var(--surface)",
-            borderColor: "var(--border)",
-            backdropFilter: "blur(6px)",
-          }}
+          className={`cli-window w-full overflow-hidden transition-all ${fullscreen ? "cli-window--fullscreen" : minimized ? "cli-window--minimized" : ""}`}
         >
           {/* Use grid layout: title / content / input rows.
               IMPORTANT: content uses min-h-0 so overflow-y works inside the grid. */}
@@ -491,53 +483,50 @@ export default function CLIResume({ open = false, onClose }: Props) {
             style={{ gridTemplateRows: "auto 1fr auto" }}
           >
             {/* ---------- TITLEBAR: restored to original visual layout ---------- */}
-            <div className="flex items-center gap-3 px-3 py-2 border-b border-slate-700">
-              <div className="flex items-center gap-2">
+            <div className="cli-titlebar flex items-center gap-3 px-3 py-2">
+              <div className="cli-window-controls flex items-center gap-2">
                 <button
                   onClick={handleClose}
                   title="Close"
-                  className="w-3 h-3 rounded-full shadow-sm transform hover:scale-110"
+                  className="cli-window-control cli-window-control--close"
                   aria-label="Close terminal"
                 >
-                  <span className="block w-3 h-3 bg-red-500 rounded-full" />
+                  ×
                 </button>
 
                 <button
                   onClick={() => setMinimized((s) => !s)}
                   title="Minimize"
-                  className="w-3 h-3 rounded-full shadow-sm transform hover:scale-110"
+                  className="cli-window-control cli-window-control--minimize"
                   aria-label="Minimize terminal"
                 >
-                  <span className="block w-3 h-3 bg-amber-500 rounded-full" />
+                  −
                 </button>
 
                 <button
                   onClick={() => setFullscreen((s) => !s)}
                   title="Toggle fullscreen"
-                  className="w-3 h-3 rounded-full shadow-sm transform hover:scale-110"
+                  className="cli-window-control cli-window-control--fullscreen"
                   aria-label="Toggle fullscreen"
                 >
-                  <span className="block w-3 h-3 bg-green-500 rounded-full" />
+                  □
                 </button>
               </div>
 
-              <div className="ml-3 flex items-center gap-2">
-                <div className="text-xs font-medium text-[var(--text)] bg-[var(--bg)] px-2 py-0.5 rounded-sm">
-                  Terminal
+              <div className="cli-title-label ml-3 flex items-center gap-2">
+                <div className="cli-title-chip text-xs font-bold px-2 py-0.5">
+                  SATYA / CLI
                 </div>
-                <div className="text-xs text-[var(--muted)] ml-2">
+                <div className="cli-title-path text-xs ml-2">
                   bash —{" "}
                   {resumeData.personal.name.toLowerCase().replace(/\s+/g, "")}
                   @portfolio
                 </div>
               </div>
 
-              <div className="ml-auto flex items-center gap-3 text-[var(--muted)] text-xs">
+              <div className="cli-title-actions ml-auto flex items-center gap-3 text-xs">
                 <div className="hidden sm:block">
-                  Press{" "}
-                  <span className="font-mono text-[var(--text)] bg-[var(--bg)] px-1 rounded">
-                    Tab
-                  </span>{" "}
+                  Press <span className="cli-keycap font-mono px-1">Tab</span>{" "}
                   to autocomplete
                 </div>
                 <button
@@ -545,7 +534,7 @@ export default function CLIResume({ open = false, onClose }: Props) {
                     setHistory([]);
                     setInput("");
                   }}
-                  className="text-xs px-2 py-1 rounded hover:bg-[var(--bg)] cursor-pointer"
+                  className="cli-clear text-xs px-2 py-1 cursor-pointer"
                 >
                   Clear
                 </button>
@@ -556,7 +545,7 @@ export default function CLIResume({ open = false, onClose }: Props) {
             {!minimized ? (
               <div
                 ref={wrapperRef}
-                className="min-h-0 overflow-y-auto font-mono text-sm p-4"
+                className="cli-output min-h-0 overflow-y-auto font-mono text-sm p-4"
                 aria-live="polite"
                 style={{
                   maxHeight: fullscreen ? "calc(100vh - 120px)" : "70vh",
@@ -588,22 +577,15 @@ export default function CLIResume({ open = false, onClose }: Props) {
                   $
                 </div>
                 <div className="truncate">
-                  terminal — minimized. Click the yellow dot to restore or the
-                  red dot to close.
+                  terminal — minimized. Use the yellow square to restore or the
+                  red square to close.
                 </div>
               </div>
             )}
 
             {/* input row (always visible because grid row is auto) */}
             {!minimized && (
-              <div
-                className="px-4 py-3 flex items-center gap-3"
-                style={{
-                  borderTop: "1px solid",
-                  borderTopColor: "var(--border)",
-                  background: "transparent",
-                }}
-              >
+              <div className="cli-input-row px-4 py-3 flex items-center gap-3">
                 <span className="font-mono" style={{ color: "var(--brand)" }}>
                   $
                 </span>
@@ -615,12 +597,12 @@ export default function CLIResume({ open = false, onClose }: Props) {
                   placeholder={
                     processing ? "processing." : 'type "help" and press Enter'
                   }
-                  className="flex-1 bg-transparent outline-none text-sm font-mono"
+                  className="cli-command-input flex-1 bg-transparent outline-none text-sm font-mono"
                   disabled={processing}
                   aria-label="CLI command input"
                   autoComplete="off"
                   spellCheck={false}
-                  style={{ color: "var(--text)", caretColor: "var(--brand)" }}
+                  style={{ caretColor: "var(--brand)" }}
                 />
 
                 <button
@@ -629,14 +611,9 @@ export default function CLIResume({ open = false, onClose }: Props) {
                     setInput("");
                     inputRef.current?.focus();
                   }}
-                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded text-sm"
+                  className="cli-run inline-flex items-center gap-2 px-3 py-1.5 text-sm"
                   aria-label="Run command"
                   disabled={processing}
-                  style={{
-                    background: "var(--brand)",
-                    color: "white",
-                    boxShadow: "0 1px 0 rgba(0,0,0,0.05)",
-                  }}
                 >
                   Run
                 </button>
