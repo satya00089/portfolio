@@ -1,111 +1,55 @@
 import React, { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
-import type { Variants } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+import flyingTraveler from "../../assets/flying-traveler.webp";
 
 const SHOW_AFTER = 300;
-const FLY_MS = 900;
-
-const containerVariants: Variants = {
-  hidden: { opacity: 0, scale: 0.7, y: 12 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    transition: { type: "spring", stiffness: 300, damping: 22 },
-  },
-  flying: (distance: number) => ({
-    opacity: 0,
-    y: -distance,
-    rotate: -6,
-    scale: 0.7,
-    transition: { duration: FLY_MS / 1000, ease: "easeIn" },
-  }),
-};
+const FLIGHT_DURATION = 900;
 
 export const ScrollToTop: React.FC = () => {
   const [visible, setVisible] = useState(false);
   const [flying, setFlying] = useState(false);
   const [distance, setDistance] = useState(0);
-  const prefersReducedMotion = useRef(false);
-
-  let animationState: "flying" | "visible" | "hidden";
-  if (flying) {
-    animationState = "flying";
-  } else if (visible) {
-    animationState = "visible";
-  } else {
-    animationState = "hidden";
-  }
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
-    if (typeof window !== "undefined" && "matchMedia" in window) {
-      prefersReducedMotion.current = window.matchMedia(
-        "(prefers-reduced-motion: reduce)",
-      ).matches;
-    }
-
-    const onScroll = () => {
-      // Only show button if not currently flying
-      if (!flying) {
-        setVisible(window.scrollY > SHOW_AFTER);
-      }
+    const updateVisibility = () => setVisible(window.scrollY > SHOW_AFTER);
+    window.addEventListener("scroll", updateVisibility, { passive: true });
+    updateVisibility();
+    return () => {
+      window.removeEventListener("scroll", updateVisibility);
+      if (timer.current) clearTimeout(timer.current);
     };
-
-    window.addEventListener("scroll", onScroll);
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [flying]);
+  }, []);
 
   const onActivate = () => {
-    if (prefersReducedMotion.current) {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+    if (reduceMotion) {
+      window.scrollTo({ top: 0, behavior: "instant" });
       return;
     }
 
-    const d = window.innerHeight + 220;
-    setDistance(d);
+    setDistance(window.innerHeight + 120);
     setFlying(true);
-
     window.scrollTo({ top: 0, behavior: "smooth" });
-
-    // after flight, hide button completely until user scrolls again
-    setTimeout(() => {
-      setFlying(false);
-      setVisible(false); // keep hidden until scroll
-    }, FLY_MS + 150);
+    timer.current = setTimeout(() => setFlying(false), FLIGHT_DURATION);
   };
+
+  if (!visible && !flying) return null;
 
   return (
     <motion.button
-      aria-label="Scroll to top"
       type="button"
-      className="fixed bottom-6 right-6 z-50 focus:outline-none cursor-pointer"
-      style={{ display: "grid", placeItems: "center" }}
+      className="story-scroll-top"
+      aria-label="Back to top"
+      title="Back to top"
       onClick={onActivate}
-      initial="hidden"
-      animate={animationState}
-      variants={containerVariants}
-      custom={distance}
+      disabled={flying}
+      initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+      animate={flying ? { opacity: 0, y: -distance, rotate: -7 } : { opacity: 1, y: 0, rotate: 0 }}
+      transition={flying ? { duration: FLIGHT_DURATION / 1000, ease: "easeIn" } : { duration: 0.2 }}
     >
-      <motion.img
-        src="./hero-up.png"
-        alt=""
-        width={42}
-        height={42}
-        style={{ pointerEvents: "none", display: "block" }}
-        initial={{ y: 0, rotate: 0 }}
-        animate={
-          visible && !flying && !prefersReducedMotion.current
-            ? { y: [0, -3, 0], rotate: [0, -2, 0] }
-            : undefined
-        }
-        transition={
-          visible && !flying && !prefersReducedMotion.current
-            ? { duration: 1.4, repeat: Infinity, ease: "easeInOut" }
-            : undefined
-        }
-        whileTap={{ scale: 0.95 }}
-      />
+      <img src={flyingTraveler} alt="" className="story-scroll-top__traveler" />
+      <span className="story-scroll-top__label" aria-hidden="true">Top ↑</span>
     </motion.button>
   );
 };
