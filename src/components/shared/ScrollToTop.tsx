@@ -49,7 +49,6 @@ export const ScrollToTop: React.FC = () => {
       transition={flying ? { duration: FLIGHT_DURATION / 1000, ease: "easeIn" } : { duration: 0.2 }}
     >
       <img src={flyingTraveler} alt="" className="story-scroll-top__traveler" />
-      <span className="story-scroll-top__label" aria-hidden="true">Top ↑</span>
     </motion.button>
   );
 };
