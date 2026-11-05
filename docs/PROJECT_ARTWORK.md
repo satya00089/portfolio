@@ -35,6 +35,7 @@ clientWork: {
     description: "A longer description for the details popup.",
     image: `${import.meta.env.BASE_URL}client-work/client-preview.webp`,
     imageAlt: "Description of the real project preview",
+    artwork: `${import.meta.env.BASE_URL}client-work/client-artwork.webp`,
     href: "https://example.com/",
     tags: ["Client work", "Website"],
   }],
@@ -42,6 +43,8 @@ clientWork: {
 ```
 
 Put real screenshots in `public/client-work/`, or use a public image URL.
+An optional `artwork` is shown on the client card; the real `image` stays in
+the details popup. Without `artwork`, the card displays `image` instead.
 Leave `projects` empty or omit `clientWork` to hide the section.
 
 ## Use real product visuals

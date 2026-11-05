@@ -129,10 +129,10 @@ const PortfolioPage: React.FC = () => {
               </div>
               <div className="story-client-list">
                 {clientProjects.map((project, index) => (
-                  <article className="story-client-card" key={project.id ?? `${project.title}-${index}`}>
-                    {project.image && (
-                      <div className="story-client-preview">
-                        <img src={project.image} alt={project.imageAlt ?? `${project.title} website preview`} loading="lazy" />
+                  <article className={`story-client-card${project.artwork ? " story-client-card--artwork" : ""}`} key={project.id ?? `${project.title}-${index}`}>
+                    {(project.artwork || project.image) && (
+                      <div className={`story-client-preview${project.artwork ? " story-client-preview--artwork" : ""}`}>
+                        <img src={project.artwork ?? project.image} alt={project.artwork ? `Illustration of ${project.title}` : (project.imageAlt ?? `${project.title} website preview`)} loading="lazy" />
                       </div>
                     )}
                     <div className="story-client-copy">
@@ -143,7 +143,7 @@ const PortfolioPage: React.FC = () => {
                       {Boolean(project.tags?.length) && <ul className="story-client-tags" aria-label="Project highlights">{project.tags?.map((tag) => <li key={tag}>{tag}</li>)}</ul>}
                       <div className="story-client-actions">
                         <button type="button" onClick={() => setSelected(project)}>View project details <span aria-hidden="true">→</span></button>
-                        {project.href && <a href={project.href} target="_blank" rel="noopener noreferrer">Visit live site <span aria-hidden="true">↗</span></a>}
+                        {project.href && <a href={project.href} target="_blank" rel="noopener noreferrer">Visit website <span aria-hidden="true">↗</span></a>}
                       </div>
                     </div>
                   </article>
